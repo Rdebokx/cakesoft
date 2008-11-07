@@ -1,0 +1,19 @@
+3
+name = Dursley
+experience = 15
+maxGreed = 3
+greed = 1
+maxHealthPoints = 20
+healthPoints = 10
+maxHealthPoints = 40
+healthPoints = 30
+maxGreed = 20
+greed = 10 
+name = Aragorn
+experience = 45
+name = Aap
+experience = 22
+maxGreed = 2
+greed = 2
+maxHealthPoints = 20
+healthPoints = 20
