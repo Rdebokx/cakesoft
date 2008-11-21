@@ -36,7 +36,7 @@ public class Jury extends Lid {
 	public Jury(Lid lid)
 	{
 		//TODO: Kan iemand dit valideren, Leendert bijvoorbeeld?
-		super(lid.getNaam(), lid.getLid_id(), lid.getWachtwoord(), lid.isHoofdbeheerder());
+		//super(lid.getNaam(), lid.getLid_id(), lid.getWachtwoord(), lid.isHoofdbeheerder());
 		jury_id = -1;
 	}
 
