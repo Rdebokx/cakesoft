@@ -1,6 +1,6 @@
 /** 
  * Klasse DemoJavaDoc, laat JavaDoc gedoe zien, dit is een korte beschrijving van wat de klasse kan en doet.
- * @author Goep 11
+ * @author Groep 11
  * @version 1.0
  */
 public class DemoJavaDoc {
