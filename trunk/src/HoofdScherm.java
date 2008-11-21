@@ -13,17 +13,18 @@ public class HoofdScherm extends JFrame implements ActionListener
 	{
 		this.programmaC=programmaC;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(new Rectangle(100,100,700,500));
-		setTitle("Overzicht scherm");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(new Rectangle(100,100,700,500));
+		this.setTitle("Overzicht scherm");
 		
 		JPanel panel=new JPanel(new GridLayout(2,1));
 		panel.add(this.dummyLabel);
 		panel.add(this.loguitKnop);
 		
+		this.getContentPane().add(panel);
 		this.loguitKnop.addActionListener(this);
 		
-		setVisible(true);
+		this.setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e)
