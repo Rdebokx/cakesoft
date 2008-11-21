@@ -1,4 +1,4 @@
-import java.util.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 
 /** 
  * Klasse Wedstrijd, beschrijft een Wedstrijd-object met de nodige eigenschappen
@@ -7,7 +7,7 @@ import java.util.SimpleDateFormat;
 
 public class Wedstrijd {
 	int wedstrijd_id;
-	java.text.SimpleDateFormat datum;
+	SimpleDateFormat datum;
 	String locatie;
 	boolean inschrijvingOpen;
 	boolean beoordelingOpen;
@@ -24,7 +24,7 @@ public class Wedstrijd {
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven id, datum, locatie, inschrijvingOpen en beoordelingOpen
 	 */
-	public Wedstrijd(int wedstrijd_id, SimpleDateFormat datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(int wedstrijd_id, java.text.SimpleDateFormat datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = wedstrijd_id;
 		this.datum = datum;
