@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.util.SimpleDateFormat;
 
 /** 
  * Klasse Wedstrijd, beschrijft een Wedstrijd-object met de nodige eigenschappen
@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Wedstrijd {
 	int wedstrijd_id;
-	Date datum;
+	java.text.SimpleDateFormat datum;
 	String locatie;
 	boolean inschrijvingOpen;
 	boolean beoordelingOpen;
@@ -24,7 +24,7 @@ public class Wedstrijd {
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven id, datum, locatie, inschrijvingOpen en beoordelingOpen
 	 */
-	public Wedstrijd(int wedstrijd_id, Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(int wedstrijd_id, SimpleDateFormat datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = wedstrijd_id;
 		this.datum = datum;
@@ -35,12 +35,12 @@ public class Wedstrijd {
 
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven datum, locatie, inschrijvingOpen en beoordelingOpen
-	 * @param datum				Date
+	 * @param datum				SimpleDateFormat
 	 * @param locatie			String
 	 * @param inschrijvingOpen	boolean
 	 * @param beoordelingOpen	boolean		
 	 */
-	public Wedstrijd(Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(SimpleDateFormat datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = -1;
 		this.datum = datum;
@@ -63,7 +63,7 @@ public class Wedstrijd {
 	 * Methode setDatum, stelt datum in op het gegeven datum-object
 	 * @param datum		In te stellen datum-object
 	 */
-	public void setDatum(Date datum)
+	public void setDatum(SimpleDateFormat datum)
 	{
 		this.datum = datum;
 	}
@@ -106,7 +106,7 @@ public class Wedstrijd {
 	 * Methode getDatum, geeft de ingestelde datum terug. 
 	 * @return		Datum datum, geeft het datum object terug.
 	 */
-	public Date getDatum()
+	public SimpleDateFormat getDatum()
 	{
 		return datum;
 	}
@@ -144,9 +144,7 @@ public class Wedstrijd {
 	 **/
 	public String toString()
 	{
-		//TODO: Zoek uit hoe je van Date naar String gaat, methodes zijn depreciated.
-		//return this.getLocatie() + ", " + datum. + ;
-		return "toString werkt nog niet!";
+		return this.getLocatie() + ", " + datum.format("YYYY-MM-DD");
 	}
 
 	/**
