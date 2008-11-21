@@ -19,7 +19,13 @@ public class Lid {
 		this.hoofdbeheerder = false;
 	}
 	
-	
+	/**
+	 * Constructor voor Lid, gegeven alle eigenschappen van het lid.
+	 * @param naam				String
+	 * @param lid_id			int
+	 * @param wachtwoord		String
+	 * @param hoofdbeheerder	boolean
+	 */
 	public Lid(String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
 	{
 		this.naam = naam;
@@ -28,54 +34,82 @@ public class Lid {
 		this.hoofdbeheerder = hoofdbeheerder;
 	}
 	
+	/**
+	 * Methode setNaam, stelt naam in
+	 * @param naam		String
+	 */
 	public void setNaam(String naam)
 	{
 		this.naam = naam;
 	}
-	//post: heeft naam ingesteld
 	
+	/**
+	 * Methode setLid_id, stelt lid_id in.
+	 * @param lid_id
+	 */
 	public void setLid_id(int lid_id)
 	{
 		this.lid_id = lid_id;
 	}
-	//post: heeft lid_id ingesteld
 	
+	/**
+	 * Methode setWachtwoord, stelt wachtwoord in.
+	 * @param wachtwoord	String
+	 */
 	public void setWachtwoord(String wachtwoord)
 	{
 		this.wachtwoord = wachtwoord;
 	}
-	//post: heeft wachtwoord ingesteld
 	
+	/**
+	 * Methode setHoofdbeheerder, stelt hoofdbeheerder in.
+	 * @param hoofdbeheerder	boolean
+	 */
 	public void setHoofdbeheerder(boolean hoofdbeheerder)
 	{
 		this.hoofdbeheerder = hoofdbeheerder;
 	}
-	//post: heeft hoofdbeheerder ingesteld op true of false
 	
+	/**
+	 * Methode getNaam, geeft naam terug
+	 * @return		String
+	 */
 	public String getNaam()
 	{
 		return naam;
 	}
-	//post: geeft naam terug
 	
+	/**
+	 * Methode getLid_id, geeft lid_id terug.
+	 * @return	int
+	 */
 	public int getLid_id()
 	{
 		return lid_id;
 	}
-	//post: geeft lid_id terug
 	
+	/**
+	 * Methode getWachtwoord, geeft wachtwoord terug.
+	 * @return	String
+	 */
 	public String getWachtwoord()
 	{
 		return wachtwoord;
 	}
-	////post: geeft wachtwoord teruyg
 	
+	/**
+	 * Methode isHoofdbeheerder, geeft boolean waarde terug.
+	 * @return boolean
+	 */
 	public boolean isHoofdbeheerder()
 	{
 		return hoofdbeheerder;
 	}
-	////post: geeft true dsd hoofdbeheerder true is
 	
+	/**
+	 * Methode equals, geeft true desda object is van klasse Lid en heeft gelijk lid_id
+	 * @return	boolean
+	 */
 	public boolean equals(Object other)
 	{
 		boolean output = false;
