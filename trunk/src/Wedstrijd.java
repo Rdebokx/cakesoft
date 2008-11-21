@@ -136,7 +136,7 @@ public class Wedstrijd {
 	public boolean isBeoordelingOpen()
 	{
 		return beoordelingOpen;
-	}
+	} 
 	
 	/**
 	 * Methode toString, geeft String-representatie terug. 
