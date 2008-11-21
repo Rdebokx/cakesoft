@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class ContainerScherm extends JFrame
 {
-	private ArrayList<JPanel> panels;
 	
 	public ContainerScherm()
 	{
@@ -14,6 +13,14 @@ public class ContainerScherm extends JFrame
 		setTitle("Cakesoft");
 		
 		setVisible(true);
+	}
+	
+	public void veranderPanel(JPanel panel)
+	{
+		Container container=this.getContentPane();
+		container.removeAll();
+		container.add(panel);
+		this.repaint();
 	}
 	
 }
