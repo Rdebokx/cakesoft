@@ -14,18 +14,20 @@ public class LoginScherm extends JFrame implements ActionListener
 	{
 		this.programmaC=programmaC;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(new Rectangle(100,100,500,300));
-		setTitle("Cakesoft - Login");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(new Rectangle(100,100,500,300));
+		this.setTitle("Cakesoft - Login");
 		
 		JPanel panel=new JPanel(new GridLayout(3,1));
 		panel.add(this.lidIdLabel);
 		panel.add(this.lidIdVeld);
 		panel.add(this.loginKnop);
 		
+		this.getContentPane().add(panel);
+		
 		this.loginKnop.addActionListener(this);
 		
-		setVisible(true);
+		this.setVisible(true);
 	}
 	
 	public Lid getLid()

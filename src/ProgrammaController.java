@@ -14,7 +14,6 @@ public class ProgrammaController
 	
 	public void actieLogin()
 	{
-		System.out.println("Voert login actie uit...");
 		this.ingelogdLid=this.loginS.getLid();
 		this.loginS.dispose();
 		this.hoofdS=new HoofdScherm(this);
@@ -23,6 +22,7 @@ public class ProgrammaController
 	public void actieLoguit()
 	{
 		this.ingelogdLid=null;
+		
 		this.hoofdS.dispose();
 		this.loginS=new LoginScherm(this);
 	}
