@@ -3,7 +3,6 @@
  * @author Goep 11
  * @version 1.0
  */
-
 public class DemoJavaDoc {
 
 	/**
