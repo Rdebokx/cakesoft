@@ -3,6 +3,7 @@ import java.util.Calendar;
 /** 
  * Klasse Wedstrijd, beschrijft een Wedstrijd-object met de nodige eigenschappen
  * @author Groep 11
+ * @version     %I%, %G%
  */
 
 public class Wedstrijd {
@@ -66,24 +67,101 @@ public class Wedstrijd {
 	
 	/**
 	 * Methode setLocatie, stelt de locatie in op de gegeven String.
-	 * @param locatie
+	 * @param locatie	String met de locatie, puur voor eindgebruikers.
+	 * @return			Locatie is ingesteld voor de Wedstrijd.
 	 */
 	public void setLocatie(String locatie)
 	{
-		
+		this.locatie = locatie;
 	}
-	Post: heeft de locatie ingesteld
 
 	public void setInschrijvingOpen(boolean inschrijvingOpen)
-	Post: heeft inschrijvingOpen ingesteld op true of false
+	{
+		this.inschrijvingOpen = inschrijvingOpen;
+	}
 
+	/**
+	 * Methode setBeoordelingOpen, stelt beoordelingOpen in op de gegeven boolean waarde.
+	 * @param beoordelingOpen	Boolean
+	 * @return					beoordelingOpen is ingesteld.
+	 */
 	public void setBeoordelingOpen(boolean beoordelingOpen)
-	Post: heeft beoordelingOpen ingesteld
-
+	{
+		this.beoordelingOpen = beoordelingOpen;
+	}
+	
+	/**
+	 * Methode getWedstrijd_id, geeft wedstrijd_id terug.
+	 * @return					Integer wedstrijd_id
+	 */
 	public int getWedstrijd_id()
-	Post: geeft de wedstrijd_id terug
-
+	{
+		return wedstrijd_id;
+	}
+	
+	/**
+	 * Methode getDatum, geeft de ingestelde datum terug. 
+	 * @return		Datum datum, geeft het datum object terug.
+	 */
 	public Calendar getDatum()
-	Post: geeft de datum van de wedstrijd terug
+	{
+		return datum;
+	}
+	
+	/**
+	 * Methode getLocatie, geeft locatie terug.
+	 * @return		String getLocatie
+	 */
+	public String getLocatie()
+	{
+		return locatie;
+	}
 
+	/**
+	 * Methode isInschrijvingOpen, geeft inschrijvingOpen terug.
+	 * @return		Boolean inschrijvingOpen
+	 */
+	public boolean isInschrijvingOpen()
+	{
+		return inschrijvingOpen;
+	}
+	
+	/**
+	 * Methode isBeoordelingOpen, geeft beoordelingOpen terug.
+	 * @return		Boolean beoordelingOpen
+	 */
+	public boolean isBeoordelingOpen()
+	{
+		return beoordelingOpen;
+	}
+	
+	/**
+	 * Methode toString, geeft String-representatie terug. 
+	 * @return	String, object in vorm 'locatie, YYYY-MM-DD'
+	 **/
+	public String toString()
+	{
+		return "locatie, YYYY-MM-DD";
+	}
+
+	/**
+	 * Methode equals, controleert of het andere object van het type Wedstrijd is en hetzelfde ID heeft
+	 * @param	other		Het te controleren Other object.
+	 * @return	boolean		True desda Wedstrijd_id's zijn gelijk en beide van type Wedstrijd. 
+	 */
+	public boolean equals(Object other)
+	{
+		boolean output = false;
+		Wedstrijd wedstrijd = (Wedstrijd)other;
+		
+		if (other instanceof Wedstrijd)
+		{
+			if (wedstrijd.getWedstrijd_id() == this.getWedstrijd_id())
+			{
+				output = true;
+			}
+		}
+		
+		return output;
+	}	
 }
