@@ -6,7 +6,7 @@ import java.util.Calendar;
  */
 
 public class Wedstrijd {
-	int wedstrijd_id = -1;
+	int wedstrijd_id;
 	Calendar datum;
 	String locatie;
 	boolean inschrijvingOpen;
@@ -17,7 +17,8 @@ public class Wedstrijd {
 	 */
 	public Wedstrijd()
 	{
-		new Wedstrijd();
+		wedstrijd_id = -1;
+		locatie = "";
 	}
 	
 	/**
@@ -25,7 +26,11 @@ public class Wedstrijd {
 	 */
 	public Wedstrijd(int wedstrijd_id, Calendar datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
-		
+		this.wedstrijd_id = wedstrijd_id;
+		this.datum = datum;
+		this.locatie = locatie;
+		this.inschrijvingOpen = inschrijvingOpen;
+		this.beoordelingOpen = beoordelingOpen;
 	}
 	
 	/**
@@ -33,7 +38,11 @@ public class Wedstrijd {
 	 */
 	public Wedstrijd(Calendar datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
-		
+		this.wedstrijd_id = -1;
+		this.datum = datum;
+		this.locatie = locatie;
+		this.inschrijvingOpen = inschrijvingOpen;
+		this.beoordelingOpen = beoordelingOpen;
 	}
 
 	/**
@@ -48,15 +57,21 @@ public class Wedstrijd {
 	
 	/**
 	 * Methode setDatum, stelt datum in op het gegeven datum-object
-	 * @param datum		In te stellen 
+	 * @param datum		In te stellen datum-object
 	 */
 	public void setDatum(Calendar datum)
 	{
 		this.datum = datum;
 	}
-	Post: datum is ingesteld
-
+	
+	/**
+	 * Methode setLocatie, stelt de locatie in op de gegeven String.
+	 * @param locatie
+	 */
 	public void setLocatie(String locatie)
+	{
+		
+	}
 	Post: heeft de locatie ingesteld
 
 	public void setInschrijvingOpen(boolean inschrijvingOpen)
