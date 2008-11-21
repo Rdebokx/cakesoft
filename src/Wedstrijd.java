@@ -1,14 +1,13 @@
-import java.util.Calendar;
+import java.util.Date;
 
 /** 
  * Klasse Wedstrijd, beschrijft een Wedstrijd-object met de nodige eigenschappen
  * @author Groep 11
- * @version     %I%, %G%
  */
 
 public class Wedstrijd {
 	int wedstrijd_id;
-	Calendar datum;
+	Date datum;
 	String locatie;
 	boolean inschrijvingOpen;
 	boolean beoordelingOpen;
@@ -25,7 +24,7 @@ public class Wedstrijd {
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven id, datum, locatie, inschrijvingOpen en beoordelingOpen
 	 */
-	public Wedstrijd(int wedstrijd_id, Calendar datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(int wedstrijd_id, Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = wedstrijd_id;
 		this.datum = datum;
@@ -33,11 +32,15 @@ public class Wedstrijd {
 		this.inschrijvingOpen = inschrijvingOpen;
 		this.beoordelingOpen = beoordelingOpen;
 	}
-	
+
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven datum, locatie, inschrijvingOpen en beoordelingOpen
+	 * @param datum				Date
+	 * @param locatie			String
+	 * @param inschrijvingOpen	boolean
+	 * @param beoordelingOpen	boolean		
 	 */
-	public Wedstrijd(Calendar datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = -1;
 		this.datum = datum;
@@ -60,7 +63,7 @@ public class Wedstrijd {
 	 * Methode setDatum, stelt datum in op het gegeven datum-object
 	 * @param datum		In te stellen datum-object
 	 */
-	public void setDatum(Calendar datum)
+	public void setDatum(Date datum)
 	{
 		this.datum = datum;
 	}
@@ -103,7 +106,7 @@ public class Wedstrijd {
 	 * Methode getDatum, geeft de ingestelde datum terug. 
 	 * @return		Datum datum, geeft het datum object terug.
 	 */
-	public Calendar getDatum()
+	public Date getDatum()
 	{
 		return datum;
 	}
@@ -141,7 +144,9 @@ public class Wedstrijd {
 	 **/
 	public String toString()
 	{
-		return "locatie, YYYY-MM-DD";
+		//TODO: Zoek uit hoe je van Date naar String gaat, methodes zijn depreciated.
+		//return this.getLocatie() + ", " + datum. + ;
+		return "toString werkt nog niet!";
 	}
 
 	/**
@@ -161,7 +166,6 @@ public class Wedstrijd {
 				output = true;
 			}
 		}
-		
 		return output;
-	}	
+	}
 }
