@@ -14,6 +14,6 @@ public class DemoJavaDoc {
 	 */
 	public String demoMethod(String invoer, int nummer)
 	{
-		return "Blaat !";
+		return "Blaat   !";
 	}
 }
