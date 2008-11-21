@@ -2,40 +2,28 @@ import java.awt.event.*;
 
 public class ProgrammaController
 {
-	private ContainerScherm containerS;
 	private Lid ingelogdLid=null;
-	private loginPanel loginP;
-	private HoofdPanel hoofdP;
+	private LoginScherm loginS;
+	private HoofdScherm hoofdS;
 	
 	public ProgrammaController()
 	{
-		this.containerS=new ContainerScherm();
-		
-		this.laadLoginPanel();
-	}
-	
-	public void laadLoginPanel()
-	{
-		this.loginP=new loginPanel(this,this.containerS);
-		this.containerS.veranderPanel(this.loginP);
-	}
-	
-	public void laadHoofdPanel()
-	{
-		this.hoofdP=new HoofdPanel(this,this.containerS);
-		this.containerS.veranderPanel(this.hoofdP);
+		this.loginS=new LoginScherm(this);
 	}
 	
 	
 	public void actieLogin()
 	{
-		this.ingelogdLid=this.loginP.getLid();
-		this.laadHoofdPanel();
+		System.out.println("Voert login actie uit...");
+		this.ingelogdLid=this.loginS.getLid();
+		this.loginS.dispose();
+		this.hoofdS=new HoofdScherm(this);
 	}
 	
 	public void actieLoguit()
 	{
 		this.ingelogdLid=null;
-		this.laadLoginPanel();
+		this.hoofdS.dispose();
+		this.loginS=new LoginScherm(this);
 	}
 }
