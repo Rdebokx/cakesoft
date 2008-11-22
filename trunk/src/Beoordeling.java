@@ -76,77 +76,64 @@ public class Beoordeling {
 	{
 		this.commentaar = commentaar;
 	}
-	//post;  heeft het commentaar ingesteld 
 	
 	public void setKwaliteit(int kwaliteit)
 	{
 		this.kwaliteit = kwaliteit;
 	}
-	//post;  heeft de kwaliteit ingesteld 
 	
 	public void setPrijs(int prijs)
 	{
 		this.prijs = prijs;
 	}
-	//post;  heeft de prijs ingesteld 
 	
 	public void setCalo(int calo)
 	{
 		this.calo = calo;
 	}
-	//post;  heeft de calorieën ingesteld 
 	
 	public void setSmaak(int smaak)
 	{
 		this.smaak = smaak;
 	}
-	//post;  heeft de smaak ingesteld 
 	
 	public int getBeoordeling_id()
 	{
 		return beoordeling_id;
 	}
-	//post;  geeft de beoordeling_id terug
 	
 	public String getCommentaar()
 	{
 		return commentaar;
 	}
-	//post;  geeft het commentaar terug
 	
 	public int getKwaliteit()
 	{
 		return kwaliteit;
 	}
-	//post;  geeft kwaliteit terug
 	
 	public int getPrijs()
 	{
 		return prijs;
 	}
-	//post;  geeft prijs terug
 	
 	public int getCalo()
 	{
 		return calo;
 	}
-	//post;  geeft calorieen terug
 	
 	public int getSmaak()
 	{
 		return smaak;
 	}
-	//post;  geeft smaak terug
 	
 	public void setJury(Jury jury)
 	{
 		this.jury = jury;
 	}
-	//post;  heeft jury ingesteld
 	
 	public Jury getJury()
 	{
 		return jury;
 	}
-	//post;  geeft jury object terug
 }
