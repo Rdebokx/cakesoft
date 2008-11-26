@@ -50,7 +50,7 @@ public class Database {
 	 */
 	public ResultSet query(String tabel, String vwkolom, String voorwaarde)
 	{
-		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "=" + voorwaarde;
+		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "='" + voorwaarde + "'";
 		ResultSet res;
 		
 		try{
@@ -77,7 +77,7 @@ public class Database {
 	 */
 	public ResultSet query(String tabel, String vwkolom, String voorwaarde, String sorteerOp, boolean oplopend)
 	{
-		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "=" + voorwaarde; //dit gedeelte van de statement moet zowiezo worden uitgevoerd	
+		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "='" + voorwaarde + "'"; //dit gedeelte van de statement moet zowiezo worden uitgevoerd	
 		if(oplopend)
 		{	//als oplopend true is, moeten de resultaten oplopend geordend worden aan de hand van sorteerOp
 			query = query + " ORDER BY " + sorteerOp + " ASC";
@@ -100,6 +100,68 @@ public class Database {
 		}
 		
 		return res;
+	}
+	
+	/**
+	 * Deze methode print de Resultset af, enkel bedoelt voor debug doeleinden
+	 * @param result	bevat de ResultSet die afgedrukt moet worden.
+	 */
+	public void printResultSet(ResultSet result)
+	{
+		try
+		{
+			ResultSetMetaData meta = result.getMetaData();
+			int cols = meta.getColumnCount();
+			String res = "";
+			
+			while(result.next())
+			{
+				for(int i=1; i<= cols; i++)
+					res = res + result.getString(i) + ", ";
+				
+				res = res + '\n';
+			}
+			
+			System.out.println(res);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.out.println(e);
+		}
+	}
+	
+	/**
+	 * Deze methode insert een nieuwe record in de tabel en returnt het id van de record
+	 * @param tabel		bevat de naam van de tabel
+	 * @param waarden	bevat de waarden die in die kolommen moeten worden geinsert. N.B. Deze moeten in de goeie volgorde gelevert worden
+	 * @return			geeft het id terug van de nieuwe record
+	 */
+	public int insert(String tabel, String[] waarden)
+	{
+		String query = "INSERT INTO " + tabel + " VALUES (";
+		int lengte = waarden.length;
+		for (int i=0; i<(lengte-1); i++)
+		{
+			query = "'" + query + waarden[i] + "', ";
+		}
+		query = query + "'" + waarden[lengte] + "')";
+		int id = -1;
+		
+		try
+		{
+			Statement statement = connection.createStatement();
+			statement.executeQuery(query);
+			ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID as new_id");
+			id = Integer.parseInt(res.toString());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.out.println(e.toString());
+		}
+		
+		return id;
 		
 	}
 	
