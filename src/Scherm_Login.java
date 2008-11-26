@@ -6,28 +6,44 @@ import java.awt.event.*;
 public class Scherm_Login extends JFrame implements ActionListener
 {
 	private ProgrammaController programmaC;
-	private JLabel lidIdLabel=new JLabel("Lid nummer:");
-	private JTextField lidIdVeld=new JTextField();
-	private JButton loginKnop=new JButton("Login");
+	//Inhoud van het Inlogscherm
+	private JPanel paneel = new JPanel(new GridLayout(2,2));
+	private JPanel paneel2 = new JPanel(new GridLayout(1,1));
+	private JLabel lidnr = new JLabel("Lidnummer");
+	private JLabel pass = new JLabel("Wachtwoord");
+	private JLabel filler = new JLabel("");
+	private JTextField lidnr_veld = new JTextField();
+	private JTextField pass_veld = new JTextField();
+	private JButton loginknop = new JButton("Login");
 	
 	public Scherm_Login(ProgrammaController programmaC)
 	{
 		this.programmaC=programmaC;
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(new Rectangle(100,100,500,300));
-		this.setTitle("Cakesoft - Login");
+  		//basis-instellingen scherm
+		setTitle("CakeSoft");
+		setSize(600,400);
+		setLocationRelativeTo(null); //centrering
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
 		
-		JPanel panel=new JPanel(new GridLayout(3,1));
-		panel.add(this.lidIdLabel);
-		panel.add(this.lidIdVeld);
-		panel.add(this.loginKnop);
+		//alles aan panelen toevoegen
+		paneel.add(lidnr);
+		paneel.add(lidnr_veld);
+		paneel.add(pass);
+		paneel.add(pass_veld);
+		paneel2.add(loginknop);
+		paneel.setBounds(150,100,300,90);
+		paneel2.setBounds(150,195,300,45);
 		
-		this.getContentPane().add(panel);
+		//aan het frame toevoegen
+		add(paneel);
+		add(paneel2);
 		
-		this.loginKnop.addActionListener(this);
+		//scherm-object luistert naar de events
+		loginknop.addActionListener(this);
 		
-		this.setVisible(true);
+		setVisible(true);
 	}
 	
 	public Lid getLid()
