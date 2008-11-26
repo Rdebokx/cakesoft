@@ -1,19 +1,17 @@
 import javax.swing.*;
-
-import java.awt.*;
 import java.awt.event.*;
 
 public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 {
+	//Eclipse-fix
+	private static final long serialVersionUID = 1L;
+	//
+	
 	private ProgrammaController programmaC;
 	//Inhoud van het Inlogscherm
-	private JPanel paneel = new JPanel(new GridLayout(2,1));
-	private JPanel paneel2 = new JPanel(new GridLayout(1,1));
-
 	private JLabel wedstrijd = new JLabel("Wedstrijden");
 	private JLabel ontvangen = new JLabel("Ontvangen Bestellingen");
-	private JLabel besteld = new JLabel("Geplaatste Bestellingen");
-	
+	private JLabel besteld = new JLabel("Geplaatste Bestellingen");	
 	private JScrollPane wedstrijd_scroll = new JScrollPane();
 	private JScrollPane ontvangen_scroll = new JScrollPane();	
 	private JScrollPane besteld_scroll = new JScrollPane();	
@@ -22,19 +20,12 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	private JList besteld_lijst = new JList();
 	private String[] wedstrijd_items;
 	private String[] ontvangen_items;
-	private String[] besteld_items;
-
-	private JLabel filler = new JLabel("");
-	
-	private JTextField lidnr_veld = new JTextField();
-	private JTextField pass_veld = new JTextField();
-	
+	private String[] besteld_items;	
 	private JButton bekijkWedstrijd_knop = new JButton("Bekijk wedstrijd");
 	private JButton nieuwWedstrijd_knop = new JButton("Nieuwe wedstrijd");
 	private JButton verwijderBestelling_knop = new JButton("Verwijder bestelling");
 	private JButton loguit_knop = new JButton("Loguit");
-	
-	
+		
 	public Scherm_Hoofdscherm(ProgrammaController programmaC)
 	{
 		this.programmaC=programmaC;
@@ -45,14 +36,12 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		this.wedstrijd_items[2]="wedstrijd3";
 		this.wedstrijd_lijst.setListData(this.wedstrijd_items);
 		this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);
-
 		this.ontvangen_items=new String[3];
 		this.ontvangen_items[0]="ontvangen1";
 		this.ontvangen_items[1]="ontvangen2";
 		this.ontvangen_items[2]="ontvangen3";
 		this.ontvangen_lijst.setListData(this.ontvangen_items);
 		this.ontvangen_scroll.setViewportView(this.ontvangen_lijst);
-
 		this.besteld_items=new String[3];
 		this.besteld_items[0]="besteld1";
 		this.besteld_items[1]="besteld2";
@@ -99,34 +88,31 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		add(loguit_knop);
 		
 		//scherm-object luistert naar de events
+		bekijkWedstrijd_knop.addActionListener(this);
+		nieuwWedstrijd_knop.addActionListener(this);
+		verwijderBestelling_knop.addActionListener(this);
 		loguit_knop.addActionListener(this);
 		
 		setVisible(true);
 	}
-	
-	public Lid getLid()
-	{
-		Lid lid=new Lid();
-		int lid_id=0;
 		
-		try
-		{
-		}
-		catch(Exception e)
-		{
-			
-		}
-		
-		lid.setLid_id(lid_id);
-		lid.setWachtwoord("");
-		
-		
-		return lid;
-	}
-	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource()==this.loguit_knop)
-			this.programmaC.actieLogin();
+		if(e.getSource() == this.bekijkWedstrijd_knop)
+		{
+			programmaC.actieBekijkWedstrijd();
+		}
+		else if(e.getSource() == this.nieuwWedstrijd_knop)
+		{
+			programmaC.actieNieuwWedstrijd();
+		}
+		else if(e.getSource() == this.verwijderBestelling_knop)
+		{
+			programmaC.actieVerwijderBestelling();
+		}
+		else if(e.getSource() == this.loguit_knop)
+		{
+			programmaC.actieLoguit();
+		}		
 	}
 }
