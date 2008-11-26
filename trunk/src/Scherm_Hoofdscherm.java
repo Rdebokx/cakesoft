@@ -62,23 +62,24 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 
   		//basis-instellingen scherm
 		setTitle("CakeSoft - Hoofdscherm");
-		setSize(700,400);
+		setSize(750,400);
+		setResizable(false);
 		setLocationRelativeTo(null); //centrering
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		
-		//alles aan container toevoegen
-		wedstrijd.setBounds(50,50,200,20);
-		wedstrijd_scroll.setBounds(50,70,200,70);
-		bekijkWedstrijd_knop.setBounds(50,140,100,20);
-		nieuwWedstrijd_knop.setBounds(150,140,100,20);
+		//alles aan container positioneren
+		wedstrijd.setBounds(50,30,300,20);
+		wedstrijd_scroll.setBounds(50,50,300,70);
+		bekijkWedstrijd_knop.setBounds(50,120,150,20);
+		nieuwWedstrijd_knop.setBounds(200,120,150,20);
 		
-		ontvangen.setBounds(350,50,200,20);
-		ontvangen_scroll.setBounds(350,70,200,70);
-		verwijderBestelling_knop.setBounds(350, 140, 200, 20);
+		ontvangen.setBounds(400,30,300,20);
+		ontvangen_scroll.setBounds(400,50,300,70);
+		verwijderBestelling_knop.setBounds(400,120,300,20);
 		
-		besteld.setBounds(350,200,200,20);
-		besteld_scroll.setBounds(350,220,200,70);
+		besteld.setBounds(400,180,300,20);
+		besteld_scroll.setBounds(400,200,300,70);
 		
 		loguit_knop.setBounds(50,300,75,25);
 		
