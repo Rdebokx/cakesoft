@@ -23,6 +23,7 @@ public class Scherm_Login extends JFrame implements ActionListener
   		//basis-instellingen scherm
 		setTitle("CakeSoft");
 		setSize(600,400);
+		setResizable(false);
 		setLocationRelativeTo(null); //centrering
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
