@@ -33,8 +33,20 @@ public class LoginScherm extends JFrame implements ActionListener
 	public Lid getLid()
 	{
 		Lid lid=new Lid();
+		int lid_id=0;
 		
-		//stel lid is en wachtwoord in
+		try
+		{
+			lid_id=Integer.parseInt(this.lidIdVeld.getText());
+		}
+		catch(Exception e)
+		{
+			
+		}
+		
+		lid.setLid_id(lid_id);
+		lid.setWachtwoord("");
+		
 		
 		return lid;
 	}
