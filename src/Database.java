@@ -13,6 +13,8 @@ public class Database {
 	private String username;
 	private String password;
 	
+	private String driver= "com.mysql.jdbc.Driver";
+	
 	//als er geen voorwaarden zijn bij het setten van de attributen, zijn hier geen aparte set-methoden voor gemaakt
 	
 	/**
@@ -24,7 +26,6 @@ public class Database {
 	 */
 	public Database(String urlin, String user, String passw) // de constructor
 	{
-		String driver = "com.mysql.jdbc.Driver";
 		url = urlin;
 		username = user;
 		password = passw;
@@ -167,12 +168,11 @@ public class Database {
 	/**
 	 * Deze methode update de opgegeven tabel. Er kunnen geen meerdere veranderingen tegelijk worden doorgevoerd
 	 * @param tabel				bevat de naam van de tabel
-	 * @param nieuweWaarde		bevat de nieuwe waarde die bij de opgegeven kolom moet worden ingevuld
-	 * @param KolomNaam			bevat de naam van de kolom waarin iets verandert moet worden
+	 * @param veranderingen		bevat de veranderingen die moeten worden doorgevoerd, in sql, gescheiden door een komma
 	 * @param voorwaardeKolom	bevat de naam van de kolom waaraan
 	 * @param voorwaarde		bevat de waarde die de voorwaardeKolom moet hebben
 	 */
-	public void update(String tabel, String nieuweWaarde, String KolomNaam, String voorwaardeKolom, String voorwaarde) //aanpassingen moeten in sql geschreven worden
+	public void update(String tabel, String veranderingen, String voorwaardeKolom, String voorwaarde) //aanpassingen moeten in sql geschreven worden
 	{
 		String query = "UPDATE " + tabel + " SET " + KolomNaam + "=" + nieuweWaarde + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
 		try
