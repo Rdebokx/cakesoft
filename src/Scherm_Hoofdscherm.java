@@ -126,7 +126,7 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource()==this.loginKnop)
+		if(e.getSource()==this.loguit_knop)
 			this.programmaC.actieLogin();
 	}
 }
