@@ -161,8 +161,45 @@ public class Database {
 			System.out.println(e.toString());
 		}
 		
-		return id;
-		
+		return id;	
+	}
+	
+	/**
+	 * Deze methode update de opgegeven tabel. Er kunnen geen meerdere veranderingen tegelijk worden doorgevoerd
+	 * @param tabel				bevat de naam van de tabel
+	 * @param nieuweWaarde		bevat de nieuwe waarde die bij de opgegeven kolom moet worden ingevuld
+	 * @param KolomNaam			bevat de naam van de kolom waarin iets verandert moet worden
+	 * @param voorwaardeKolom	bevat de naam van de kolom waaraan
+	 * @param voorwaarde		bevat de waarde die de voorwaardeKolom moet hebben
+	 */
+	public void update(String tabel, String nieuweWaarde, String KolomNaam, String voorwaardeKolom, String voorwaarde) //aanpassingen moeten in sql geschreven worden
+	{
+		String query = "UPDATE " + tabel + " SET " + KolomNaam + "=" + nieuweWaarde + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
+		try
+		{
+			Statement statement = connection.createStatement();
+			statement.executeQuery(query);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.out.println(e.toString());
+		}
+	}
+	
+	public void delete(String tabel, String voorwaardeKolom, String voorwaarde)
+	{
+		String query = "DELETE FROM " + tabel + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
+		try
+		{
+			Statement statement = connection.createStatement();
+			statement.executeQuery(query);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.out.println(e.toString());
+		}
 	}
 	
 	
