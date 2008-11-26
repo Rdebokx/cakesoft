@@ -53,7 +53,7 @@ public class Database {
 	{
 		ResultSet res = null;
 		
-		try{
+		try {
 			Statement statement = connection.createStatement();
 			res = statement.executeQuery(query);
 		}
