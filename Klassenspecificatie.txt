@@ -1,0 +1,707 @@
+Cakesoft
+Klassenspecificatie
+
+
+
+							pagina			implementatie
+Data klassen:	
+Wedstrijd						2			
+Beoordeling						4			
+Jury							6			
+Deelnemer						7			
+Lid							8			
+Bestelling						9			
+Baksel							10			
+Reactie						12			
+
+Data beheer klassen:
+beheerWedstrijd					13			
+beheerBeoordeling					14			
+beheerJury						15			
+beheerDeelnemer					16			
+beheerLid						17			
+beheerBestelling					18			
+beheerBaksel						19			
+beheerReactie						20			
+
+Scherm klassen:
+LoginScreen						21			
+OverzichtScreen								
+WedstrijdScreen								
+WedstrijdToevoegenScreen							
+
+Controller klassen:
+LoginController								
+ProgrammaController								
+
+Database interactie klasse:
+Database									
+
+Hoofd applicatie klasse:
+Cakesoft									 
+Klasse: Wedstrijd
+
+Attributen:
+int wedstrijd_id
+Date datum
+String locatie
+boolean inschrijvingOpen
+boolean beoordelingOpen
+
+Methoden:
+Public Wedstrijd()
+Post: heeft een nieuwe wedstrijd gemaakt
+
+Public Wedstrijd(int wedstrijd_id, Calendar datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+Post: heeft een nieuwe wedstrijd gemaakt en ingesteld met de opgegeven waarden
+
+Public Wedstrijd(Calendar datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+Post: heeft een nieuwe wedstrijd gemaakt en ingesteld met de opgegeven waarden
+
+Public void setWedstrijd_id(int wedstrijd_id)
+Post: wedstrijd_id is ingesteld
+
+Public void setDatum(Date datum)
+Post: datum is ingesteld
+
+Public void setLocatie(String locatie)
+Post: heeft de locatie ingesteld
+
+Public void setInschrijvingOpen(boolean inschrijvingOpen)
+Post: heeft inschrijvingOpen ingesteld op true of false
+
+Public void setBeoordelingOpen(boolean beoordelingOpen)
+Post: heeft beoordelingOpen ingesteld
+
+Public int getWedstrijd_id()
+Post: geeft de wedstrijd_id terug
+
+Public Date getDatum()
+Post: geeft de datum van de wedstrijd terug
+
+Public String getLoactie()
+Post: geeft de wedstrijd locatie terug
+
+Public boolean isInschrijvingOpen()
+Post: geeft true dsd inschrijvingOpen true is
+
+Public boolean isBeoordelingOpen()
+Post: geeft true dsd beoordelingOpen true is
+
+Public String toString()
+Post: geeft een string representatie van deze wedstrijd terug in het formaat: locatie, YYYY-MM-DD
+
+Public boolean equals(Object other)
+Post: geeft true dsd other van het type wedstrijd is en dezelfde wedstrijd_id heeft 
+Klasse: Beoordeling
+
+Attributen:
+int beoordeling_id
+String commentaar
+int kwaliteit
+int prijs
+int calo
+int smaak
+Jury jury			(niet voor db gebruik)
+
+Methoden:
+Public Beoordeling()
+Post: heeft een nieuw beoordeling object gemaakt
+
+Public Beoordeling(int beoordeling_id, String commentaar, int kwaliteit, int prijs, int calo, int smaak)
+Post: heeft een nieuw beoordeling object gemaakt met de opgegeven parameters
+
+Public Beoordeling(String commentaar, int kwaliteit, int prijs, int calo, int smaak)
+Post: heeft een nieuw beoordeling object gemaakt met de opgegeven parameters
+
+Public void setBeoordeling_id(int beoordeling_id)
+Post: heeft de beoordeling_id ingesteld
+
+Public void setCommentaar(String commentaar)
+Post: heeft het commentaar ingesteld 
+
+Public void setKwaliteit(int kwaliteit)
+Post: heeft de kwaliteit ingesteld 
+
+Public void setPrijs(int prijs)
+Post: heeft de prijs ingesteld 
+
+Public void setCalo(int calo)
+Post: heeft de calorieën ingesteld 
+
+Public void setSmaak(int smaak)
+Post: heeft de smaak ingesteld 
+
+Public int getBeoordeling_id()
+Post: geeft de beoordeling_id terug
+
+Public String getCommentaar()
+Post: geeft het commentaar terug
+
+Public int getKwaliteit()
+Post: geeft kwaliteit terug
+
+Public int getPrijs()
+Post: geeft prijs terug
+
+Public int getCalo()
+Post: geeft calorieen terug
+
+Public int getSmaak()
+Post: geeft smaak terug
+
+Public void setJury(Jury jury)
+Post: heeft jury ingesteld
+
+Public Jury getJury()
+Post: geeft jury object terug 
+Klasse: Jury extends Lid
+
+Attributen:
+int jury_id
+
+Methoden:
+Public Jury()
+Post: heeft een nieuw jury object gemaakt
+
+Public Jury(int jury_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
+Post: heeft een nieuw jury object gemaakt met jury_id en met behulp van Lid de andere parameters doorgegeven en ingesteld
+
+Public Jury(Lid lid)
+Post: heeft een nieuw jury object gemaakt dat een uitbreiding is op Lid lid
+
+Public boolean equals(Object other)
+Post: geeft true dsd other van het type Jury is en dezelfde jury_id heeft
+
+Public void setJury_id(int jury_id)
+Post: heeft jury_id ingesteld
+
+Public int getJury_id()
+Post: geeft jury_id terug
+ 
+Klasse: Deelnemer extends Lid
+
+Attributen:
+int deelnemer_id
+Baksel baksel			(niet voor db gebruik)
+Int plaats			(niet voor db gebruik)
+
+Methoden:
+Public Deelnemer()
+Post: heeft een nieuw deelnemer object gemaakt
+
+Public Deelnemer(int deelnemer_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
+Post: heeft een nieuw deelnemer object gemaakt met deelnemer_id en met behulp van Lid de andere parameters doorgegeven en ingesteld
+
+Public Deelnemer(Lid lid)
+Post: heeft een nieuw deelnemer object gemaakt dat een uitbreiding is op Lid lid
+
+Public boolean equals(Object other)
+Post: geeft true dsd other van het type Deelnemer is en dezelfde deelnemer_id heeft
+
+Public void setDeelnemer_id(int deelnemer_id)
+Post: heeft deelnemer_id ingesteld
+
+Public int getDeelnemer_id()
+Post: geeft deelnemer_id terug
+
+Public void setBaksel(Baksel baksel)
+Post: heeft baksel ingesteld
+
+Public Baksel getBaksel()
+Post: geeft baksel terug
+
+Public void setPlaats(int plaats)
+Post: heeft plaats ingesteld
+
+Public int getPlaats()
+Post: geeft plaats terug
+
+ 
+Klasse: Lid
+
+Attributen:
+String naam
+int lid_id
+String wachtwoord
+boolean hoofdbeheerder
+
+Methoden:
+Public Lid()
+Post: geeft een nieuw lid terug
+
+Public Lid(String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
+Post: geeft een nieuw lid terug met de ingestelde waarden uit de parameters
+
+Public void setNaam(String naam)
+Post: heeft naam ingesteld
+
+Public void setLid_id(int lid_id)
+Post: heeft lid_id ingesteld
+
+Public void setWachtwoord(String wachtwoord)
+Post: heeft wachtwoord ingesteld
+
+Public void setHoofdbeheerder(boolean hoofdbeheerder)
+Post: heeft hoofdbeheerder ingesteld op true of false
+
+Public String getNaam()
+Post: geeft naam terug
+
+Public int getLid_id()
+Post: geeft lid_id terug
+
+Public String getWachtwoord()
+Post: geeft wachtwoord teruyg
+
+Public boolean isHoofdbeheerder()
+Post: geeft true dsd hoofdbeheerder true is
+
+Public boolean equals(Object other)
+Post: geeft true dsd other van het type Lid is en dezelfde lid_id heeft 
+Klasse: Bestelling
+
+Attributen:
+int bestelling_id
+int aantal
+Baksel baksel			(niet voor db gebruik)
+
+Methoden:
+Public Bestelling()
+Post: heeft een nieuw bestelling object gemaakt
+
+Public Bestelling(int bestelling_id, int aantal)
+Post: heeft een nieuwe bestelling object gemaakt met de opgegeven parameters
+
+Public Bestelling(int aantal)
+Post: heeft een nieuwe bestelling object gemaakt met de opgegeven parameters
+
+Public void setBestelling_id(int bestelling_id)
+Post: heeft bestelling_id ingesteld
+
+Public void setAantal(int aantal)
+Post: heeft aantal ingesteld
+
+Public int getBestelling_id()
+Post: geeft bestelling_id terug
+
+Public int getAantal()
+Post: geeft aantal terug
+
+Public void setBaksel(Baksel baksel)
+Post: heeft het baksel van deze bestelling ingesteld
+
+Public Baksel getBaksel()
+Post: heeft het baksel van deze bestelling teruggegeven 
+Klasse: Baksel
+
+Attributen:
+int baksel_id
+String ingredienten
+String recept
+String naam
+String categorie
+double prijs
+
+Methoden:
+Public Baksel()
+Post: heeft nieuw baksel object gemaakt
+
+Public Baksel(int baksel_id, String ingredienten, String recept, String naam, String categorie, double prijs)
+Post: heeft een nieuw baksel object gemaakt met de opgegeven waarden
+
+Public Baksel(String ingredienten, String recept, String naam, String categorie, double prijs)
+Post: heeft een nieuw baksel object gemaakt met de opgegeven waarden
+
+Public void setBaksel_id(int baksel_id)
+Post: heeft baksel_id ingesteld
+
+Public void setIngredienten(String ingredienten)
+Post: heeft ingrediënten ingesteld
+
+Public void setRecept(String recept)
+Post: heeft recept ingesteld
+
+Public void setNaam(String naam)
+Post: heeft naam ingesteld
+
+Public void setCategorie(String Categorie)
+Post: heeft categorie ingesteld
+
+Public void setPrijs(double prijs)
+Post: heeft de prijs ingesteld
+
+Public int getBaksel_id()
+Post: geeft baksel_id terug
+
+Public String getIngredienten()
+Post: geeft ingrediënten terug
+
+Public String getRecept()
+Post: geeft recept terug
+
+Public String getNaam()
+Post: geeft naam terug
+
+Public String getCategorie()
+Post: geeft categorie terug
+
+Public double getPrijs()
+Post: geeft prijs terug
+ 
+Klasse: Reactie
+
+Attributen:
+int reactie_id
+String bericht
+
+Methoden:
+Public Reactie()
+Post: geeft nieuw reactie object terug
+
+Public Reactie(int reactie_id, String bericht)
+Post: geeft een nieuw reactie object terug dat is ingesteld met de waarden uit de parameters
+
+Public Reactie(String bericht)
+Post: geeft een nieuw reactie object terug dat is ingesteld met de waarden uit de parameters
+
+Public void setReactie_id(int reactie_id)
+Post: heeft reactie_id ingesteld
+
+Public void setBericht(String bericht)
+Post: heeft bericht ingesteld
+
+Public int getReactie_id()
+Post: geeft reactie_id terug
+
+Public String getBericht()
+Post: geeft bericht terug 
+Klasse: beheerWedstrijd
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerWedstrijd(Database db)
+Post: heeft een nieuw beheerWedstrijd object gemaakt en de Database ingesteld
+
+Public ArrayList<Wedstrijd> getAlleWedstrijden()
+Post: geeft een geordende lijst terug met alle wedstrijden, waarin de nieuwste wedstrijd bovenaan staat
+
+Public void voegWedstrijdToe(Wedstrijd wedstrijd)
+Post: wedstrijd is toegevoegd aan de database en de wedstrijd_id van wedstrijd is aangepast
+
+Public void updateWedstrijd(Wedstrijd wedstrijd)
+Post: de entry in de wedstrijd tabel in de db met de corresponderende wedstrijd_id is geupdate met de gegevens uit wedstrijd 
+Klasse: beheerBeoordeling
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerBeoordeling(Database db)
+Post: heeft een nieuw beheerBeoordeling object gemaakt met de opgegeven Database
+
+Public void voegBeoordelingToe(Beoordeling beoordeling, Jury jury, Baksel baksel)
+Post: heeft een beoordeling van jury over baksel toegevoegd en heeft de beoordeling_id veranderd van beoordeling
+
+Public ArrayList<Beoordeling> getBeoordelingenVanBaksel(Baksel baksel)
+Post: geeft een lijst met alle beoordelingen van baksel terug
+
+Public Beoordeling getBeoordelingVanJuryVoorBaksel(Jury jury, Baksel baksel)
+Post: geeft de beoordeling van jury over baksel terug, of null als deze niet bestaat 
+Klasse: beheerJury
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerJury(Database db)
+Post: heeft een nieuw beheerJury object gemaakt met de opgegeven Database 
+
+Public void voegJuryToe(Wedstrijd wedstrijd, Jury jury)
+Post: heeft jury toegevoegd aan de db die jury is bij de wedstrijd wedstrijd, en heeft de jury_id van jury ingevuld  
+Klasse: beheerDeelnemer
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerDeelnemer(Database db)
+Post: heeft een nieuw beheerDeelnemer object gemaakt met de opgegeven Database 
+
+Public void voegDeelnemerToe(Deelnemer deelnemer, Baksel baksel, Wedstrijd wedstrijd)
+Post: heeft deelnemer toegevoegd aan de db die deelneemt met het baksel_id van baksel en de wedstrijd_id van wedstrijd, en heeft de deelnemer_id van deelnemer ingesteld 
+Klasse: beheerLid
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerLid(Database db)
+Post: heeft een nieuw beheerLid object gemaakt met de opgegeven Database 
+
+Public ArrayList<Lid> zoekOpNaam(String naam_deel)
+Post: geeft een lijst terug met allen leden die naam_deel in hun naam hebben.
+
+Public Lid getLidVanReactie(Reactie reactie)
+Post: geeft het lid terug dat reactie heeft geplaatst
+
+Public Lid getLidDoorLogin(Lid lid)
+Pre: Het object lid bevat lid_id en wachtwoord die waarden zijn die de gebruiker in heeft gevuld
+Post: geeft null als dit geen goede login is, anders het Lid object voor deze lid_id 
+Klasse: beheerBestelling
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerBestelling(Database db)
+Post: heeft een nieuw beheerBestelling object gemaakt met de opgegeven Database 
+
+Public ArrayList<Bestelling> getBestellingenInkomend(Lid lid)
+Note: dit zijn alle dingen die bij lid besteld zijn
+Post: geeft een lijst met inkomende bestellingen terug. Dwz bestellingen met baksel_id van een baksel met deelnemer_id van een deelnemer met lid_id van lid
+
+Public ArrayList<Bestelling> getBestellingenUitgaand(Lid lid)
+Note: dit zijn alle items die lid heeft besteld
+Post: geeft een lijst met uitgaande bestellingen terug. Dwz bestellingen met lid_id is dat van lid
+
+Public void voegBestellingToe(Bestelling bestelling, Baksel baksel, Lid lid)
+Pre: lid is het lid dat wat bestelt, baksel wordt besteld en bestelling bevat informatie over de bestelling
+Post: de bestelling is toegevoegd
+
+Public void verwijderBestelling(Bestelling bestelling)
+Post: bestelling is verwijderd 
+Klasse: beheerBaksel
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerBaksel(Database db)
+Post: heeft een nieuw beheerBaksel object gemaakt met de opgegeven Database 
+
+Public void voegBakselToe(Baksel baksel)
+Post: voegt baksel toe aan de database en stelt baksel_id van baksel in op de nieuwe baksel_id
+
+Public ArrayList<Baksel> getBakselsVanWedstrijd(Wedstrijd wedstrijd)
+Post: geeft een lijst met alle baksels van deelnemers die deelnemen aan deze wedstrijd terug
+
+Public ArrayList<Deelnemer> getDeelnemersVanWedstrijd(Wedstrijd wedstrijd)
+Post: geeft een lijst met alle deelnemers die deelnemen aan deze wedstrijd terug 
+Klasse: beheerReactie
+
+Attributen:
+Database db
+
+Methoden:
+Public beheerReactie(Database db)
+Post: heeft een nieuw beheerReactie object gemaakt met de opgegeven Database 
+
+Public ArrayList<Reactie> getReactiesOpBaksel(Baksel baksel)
+Post: geeft een lijst terug met alle reacties op baksel 
+Klasse: LoginScreen
+
+Attributen:
+LoginController loginC
+[componenten]
+
+Methoden:
+Public LoginScreen(LoginController loginC)
+Post: heeft een nieuw loginScreen object gemaakt met de opgegeven parameters
+
+Public void fouteLogin()
+Post: toont een melding waarin staat dat de ingevoerde waarden ongeldig zijn
+
+Public Lid getLid()
+Post: retourneert een nieuw lid met lid_id en wachtwoord van de ingevulde waarden 
+Klasse: OverzichtScreen
+
+Attributen:
+ProgrammaController programmaC
+ArrayList<Wedstrijd> wedstrijden
+ArrayList<Bestelling> bestellingenInkomend
+ArrayList<Bestelling> bestellingenUitgaand
+[componenten]
+
+Methoden:
+Public OverzichtScreen(ProgrammaController programmaC, ArrayList<Wedstrijd> wedstrijden, ArrayList<Bestelling> bestellingenInkomend, ArrayList<Bestelling> bestellingenUitgaand, boolean hoofdbeheerder)
+Post: heeft een nieuw overzichtScreen object gemaakt met de opgegeven parameters, verbergt de voeg wedstrijd toe knop dsd hoofdbeheerder is false
+
+Public void setBestellingenInkomend(ArrayList<Bestelling>)
+Post: heeft de lijst met inkomende bestellingen geupdate
+
+Public void setBestellingenUitgaand(ArrayList<Bestelling>)
+Post: heeft de lijst met uitgaande bestellingen geupdate
+
+Public void setWedstrijden(ArrayList<Wedstrijd>)
+Post: heeft de lijst met wedstrijden geupdate 
+Klasse: WedstrijdScreen
+
+Attributen:
+ProgrammaController programmaC
+Wedstrijd wedstrijd
+ArrayList<Deelnemer> deelnemers
+Deelnemer actieveDeelnemer
+ArrayList<Beoordeling> actieveDeelnemerBeoordelingen
+ArrayList<Reactie> actieveDeelnemerReacties
+Boolean isHoofdbeheerder
+[componenten]
+
+Methoden:
+Public WedstrijdScreen(ProgrammaController programmaC, Wedstrijd wedstrijd, ArrayList<Deelnemer> deelnemers, boolean isHoofdbeheerder)
+Post: heeft een nieuw loginScreen object gemaakt met de opgegeven parameters
+
+Public setActieveDeelnemer(Deelnemer deelnemer, ArrayList<Beoordeling> beoordelingen, ArrayList<Reactie> reacties)
+Post: heeft het panel over deze deelnemer/baksel ingevuld met de opgegeven waardes
+
+Public Beoordeling getBeoordeling()
+Pre: het beoordeling-formulier in dit venster is ingevuld
+Post: geeft een Beoordeling object terug met alle ingevulde waarden 
+Klasse: WedstrijdToevoegenScreen
+
+Attributen:
+ProgrammaController programmaC
+[componenten]
+
+Methoden:
+ 
+Klasse: LoginController
+
+Attributen:
+Cakesoft cakesoft
+LoginScreen loginS
+
+Methoden:
+Public LoginController(Cakesoft cakesoft)
+Post: nieuw LoginController object is gemaakt met de opgegeven parameters
+
+Public void open()
+Post: heeft het scherm voor deze controller geopend
+
+Public void close()
+Post: heeft het scherm voor deze controller gesloten
+
+Public void knopLogin()
+Pre: de gebruiker heeft op de login knop gedrukt
+Post: als login goed was, roep van cakesoft dan setIngelogdLid en openOverzichtController aan, anders roep van LoginScreen loginS fouteLogin aan 
+Klasse: ProgrammaController
+
+Attributen:
+Cakesoft cakesoft
+OverzichtScreen overzichtS
+WedstrijdScreen wedstrijdS
+WedstrijdToevoegenScreen wedstrijdToevoegenS
+Wedstrijd actieveWedstrijd
+
+Methoden:
+Public OverzichtController(Cakesoft cakesoft)
+Post: nieuw OverzichtController object is gemaakt met de opgegeven parameters 
+
+Public void openOverzicht()
+Post: heeft het overzichtsscherm geopend
+
+Public void closeOverzicht()
+Post: heeft het overzichtsscherm gesloten
+
+Public void openWedstrijd()
+Post: heeft het wedstrijdscherm geopend
+
+Public void closeWedstrijd()
+Post: heeft het wedstrijdscherm gesloten
+
+Public void openWedstrijdToevoegen()
+Post: heeft het wedstrijd-toevoegen scherm geopend
+
+Public void closeWedstrijdToevoegen()
+Post: heeft het wedstrijd-toevoegen scherm gesloten
+
+Public void close()
+Post: heeft alle schermen voor deze controller gesloten 
+
+Public void overzichtKiesWedstrijd(Wedstrijd wedstrijd)
+Pre: gebruiker heeft op een wedstrijd uit de lijst geklikt
+Post: heeft actieveWedstrijd ingesteld en openWedstrijd aangeroepen
+
+Public void overzichtVerwijderBestellingInkomend(Bestelling bestelling)
+Pre: gebruiker heeft een inkomende bestelling geselecteerd en op de verwijder knop gedrukt
+Post: inkomende bestelling is verwijderd
+
+Public void knopNieuweWedstrijd()
+Pre: gebruiker heeft op de nieuwe wedstrijd knop gedrukt en is hoofdbeheerder
+Post: als de gebruiker de hoofdbeheerder is roep dan openWedstrijdToevoegen aan
+
+Public void knopLoguit
+Post: roept van cakesoft openLoginController aan 
+  
+Klasse: Database
+
+Attributen:
+Connection connection
+Statement statement
+String url
+String username
+String password
+
+Methoden:
+Public Database(String url, String username, String password)
+Pre: de parameters zijn juist
+Post: heeft een verbinding gemaakt met de database met de opgegeven instellingen
+
+Public ResultSet query(String tabel, String vwkolom, voorwaarde)
+Pre: de parameters zijn valide
+Post: geeft de resultset van de uitgevoerde query terug; selecteert alle kolommen uit tabel van rijen die aan voorwaarde voldoen
+
+Public ResultSet query(String tabel, String vwkolom, String voorwaarde, String sorteerOp, boolean oplopend)
+Pre: parameters zijn valide
+Post: geeft de ResultSet van de uitgevoerde query terug, selecteert alle kolommen uit tabel van rijen die aan voorwaarde voldoen, gesorteerd op de sorteerOp en oplopend (asc) dsd oplopend true is, anders aflopend (desc).
+
+Public void printResultSet(ResultSet result)
+Pre: result is een valide ResultSet
+Post: print de inhoud van result (enkel voor debug doeleinden)
+
+Public int insert(String tabel, String[] waarden)
+Note: gebruikt SELECT LAST_INSERT_ID() AS id 
+Pre: parameters zijn valide
+Post: heeft een record toegevoegd aan de tabel zoals opgegeven en geeft de nieuwe id terug 
+
+Public void update(String tabel, String nieuweWaarde, String kolomnaam, String vorigeWaarde)
+Pre: parameters zijn valide
+Post: heeft de query uitgevoerd, past rijen in tabel aan die aan voorwaarde voldoen met aanpassingen (aanpassingen in formaat kolom=’nieuwewaarde’, kolom2=’abc’, etc)
+
+Public void delete(String tabel, String voorwaarde)
+Pre: parameters zijn valide
+Post: verwijdert alle rijen uit tabel die aan voorwaarde voldoen
+ 
+Klasse: Cakesoft
+
+Attributen:
+Database db
+LoginController loginC
+ProgrammaController programmaC
+Lid ingelogdLid
+
+Methoden:
+Public static void main(String[] args)
+Post: start de applicatie en heeft instanties van alle controllers aangemaakt en een instantie van Database gemaakt
+
+Public void setIngelogdLid(Lid lid)
+Post: ingelogdLid is ingesteld
+
+Public Lid getIngelogdLid()
+Post: geeft ingelogdLid terug
+
+Public void setDb(Database db)
+Post: heeft de db ingesteld
+
+Public Database getDb()
+Post: geeft het actieve database object terug
+
+Public void openLoginController()
+Post: heeft LoginController geopend en alle andere controllers gesloten
+
+Public void openWedstrijdController()
+Post: heeft WedstrijdController geopend en alle andere controllers gesloten
+
+
