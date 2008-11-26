@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /** 
  * Klasse Wedstrijd, beschrijft een Wedstrijd-object met de nodige eigenschappen
@@ -7,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 public class Wedstrijd {
 	int wedstrijd_id;
-	SimpleDateFormat datum;
+	Date datum;
 	String locatie;
 	boolean inschrijvingOpen;
 	boolean beoordelingOpen;
@@ -24,7 +25,7 @@ public class Wedstrijd {
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven id, datum, locatie, inschrijvingOpen en beoordelingOpen
 	 */
-	public Wedstrijd(int wedstrijd_id, java.text.SimpleDateFormat datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(int wedstrijd_id, Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = wedstrijd_id;
 		this.datum = datum;
@@ -35,12 +36,12 @@ public class Wedstrijd {
 
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven datum, locatie, inschrijvingOpen en beoordelingOpen
-	 * @param datum				SimpleDateFormat
+	 * @param datum				Date
 	 * @param locatie			String
 	 * @param inschrijvingOpen	boolean
 	 * @param beoordelingOpen	boolean		
 	 */
-	public Wedstrijd(SimpleDateFormat datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
 	{
 		this.wedstrijd_id = -1;
 		this.datum = datum;
@@ -63,7 +64,7 @@ public class Wedstrijd {
 	 * Methode setDatum, stelt datum in op het gegeven datum-object
 	 * @param datum		In te stellen datum-object
 	 */
-	public void setDatum(SimpleDateFormat datum)
+	public void setDatum(Date datum)
 	{
 		this.datum = datum;
 	}
@@ -106,9 +107,19 @@ public class Wedstrijd {
 	 * Methode getDatum, geeft de ingestelde datum terug. 
 	 * @return		Datum datum, geeft het datum object terug.
 	 */
-	public SimpleDateFormat getDatum()
+	public Date getDatum()
 	{
 		return datum;
+	}
+	
+	public String getDatumString()
+	{
+		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
+		//Maak een nieuwe Stringbuilder aan met de datum in ons format
+		StringBuilder nowYYYYMMDD = new StringBuilder( dateformatYYYYMMDD.format( dateformatYYYYMMDD ) );
+
+		//Geef een String terug
+		return nowYYYYMMDD.toString();
 	}
 	
 	/**
@@ -144,7 +155,7 @@ public class Wedstrijd {
 	 **/
 	public String toString()
 	{
-		return this.getLocatie() + ", " + datum.format("YYYY-MM-DD");
+		return locatie + ", " + this.getDatumString();
 	}
 
 	/**
