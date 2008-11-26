@@ -51,7 +51,7 @@ public class Database {
 	public ResultSet query(String tabel, String vwkolom, String voorwaarde)
 	{
 		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "='" + voorwaarde + "'";
-		ResultSet res;
+		ResultSet res = null;
 		
 		try{
 			Statement statement = connection.createStatement();
@@ -87,7 +87,7 @@ public class Database {
 			query = query + " ORDER BY " + sorteerOp + " DESC";
 		}
 		
-		ResultSet res;
+		ResultSet res = null;
 		try
 		{
 			Statement statement = connection.createStatement();
