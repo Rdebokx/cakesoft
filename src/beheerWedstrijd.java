@@ -1,6 +1,5 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class beheerWedstrijd {
 	 */
 	public ArrayList<Wedstrijd> getAlleWedstrijden()
 	{
-		/*ArrayList<Wedstrijd> uitvoerLijst = new ArrayList<Wedstrijd>();
+		ArrayList<Wedstrijd> uitvoerLijst = new ArrayList<Wedstrijd>();
 		int wedstrijdid = -1;
 		Date datum = null;
 		String locatie = null;
@@ -34,7 +33,7 @@ public class beheerWedstrijd {
 		boolean beoordelingOpen = false;
 		
 		//Query voor 'alles'
-		ResultSet res = db.query("wedstrijd", null, null);
+		ResultSet res = db.executeQuery("SELECT * FROM `wedstrijd`");
 				
 		try {
 			while(res.next())
@@ -53,8 +52,7 @@ public class beheerWedstrijd {
 			e.printStackTrace();
 		}
 		
-		return uitvoerLijst;*/
-		return null;
+		return uitvoerLijst;
 	}
 
 	/**
@@ -63,19 +61,25 @@ public class beheerWedstrijd {
 	 */
 	public void voegWedstrijdToe(Wedstrijd wedstrijd)
 	{
-		String[] argumenten = {String.valueOf(wedstrijd.getWedstrijd_id()), wedstrijd.getDatumString(), wedstrijd.getLocatie(), 
-				String.valueOf(wedstrijd.isInschrijvingOpen()), String.valueOf(wedstrijd.isBeoordelingOpen())};
-		//db.insert("wedstrijd", argumenten);
+		//Prop alle argumenten in één String en voer de query uit.
+		String argumenten = "(" + String.valueOf(wedstrijd.getWedstrijd_id()) + ", " + wedstrijd.getDatumString() + ", " + wedstrijd.getLocatie() + ", " + 
+				String.valueOf(wedstrijd.isInschrijvingOpen()) + ", " + String.valueOf(wedstrijd.isBeoordelingOpen()) + ")";
+		db.executeQuery("INSERT INTO wedstrijd VALUES " + argumenten);
 	}
 
 	
 	/**
-	 * updateWedstrijd, update het object aan in de database
-	 * @param wedstrijd		Het in te vullen wedstrijd object
+	 * updateWedstrijd, update het object in de database aan de hand van het wedstrijd_id
+	 * @param wedstrijd		Het up te daten wedstrijd object
 	 */
 	public void updateWedstrijd(Wedstrijd wedstrijd)
 	{
-		//TODO: Schrijven zodra update() klopt.
+		int wedstrijd_id = wedstrijd.getWedstrijd_id();
+		String waarden = "datum = `" + wedstrijd.getDatumString() + "`, locatie = `" + wedstrijd.getLocatie() + 
+				"`, inschrijvingOpen = `" + String.valueOf(wedstrijd.isInschrijvingOpen()) + "`, beoordelingOpen = `" 
+				+ String.valueOf(wedstrijd.isBeoordelingOpen());
+
+		db.executeQuery("UPDATE wedstrijd SET " + waarden + " WHERE p_wedstrijd_id = " + String.valueOf(wedstrijd_id));
 	}
-	
+
 }
