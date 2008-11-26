@@ -2,7 +2,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+/**
+ * @author Yorick
+ * beheerWLid klasse, beheert de Leden.
+ */
 public class beheerLid {
 	Database db;
 
@@ -28,7 +31,7 @@ public class beheerLid {
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		
-		ResultSet res = db.executeQuery("SELECT * FROM lid WHERE naam LIKE '%" + naam_deel + "%'");
+		ResultSet res = db.executeQuery("SELECT * FROM lid WHERE naam LIKE `%" + naam_deel + "%`");
 				
 		try {
 			while(res.next())
@@ -47,19 +50,23 @@ public class beheerLid {
 		return uitvoerLid;
 	}
 
+	/**
+	 * getLidVanReactie, geeft het Lid terug waaraan de reactie toebehoort.
+	 * @param reactie	Reactie waarvan het Lid opgevraagd wordt.
+	 * @return			Lid die bij de reactie hoort.
+	 */
 	public Lid getLidVanReactie(Reactie reactie)
 	{
-		/*int reactie_id = reactie.getReactie_id();
+		int reactie_id = reactie.getReactie_id();
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		Lid uitvoer = null;
 		
-		//doe wat
-		ResultSet res = db.executeQuery("reactie", "p_reactie_id", String.valueOf(reactie_id));
-		
 		try {
+			ResultSet res = db.executeQuery("SELECT * FROM reactie WHERE p_reactie_id = " + String.valueOf(reactie_id));
+			
 			lid_id = res.getInt("p_lid_id");
 			naam = res.getString("naam");
 			wachtwoord = res.getString("wachtwoord");
@@ -71,15 +78,39 @@ public class beheerLid {
 			e.printStackTrace();
 		}
 		
-		return uitvoer;*/
-		return null;
+		return uitvoer;
 	}
-	//post:: geeft het lid terug dat reactie heeft geplaatst
 
+	/**
+	 * getLidDoorLogin, controleert het loginid en wachtwoord van het geven Lid, geeft een Lid terug als het klopt, zo niet null. 
+	 * @param lid
+	 * @return
+	 */
 	public Lid getLidDoorLogin(Lid lid)
 	{
-		return null;
+		int lid_id = -1;
+		String naam = null;
+		String wachtwoord = null;
+		boolean hoofdbeheerder = false;
+		Lid uitvoer = null;
+		
+		try {
+			ResultSet res = db.executeQuery("SELECT * FROM lid WHERE p_lid_id = " + String.valueOf(lid.getLid_id()) + " AND wachtwoord = " + lid.getLid_id());
+			
+			while(res.next())
+			{
+				lid_id = res.getInt("p_lid_id");
+				naam = res.getString("naam");
+				wachtwoord = res.getString("wachtwoord");
+				hoofdbeheerder = res.getBoolean("hoofdbeheerder");
+				
+				uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerder);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return uitvoer;
 	}
-	//Pre: Het object lid bevat lid_id en wachtwoord die waarden zijn die de gebruiker in heeft gevuld
-	////post:: geeft null als dit geen goede login is, anders het Lid object voor deze lid_id 
 }
