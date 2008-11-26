@@ -53,7 +53,7 @@ public class Scherm_Login extends JFrame implements ActionListener
 		
 		try
 		{
-			lid_id=Integer.parseInt(this.lidIdVeld.getText());
+			lid_id=Integer.parseInt(this.lidnr_veld.getText());
 		}
 		catch(Exception e)
 		{
@@ -69,7 +69,7 @@ public class Scherm_Login extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource()==this.loginKnop)
+		if(e.getSource()==this.loginknop)
 			this.programmaC.actieLogin();
 	}
 }
