@@ -56,17 +56,16 @@ public class Scherm_Login extends JFrame implements ActionListener
 		
 		try
 		{
-			lid_id=Integer.parseInt(this.lidnr_veld.getText());
+			lid_id=Integer.parseInt(lidnr_veld.getText());
 		}
 		catch(Exception e)
 		{
-			
+			//foutmelding (nog) weergeven
 		}
 		
 		lid.setLid_id(lid_id);
-		lid.setWachtwoord("");
-		
-		
+		lid.setWachtwoord(pass_veld.getText());
+				
 		return lid;
 	}
 	
