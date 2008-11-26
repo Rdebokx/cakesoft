@@ -34,7 +34,7 @@ public class Database {
 		try{
 			Class.forName(driver).newInstance();
 			connection = DriverManager.getConnection(url, username, password);
-			System.out.println(connection+"A");
+			//System.out.println(connection+"A");
 		}
 		catch(Exception e)
 		{
@@ -44,55 +44,16 @@ public class Database {
 	}
 	
 	/**
-	 * Deze methode selecteert alle kolommen van een de rijen die aan de voorwaarde voldoen
-	 * @param tabel			bevat de naam van de tabel waaruit geselecteerd moet worden.
-	 * @param vwkolom		bevat de kolomnaam waarover de voorwaarde gaat
-	 * @param voorwaarde	bevat de waarde die de kolom moet hebben, als string.
+	 * Deze methode voert de opgegeven query uit.
+	 * N.B. voor INSERT is een aparte methode
+	 * @param query			bevat de query die moet worden uitgevoerd.
 	 * @return 				geeft de resultset van de uitgevoerde query terug.
 	 */
-	public ResultSet query(String tabel, String vwkolom, String voorwaarde)
+	public ResultSet executeQuery(String query)
 	{
-		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "='" + voorwaarde + "'";
 		ResultSet res = null;
-		System.out.println(query);
 		
 		try{
-			Statement statement = connection.createStatement();
-			res = statement.executeQuery(query);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			System.out.println(e.toString());
-		}
-		
-		return res;
-	}
-	
-	/**
-	 * Deze methode voert een query uit, waarmee je alle colommen selecteerd waarbij de opgegeven kolom voldoet aan de eis.
-	 * Tevens worden de resultaten aan de hand van een opgegeven kolom op- of aflopend gerangschikt
-	 * @param tabel			bevat de naam van de tabel
-	 * @param vwkolom		bevat de naam van de kolom waaraan de voorwaarde wordt gesteld
-	 * @param voorwaarde	bevat de waarde die records in vwkolom moeten hebben 
-	 * @param sorteerOp		bevat de naam van de kolom waarop gesorteerd moet worden
-	 * @param oplopend		Als true, worden de resutlaten oplopend gerangschikt, indien false, aflopend
-	 */
-	public ResultSet query(String tabel, String vwkolom, String voorwaarde, String sorteerOp, boolean oplopend)
-	{
-		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "='" + voorwaarde + "'"; //dit gedeelte van de statement moet zowiezo worden uitgevoerd	
-		if(oplopend)
-		{	//als oplopend true is, moeten de resultaten oplopend geordend worden aan de hand van sorteerOp
-			query = query + " ORDER BY " + sorteerOp + " ASC";
-		}
-		else if(!oplopend)
-		{ //als oplopend false is, moeten de resultaten aflopend worden geordend aan de hand van sorteerOp 
-			query = query + " ORDER BY " + sorteerOp + " DESC";
-		}
-		
-		ResultSet res = null;
-		try
-		{
 			Statement statement = connection.createStatement();
 			res = statement.executeQuery(query);
 		}
@@ -140,25 +101,17 @@ public class Database {
 	 * @param waarden	bevat de waarden die in die kolommen moeten worden geinsert. N.B. Deze moeten in de goeie volgorde gelevert worden
 	 * @return			geeft het id terug van de nieuwe record
 	 */
-	public int insert(String tabel, String[] waarden)
+	public int insert(String query)
 	{
-		String query = "INSERT INTO " + tabel + " VALUES (";
-		int lengte = waarden.length;
-		for (int i=0; i<(lengte-1); i++)
-		{
-			query = "'" + query + waarden[i] + "', ";
-		}
-		query = query + "'" + waarden[lengte] + "')";
-		int id = -1;
-		
-		System.out.println(query);
+		int id=-1;
 		
 		try
 		{
 			Statement statement = connection.createStatement();
-			statement.executeQuery(query);
-			ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID as new_id");
-			id = Integer.parseInt(res.toString());
+			statement.execute(query);
+			ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID() as new_id");
+			res.next();
+			id=res.getInt("new_id");
 		}
 		catch (Exception e)
 		{
@@ -168,43 +121,4 @@ public class Database {
 		
 		return id;	
 	}
-	
-	/**
-	 * Deze methode update de opgegeven tabel. Er kunnen geen meerdere veranderingen tegelijk worden doorgevoerd
-	 * @param tabel				bevat de naam van de tabel
-	 * @param veranderingen		bevat de veranderingen die moeten worden doorgevoerd, in sql, gescheiden door een komma
-	 * @param voorwaardeKolom	bevat de naam van de kolom waaraan
-	 * @param voorwaarde		bevat de waarde die de voorwaardeKolom moet hebben
-	 */
-	public void update(String tabel, String veranderingen, String voorwaardeKolom, String voorwaarde) //aanpassingen moeten in sql geschreven worden
-	{
-		String query = "UPDATE " + tabel + " SET " + veranderingen + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
-		try
-		{
-			Statement statement = connection.createStatement();
-			statement.executeQuery(query);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			System.out.println(e.toString());
-		}
-	}
-	
-	public void delete(String tabel, String voorwaardeKolom, String voorwaarde)
-	{
-		String query = "DELETE FROM " + tabel + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
-		try
-		{
-			Statement statement = connection.createStatement();
-			statement.executeQuery(query);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			System.out.println(e.toString());
-		}
-	}
-	
-	
 }
