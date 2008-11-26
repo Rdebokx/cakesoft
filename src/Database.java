@@ -34,6 +34,7 @@ public class Database {
 		try{
 			Class.forName(driver).newInstance();
 			connection = DriverManager.getConnection(url, username, password);
+			System.out.println(connection+"A");
 		}
 		catch(Exception e)
 		{
@@ -53,6 +54,7 @@ public class Database {
 	{
 		String query = "SELECT * FROM " + tabel + " WHERE " + vwkolom + "='" + voorwaarde + "'";
 		ResultSet res = null;
+		System.out.println(query);
 		
 		try{
 			Statement statement = connection.createStatement();
@@ -149,6 +151,8 @@ public class Database {
 		query = query + "'" + waarden[lengte] + "')";
 		int id = -1;
 		
+		System.out.println(query);
+		
 		try
 		{
 			Statement statement = connection.createStatement();
@@ -174,7 +178,7 @@ public class Database {
 	 */
 	public void update(String tabel, String veranderingen, String voorwaardeKolom, String voorwaarde) //aanpassingen moeten in sql geschreven worden
 	{
-		String query = "UPDATE " + tabel + " SET " + KolomNaam + "=" + nieuweWaarde + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
+		String query = "UPDATE " + tabel + " SET " + veranderingen + " WHERE " + voorwaardeKolom + "=" + voorwaarde;
 		try
 		{
 			Statement statement = connection.createStatement();
