@@ -18,7 +18,7 @@ public class beheerWedstrijd {
 	{
 		ResultSet res = db.query("wedstrijd", null, null);
 		int wedstrijdid = -1;
-		SimpleDateFormat datum = null;
+		Date datum = null;
 		String locatie = null;
 		boolean inschrijvingOpen = false;
 		boolean beoordelingOpen = false;
@@ -26,8 +26,7 @@ public class beheerWedstrijd {
 		while(res.next())
 		{
 			wedstrijdid = res.getInt(1);
-			datum = datum.res.getDate("datum").getDate();
-			datum = datum.format(res.getDate("datum"));
+			datum = res.getDate("datum");
 			datum.parse(null);
 		}
 	}
