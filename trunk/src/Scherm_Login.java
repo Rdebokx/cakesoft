@@ -1,17 +1,19 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
 public class Scherm_Login extends JFrame implements ActionListener
 {
+	//Eclipse-fix
+	private static final long serialVersionUID = 1L;
+	//
+	
 	private ProgrammaController programmaC;
 	//Inhoud van het Inlogscherm
 	private JPanel paneel = new JPanel(new GridLayout(2,2));
 	private JPanel paneel2 = new JPanel(new GridLayout(1,1));
 	private JLabel lidnr = new JLabel("Lidnummer");
 	private JLabel pass = new JLabel("Wachtwoord");
-	private JLabel filler = new JLabel("");
 	private JTextField lidnr_veld = new JTextField();
 	private JTextField pass_veld = new JTextField();
 	private JButton loginknop = new JButton("Login");
