@@ -56,17 +56,25 @@ public class beheerWedstrijd {
 		return uitvoerLijst;
 	}
 
+	/**
+	 * Methode voegWedstrijdToe(), voegt de wedstrijd toe aan de database.
+	 * @param wedstrijd
+	 */
 	public void voegWedstrijdToe(Wedstrijd wedstrijd)
 	{
-		
-		db.insert("wedstrijd", new String[{String.valueOf(wedstrijd.getWedstrijd_id()), wedstrijd.getDatumString(), wedstrijd.getLocatie(), String.valueOf(wedstrijd.isInschrijvingOpen()), String.valueOf(wedstrijd.isBeoordelingOpen())}]);
+		String[] argumenten = {String.valueOf(wedstrijd.getWedstrijd_id()), wedstrijd.getDatumString(), wedstrijd.getLocatie(), 
+				String.valueOf(wedstrijd.isInschrijvingOpen()), String.valueOf(wedstrijd.isBeoordelingOpen())};
+		db.insert("wedstrijd", argumenten);
 	}
-	//post:: wedstrijd is toegevoegd aan de database en de wedstrijd_id van wedstrijd is aangepast
 
+	
+	/**
+	 * updateWedstrijd, update het object aan in de database
+	 * @param wedstrijd		Het in te vullen wedstrijd object
+	 */
 	public void updateWedstrijd(Wedstrijd wedstrijd)
 	{
-		
+		//TODO: Schrijven zodra update() klopt.
 	}
-	//post:: de entry in de wedstrijd tabel in de db met de corresponderende wedstrijd_id is geupdate met de gegevens uit wedstrijd
 	
 }
