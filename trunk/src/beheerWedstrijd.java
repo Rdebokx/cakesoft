@@ -26,7 +26,7 @@ public class beheerWedstrijd {
 	 */
 	public ArrayList<Wedstrijd> getAlleWedstrijden()
 	{
-		ArrayList<Wedstrijd> uitvoerLijst = new ArrayList<Wedstrijd>();
+		/*ArrayList<Wedstrijd> uitvoerLijst = new ArrayList<Wedstrijd>();
 		int wedstrijdid = -1;
 		Date datum = null;
 		String locatie = null;
@@ -53,7 +53,8 @@ public class beheerWedstrijd {
 			e.printStackTrace();
 		}
 		
-		return uitvoerLijst;
+		return uitvoerLijst;*/
+		return null;
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class beheerWedstrijd {
 	{
 		String[] argumenten = {String.valueOf(wedstrijd.getWedstrijd_id()), wedstrijd.getDatumString(), wedstrijd.getLocatie(), 
 				String.valueOf(wedstrijd.isInschrijvingOpen()), String.valueOf(wedstrijd.isBeoordelingOpen())};
-		db.insert("wedstrijd", argumenten);
+		//db.insert("wedstrijd", argumenten);
 	}
 
 	

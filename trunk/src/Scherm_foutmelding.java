@@ -14,16 +14,27 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		this.programmaC=programmaC;
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(new Rectangle(100,100,500,300));
-		this.setTitle("Cakesoft - Login");
+		//this.setBounds(new Rectangle(100,100,400,100));
+		this.setSize(400,100);
+		this.setLocationRelativeTo(null);
+		//Point oude_locatie=this.getLocation();
+		//oude_locatie.y+=100;
+		//this.setLocation(oude_locatie);
+		this.setTitle("Cakesoft - Fout");
+		this.setLayout(null);
+		
 		
 		this.foutTekst.setText(foutBericht);
 		
-		JPanel panel=new JPanel(new GridLayout(3,1));
-		panel.add(this.foutTekst);
-		panel.add(this.okKnop);
+		Dimension tekstSize =this.foutTekst.getMinimumSize();
 		
-		this.getContentPane().add(panel);
+		this.foutTekst.setBounds((400-tekstSize.width)/2,5,380,20);
+		this.okKnop.setBounds(150,40,100,25);
+		
+		add(this.foutTekst);
+		add(this.okKnop);
+		
+		
 		
 		this.okKnop.addActionListener(this);
 		

@@ -28,7 +28,7 @@ public class beheerLid {
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		
-		ResultSet res = db.query("lid", "naam", "%" + naam_deel + "%");
+		ResultSet res = db.executeQuery("SELECT * FROM lid WHERE naam LIKE '%" + naam_deel + "%'");
 				
 		try {
 			while(res.next())
@@ -49,14 +49,15 @@ public class beheerLid {
 
 	public Lid getLidVanReactie(Reactie reactie)
 	{
-		int reactie_id = reactie.getReactie_id();
+		/*int reactie_id = reactie.getReactie_id();
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		Lid uitvoer = null;
 		
-		ResultSet res = db.query("reactie", "p_reactie_id", String.valueOf(reactie_id));
+		//doe wat
+		ResultSet res = db.executeQuery("reactie", "p_reactie_id", String.valueOf(reactie_id));
 		
 		try {
 			lid_id = res.getInt("p_lid_id");
@@ -70,7 +71,8 @@ public class beheerLid {
 			e.printStackTrace();
 		}
 		
-		return uitvoer;
+		return uitvoer;*/
+		return null;
 	}
 	//post:: geeft het lid terug dat reactie heeft geplaatst
 

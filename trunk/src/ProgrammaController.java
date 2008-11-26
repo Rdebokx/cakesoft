@@ -6,7 +6,7 @@ public class ProgrammaController
 	
 	private Scherm_Login loginS;
 	private Scherm_foutmelding foutS;
-	private Scherm_Overzicht overzichtS;
+	private Scherm_Hoofdscherm hoofdschermS;
 	
 	private beheerLid bLid;
 	private Database db;
@@ -21,7 +21,7 @@ public class ProgrammaController
 	
 	public void openOverzicht()
 	{
-		this.overzichtS=new Scherm_overzicht(this);
+		this.hoofdschermS=new Scherm_Hoofdscherm(this);
 		//set gegevens als wedstrijden, bestellingen
 	}
 	
@@ -52,7 +52,7 @@ public class ProgrammaController
 	{
 		this.ingelogdLid=null;
 		
-		this.overzichtS.dispose();
+		this.hoofdschermS.dispose();
 		this.loginS=new Scherm_Login(this);
 	}
 }
