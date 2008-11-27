@@ -4,13 +4,13 @@
  */
 
 public class Beoordeling {
-	int beoordeling_id;
-	String commentaar;
-	int kwaliteit;
-	int prijs;
-	int calo;
-	int smaak;
-	Jury jury;
+	private int beoordeling_id;
+	private String commentaar;
+	private int kwaliteit;
+	private int prijs;
+	private int calo;
+	private int smaak;
+	private Jury jury;
 	
 	/**
 	 * Constructor voor Beoordeling, geen parameters.
