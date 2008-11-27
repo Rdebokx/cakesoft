@@ -53,4 +53,14 @@ public class BeheerReactie {
 		return reacties;
 	}
 	
+	public void voegReactie(Reactie reactie, Baksel baksel)
+	{
+		
+		String waarden = "," + reactie.getBericht() + "," + baksel.getBaksel_id() + "," + reactie.getLid_id();  //eerste waarde niet invoeren, is auto-increment
+		
+		//de gegevens in de database invoeren
+		int reactie_id = database.insert("reactie", waarden);
+		reactie.setReactie_id(reactie_id);
+	}
+	
 }
