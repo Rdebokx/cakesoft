@@ -4,9 +4,9 @@
  */
 public class Bestelling {
 
-	int bestelling_id;
-	int aantal;
-	Baksel baksel;
+	private int bestelling_id;
+	private int aantal;
+	private Baksel baksel;
 
 	/**
 	 * Constructor voor Bestelling, geen parameters
