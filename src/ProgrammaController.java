@@ -24,6 +24,11 @@ public class ProgrammaController
 		this.hoofdschermS=new Scherm_Hoofdscherm(this);
 		//set gegevens als wedstrijden, bestellingen
 	}
+
+
+//
+// Acties voor Scherm_login
+//	
 	
 	public void actieLogin()
 	{
@@ -48,6 +53,26 @@ public class ProgrammaController
 		
 	}
 	
+
+//
+//	 Acties voor Scherm_Hoofdscherm
+//		
+	
+	public void actieBekijkWedstrijd()
+	{
+		
+	}
+
+	public void actieNieuwWedstrijd()
+	{
+		
+	}
+	
+	public void actieVerwijderBestelling()
+	{
+		
+	}
+
 	public void actieLoguit()
 	{
 		this.ingelogdLid=null;
@@ -55,4 +80,5 @@ public class ProgrammaController
 		this.hoofdschermS.dispose();
 		this.loginS=new Scherm_Login(this);
 	}
+
 }
