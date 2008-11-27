@@ -85,7 +85,7 @@ public class ProgrammaController
 	}
 
 //
-//	 Acties voor Scherm_Wedstrijd
+//	 Acties voor Scherm_Wedstrijd(Klaar)
 //		
 	
 	public void actieBekijkDeelnemer()
@@ -98,6 +98,19 @@ public class ProgrammaController
 		
 	}
 	
+	
+//
+//	Acties voor Scherm_Inscrijven
+//
+	
+	public void actieInschrijvingVerzenden()
+	{
+		
+	}
+
+//
+//	Repeterende Acties
+//
 	public void actieTerug()
 	{
 		
