@@ -7,11 +7,11 @@ import java.util.Date;
  */
 
 public class Wedstrijd {
-	int wedstrijd_id;
-	Date datum;
-	String locatie;
-	boolean inschrijvingOpen;
-	boolean beoordelingOpen;
+	private int wedstrijd_id;
+	private Date datum;
+	private String locatie;
+	private boolean inschrijvingOpen;
+	private boolean beoordelingOpen;
 	
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan
