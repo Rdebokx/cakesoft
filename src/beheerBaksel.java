@@ -4,7 +4,7 @@ import java.sql.*;
 public class beheerBaksel
 {
 	Database datab;
-	
+
 	/**
 	 * Constructor, maakt een nieuw beheerBaksel object aan
 	 * @param db	Bevat het Database object waar deze klasse mee moet werken
@@ -20,7 +20,7 @@ public class beheerBaksel
 	 */
 	public void voegBakselToe(Baksel baksel)
 	{
-		datab.insert("INSERT into Baksel (naam, categorie, prijs, ingredienten, recept) VALUES (" + baksel.getNaam() + baksel.getPrijs() + baksel.getCategorie() + baksel.getIngredienten() + baksel.getRecept() + ")");
+		datab.insert("Baksel", "" + baksel.getNaam() + baksel.getPrijs() + baksel.getCategorie() + baksel.getIngredienten() + baksel.getRecept());
 	}
 
     /**
@@ -31,7 +31,7 @@ public class beheerBaksel
 	public ArrayList<Baksel> getBakselsVanWedstrijd(Wedstrijd wedstrijd)
 	{
 		ArrayList<Baksel> bakselList = new ArrayList<Baksel>();
-		ResultSet res = datab.executeQuery("Select * FROM Baksel WHERE Baksel.baksel_id = Deelnemer.baksel_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
+		ResultSet res = datab.select("Baksel", "Baksel.baksel_id = Deelnemer.baksel_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
 		try
 		{
 			while (res.next())
@@ -60,7 +60,7 @@ public class beheerBaksel
 	public ArrayList<Deelnemer> getDeelnemersVanWedstrijd(Wedstrijd wedstrijd)
 	{
 		ArrayList<Deelnemer> deelList = new ArrayList<Deelnemer>();
-		ResultSet res = datab.executeQuery("Select * FROM Deelnemer, Lid WHERE Deelnemer.lid_id = Lid.lid_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
+		ResultSet res = datab.select("Deelnemer, Lid", "Deelnemer.lid_id = Lid.lid_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
 		try
 		{
 			while (res.next())
