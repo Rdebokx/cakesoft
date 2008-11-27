@@ -33,7 +33,7 @@ public class beheerWedstrijd {
 		boolean beoordelingOpen = false;
 		
 		//Query voor 'alles'
-		ResultSet res = db.executeQuery("SELECT * FROM `wedstrijd`");
+		ResultSet res = db.select("wedstrijd", null);
 				
 		try {
 			while(res.next())
@@ -61,10 +61,11 @@ public class beheerWedstrijd {
 	 */
 	public void voegWedstrijdToe(Wedstrijd wedstrijd)
 	{
-		//Prop alle argumenten in één String en voer de query uit.
-		String argumenten = "(" + String.valueOf(wedstrijd.getWedstrijd_id()) + ", " + wedstrijd.getDatumString() + ", " + wedstrijd.getLocatie() + ", " + 
-				String.valueOf(wedstrijd.isInschrijvingOpen()) + ", " + String.valueOf(wedstrijd.isBeoordelingOpen()) + ")";
-		db.executeQuery("INSERT INTO wedstrijd VALUES " + argumenten);
+		//Stop alle argumenten in één String en voer de query uit.
+		String argumenten = String.valueOf(wedstrijd.getWedstrijd_id()) + ", " + wedstrijd.getDatumString() + ", " + wedstrijd.getLocatie() + ", " + 
+				String.valueOf(wedstrijd.isInschrijvingOpen()) + ", " + String.valueOf(wedstrijd.isBeoordelingOpen());
+		
+		db.insert("wedstrijd", argumenten);
 	}
 
 	
@@ -79,7 +80,7 @@ public class beheerWedstrijd {
 				"`, inschrijvingOpen = `" + String.valueOf(wedstrijd.isInschrijvingOpen()) + "`, beoordelingOpen = `" 
 				+ String.valueOf(wedstrijd.isBeoordelingOpen());
 
-		db.executeQuery("UPDATE wedstrijd SET " + waarden + " WHERE p_wedstrijd_id = " + String.valueOf(wedstrijd_id));
+		db.update("wedstrijd", waarden, "p_wedstrijd_id = " + String.valueOf(wedstrijd_id));
 	}
 
 }

@@ -65,7 +65,7 @@ public class beheerLid {
 		Lid uitvoer = null;
 		
 		try {
-			ResultSet res = db.executeQuery("SELECT * FROM reactie WHERE p_reactie_id = " + String.valueOf(reactie_id));
+			ResultSet res = db.select("reactie", "p_reactie_id = " + String.valueOf(reactie_id));
 			
 			lid_id = res.getInt("p_lid_id");
 			naam = res.getString("naam");
@@ -95,7 +95,7 @@ public class beheerLid {
 		Lid uitvoer = null;
 		
 		try {
-			ResultSet res = db.executeQuery("SELECT * FROM lid WHERE p_lid_id = " + String.valueOf(lid.getLid_id()) + " AND wachtwoord = " + lid.getLid_id());
+			ResultSet res = db.select("lid", "p_lid_id = " + String.valueOf(lid.getLid_id()) + " AND wachtwoord = " + lid.getLid_id());
 			
 			while(res.next())
 			{
