@@ -4,7 +4,7 @@
  */
 
 public class Jury extends Lid {
-	int jury_id;
+	private int jury_id;
 	
 	/**
 	 * Constructor voor Jury zonder parameters.
