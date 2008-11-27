@@ -7,7 +7,7 @@
  */
 public class beheerDeelnemer {
 	
-	Database database;
+	private Database database;
 	
 	/**
 	 * Deze methode is de constructor en maakt een nieuw beheerDeelnemer object aan, gekoppelt aan de opgegeven database
