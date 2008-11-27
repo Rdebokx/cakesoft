@@ -4,10 +4,10 @@
  */
 
 public class Lid {
-	String naam;
-	int lid_id;
-	String wachtwoord;
-	boolean hoofdbeheerder;
+	private String naam;
+	private int lid_id;
+	private String wachtwoord;
+	private boolean hoofdbeheerder;
 	
 	/**
 	 * Constructor voor Lid, stelt waarden in op -1, false en null zover mogelijk.
