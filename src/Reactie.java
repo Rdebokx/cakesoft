@@ -3,9 +3,9 @@
  * @author Groep 11
  */
 public class Reactie {
-	int reactie_id;
-	int lid_id;
-	String bericht;
+	private int reactie_id;
+	private int lid_id;
+	private String bericht;
 
 	public Reactie()
 	{
