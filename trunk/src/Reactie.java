@@ -4,6 +4,7 @@
  */
 public class Reactie {
 	int reactie_id;
+	int lid_id;
 	String bericht;
 
 	public Reactie()
@@ -17,9 +18,10 @@ public class Reactie {
 	 * @param reactie_id
 	 * @param bericht
 	 */
-	public Reactie(int reactie_id, String bericht) {
+	public Reactie(int reactie_id, int lid_id, String bericht) {
 		this.reactie_id = reactie_id;
 		this.bericht = bericht;
+		this.lid_id = lid_id;
 	}
 
 	/**
@@ -47,6 +49,15 @@ public class Reactie {
 	}
 
 	/**
+	 * 
+	 * @return de lid_id
+	 */
+	public int getLid_id()
+	{
+		return lid_id;
+	}
+	
+	/**
 	 * @param reactie_id the reactie_id to set
 	 */
 	public void setReactie_id(int reactie_id) {
@@ -58,5 +69,13 @@ public class Reactie {
 	 */
 	public void setBericht(String bericht) {
 		this.bericht = bericht;
+	}
+	
+	/**
+	 * Deze set het Lid_id
+	 * @param lid_id 	bevat het id van het lid
+	 */
+	public void setLid_id(int lid_id){
+		this.lid_id = lid_id;
 	}
 }
