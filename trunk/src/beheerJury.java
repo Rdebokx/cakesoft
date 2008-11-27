@@ -2,7 +2,7 @@
 /**
  * De klasse beheerJury bevat alle methoden om met jury objecten te werken
  * @author Groep 11
- *
+ * @version 1.0
  */
 public class beheerJury {
 	
