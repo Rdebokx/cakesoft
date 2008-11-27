@@ -5,13 +5,11 @@ import java.awt.event.*;
 
 public class Scherm_foutmelding extends JFrame implements ActionListener
 {
-	private ProgrammaController programmaC;
 	private JLabel foutTekst=new JLabel();
 	private JButton okKnop=new JButton("ok");
 	
-	public Scherm_foutmelding(ProgrammaController programmaC, String foutBericht)
+	public Scherm_foutmelding(String foutBericht)
 	{
-		this.programmaC=programmaC;
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(new Rectangle(100,100,400,100));

@@ -9,12 +9,15 @@ public class ProgrammaController
 	private Scherm_Hoofdscherm hoofdschermS;
 	
 	private beheerLid bLid;
+	private beheerWedstrijd bWedstrijd;
 	private Database db;
 	
 	public ProgrammaController()
 	{
 		this.db=new Database("","","");
 		this.bLid=new beheerLid(this.db);
+		this.bWedstrijd=new beheerWedstrijd(this.db);
+		
 		
 		this.loginS=new Scherm_Login(this);
 	}
@@ -39,7 +42,7 @@ public class ProgrammaController
 		{
 			//foutieve login
 			
-			this.foutS=new Scherm_foutmelding(this,"U hebt een verkeerd lid id of wachtwoord ingevoerd.");
+			this.foutS=new Scherm_foutmelding("U hebt een verkeerd lid id of wachtwoord ingevoerd.");
 		}
 		else
 		{
