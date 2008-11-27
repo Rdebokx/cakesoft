@@ -81,4 +81,22 @@ public class ProgrammaController
 		this.loginS=new Scherm_Login(this);
 	}
 
+//
+//	 Acties voor Scherm_Wedstrijd
+//		
+	
+	public void actieBekijkDeelnemer()
+	{
+		
+	}
+	
+	public void actieInschrijven()
+	{
+		
+	}
+	
+	public void actieTerug()
+	{
+		
+	}
 }
