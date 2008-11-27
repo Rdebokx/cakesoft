@@ -3,9 +3,9 @@
  * @author Groep 11
  */
 public class Deelnemer extends Lid {
-	int deelnemer_id;
-	Baksel baksel;
-	int plaats;
+	private int deelnemer_id;
+	private Baksel baksel;
+	private int plaats;
 	
 	
 	/**
