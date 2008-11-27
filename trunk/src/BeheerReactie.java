@@ -51,7 +51,6 @@ public class BeheerReactie {
 			System.out.println(e.toString());
 		}
 		return reacties;
-		
 	}
 	
 }
