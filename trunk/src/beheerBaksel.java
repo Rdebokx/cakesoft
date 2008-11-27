@@ -7,7 +7,7 @@ public class beheerBaksel
 	
 	/**
 	 * Constructor, maakt een nieuw beheerBaksel object aan
-	 * @param Database	Bevat het Database object waar deze klasse mee moet werken
+	 * @param db	Bevat het Database object waar deze klasse mee moet werken
 	 */
 	public beheerBaksel(Database db)
 	{
@@ -16,7 +16,7 @@ public class beheerBaksel
 
     /**
 	 * voegBakselToe, voegt een baksel toe aan de database
-	 * @param invoer	Bevat het baksel dat ingevoerd moet worden
+	 * @param baksel	Bevat het baksel dat ingevoerd moet worden
 	 */
 	public void voegBakselToe(Baksel baksel)
 	{
@@ -25,7 +25,7 @@ public class beheerBaksel
 
     /**
 	 * getBakselsVanWedstrijd, geeft een lijst van alle baksels in een wedstrijd
-	 * @param invoer	Bevat de wedstrijd waarvan men de deelnemende baksels wilt hebben
+	 * @param wedstrijd	Bevat de wedstrijd waarvan men de deelnemende baksels wilt hebben
 	 * @return			Geeft een ArrayList terug met alle baksels van die wedstrijd
 	 */
 	public ArrayList<Baksel> getBakselsVanWedstrijd(Wedstrijd wedstrijd)
@@ -54,7 +54,7 @@ public class beheerBaksel
 	
 	/**
 	 * getDeelnemersVanWedstrijd, geeft een lijst die alle deelnemers van een wedstrijd bevat.
-	 * @param invoer	Bevat de wedstrijd waarvan men de deelnemers wilt weten
+	 * @param wedstrijd	Bevat de wedstrijd waarvan men de deelnemers wilt weten
 	 * @return			Geeft een ArrayList terug met alle Deelnemers van de wedstrijd
 	 */
 	public ArrayList<Deelnemer> getDeelnemersVanWedstrijd(Wedstrijd wedstrijd)
