@@ -4,7 +4,7 @@ import java.sql.*;
  * klasse Database zorgt voor de interactie tussen het programma en de database.
  * Hij maakt verbinding en voert querys uit.
  *@author Groep 11
- *@version 1.0
+ *@version 3.0
  */
 public class Database {
         
