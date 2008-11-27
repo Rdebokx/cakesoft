@@ -32,16 +32,22 @@ public class beheerBaksel
 	{
 		ArrayList<Baksel> bakselList = new ArrayList<Baksel>();
 		ResultSet res = datab.select("Baksel", "Baksel.baksel_id = Deelnemer.baksel_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
+		int baksel_id;
+		String naam;
+		double prijs;
+		String categorie;
+		String ingredienten;
+		String recept;
 		try
 		{
 			while (res.next())
 			{
-				int baksel_id = res.getInt("baksel_id");
-				String naam = res.getString("naam");
-				double prijs = res.getDouble("prijs");
-				String categorie = res.getString("categorie");
-				String ingredienten = res.getString("ingredienten");
-				String recept = res.getString("recept");
+				baksel_id = res.getInt("baksel_id");
+				naam = res.getString("naam");
+				prijs = res.getDouble("prijs");
+				categorie = res.getString("categorie");
+				ingredienten = res.getString("ingredienten");
+				recept = res.getString("recept");
 				bakselList.add(new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs));
 			}
 		}
@@ -61,15 +67,20 @@ public class beheerBaksel
 	{
 		ArrayList<Deelnemer> deelList = new ArrayList<Deelnemer>();
 		ResultSet res = datab.select("Deelnemer, Lid", "Deelnemer.lid_id = Lid.lid_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
+        int deelnemer_id;
+        int lid_id;
+        String naam;
+        String wachtwoord;
+        boolean hoofdbeheer;
 		try
 		{
 			while (res.next())
 			{
-				int deelnemer_id = res.getInt("deelnemer_id");
-				int lid_id = res.getInt("lid_id");
-				String naam = res.getString("naam");
-				String wachtwoord = res.getString("wachtwoord");
-				boolean hoofdbeheer = res.getBoolean("hoofdbeheer");
+				deelnemer_id = res.getInt("deelnemer_id");
+				lid_id = res.getInt("lid_id");
+				naam = res.getString("naam");
+				wachtwoord = res.getString("wachtwoord");
+				hoofdbeheer = res.getBoolean("hoofdbeheer");
 				deelList.add(new Deelnemer(deelnemer_id, naam, lid_id, wachtwoord, hoofdbeheer));
 			}
 		}
