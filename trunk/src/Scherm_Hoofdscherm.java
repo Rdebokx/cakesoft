@@ -59,9 +59,9 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		
 		//alles aan container positioneren
 		wedstrijd.setBounds(30,30,300,20);
-		wedstrijd_scroll.setBounds(30,50,300,120);
-		bekijkWedstrijd_knop.setBounds(30,170,150,20);
-		nieuwWedstrijd_knop.setBounds(180,170,150,20);
+		wedstrijd_scroll.setBounds(30,50,300,175);
+		bekijkWedstrijd_knop.setBounds(30,225,150,20);
+		nieuwWedstrijd_knop.setBounds(180,225,150,20);
 		
 		ontvangen.setBounds(400,30,300,20);
 		ontvangen_scroll.setBounds(400,50,300,120);
