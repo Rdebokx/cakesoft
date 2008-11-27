@@ -31,7 +31,7 @@ public class beheerLid {
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		
-		ResultSet res = db.executeQuery("SELECT * FROM lid WHERE naam LIKE `%" + naam_deel + "%`");
+		ResultSet res = db.select("lid", "naam LIKE %" + naam_deel + "%");
 				
 		try {
 			while(res.next())
