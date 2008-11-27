@@ -4,12 +4,12 @@
  */
 public class Baksel {
 
-	int baksel_id;
-	String ingredienten;
-	String recept;
-	String naam;
-	String categorie;
-	double prijs;
+	private int baksel_id;
+	private String ingredienten;
+	private String recept;
+	private String naam;
+	private String categorie;
+	private double prijs;
 
 	/**
 	 * Constructor voor Baksel zonder parameters. 
