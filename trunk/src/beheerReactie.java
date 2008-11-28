@@ -4,8 +4,6 @@ import java.util.*;
 /**
  * Deze klasse bevat methoden om met Reacties te werken
  * @author Groep 11
- * @version 1.0
- *
  */
 public class beheerReactie {
 
@@ -28,13 +26,16 @@ public class beheerReactie {
 	public ArrayList<Reactie> getReactiesOpBaksel(Baksel baksel)
 	{
 		int bakselID = baksel.getBaksel_id();
-		String voorwaarde = "baksel_id=" + bakselID;
 		
-		ResultSet result = database.select("reactie", voorwaarde);
+		//Maak query aan en stel voorwaarde in.
+		querySelect selecteerQuery = new querySelect("reactie");
+		selecteerQuery.stelVoorwaardeIn("baksel_id", query.LIKE, bakselID);
+		
+		ResultSet result = database.select(selecteerQuery);
 		
 		ArrayList<Reactie> reacties = new ArrayList<Reactie>();
 		
-		//nu omzetten naar een ArrayList van Reacties
+		//Nu omzetten naar een ArrayList van Reacties
 		try
 		{
 
@@ -54,12 +55,14 @@ public class beheerReactie {
 	}
 	
 	public void voegReactie(Reactie reactie, Baksel baksel)
-	{
+	{		
+		//De gegevens in de database invoeren
+		queryInsert insertQuery=new queryInsert("reactie");
+		insertQuery.stelNieuwIn("bericht", reactie.getBericht());
+		insertQuery.stelNieuwIn("p_baksel_id", baksel.getBaksel_id());
+		insertQuery.stelNieuwIn("lid_id", reactie.getLid_id());
 		
-		String waarden = "," + reactie.getBericht() + "," + baksel.getBaksel_id() + "," + reactie.getLid_id();  //eerste waarde niet invoeren, is auto-increment
-		
-		//de gegevens in de database invoeren
-		int reactie_id = database.insert("reactie", waarden);
+		int reactie_id = database.insert(insertQuery);
 		reactie.setReactie_id(reactie_id);
 	}
 	
