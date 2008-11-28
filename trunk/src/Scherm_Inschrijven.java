@@ -3,7 +3,8 @@ import java.awt.event.*;
 
 public class Scherm_Inschrijven extends JFrame implements ActionListener
 {
-
+	
+	
 	//Eclipse-fix
 	private static final long serialVersionUID = 1L;
 	
@@ -26,9 +27,9 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 	private JScrollPane ingredienten_scroll = new JScrollPane();
 	private JTextPane ingredienten_tekst = new JTextPane();
 	
-	private JTextPane catogorie_veld = new JTextPane();
-	private JTextPane prijs_veld = new JTextPane();
-	private JTextPane bakselnaam_veld = new JTextPane();
+	private JTextField catogorie_veld = new JTextField();
+	private JTextField prijs_veld = new JTextField();
+	private JTextField bakselnaam_veld = new JTextField();
 		
 	private JButton terug_knop = new JButton("Terug");
 	private JButton inschrijf_knop = new JButton("Inschrijven");
@@ -37,6 +38,7 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 	public Scherm_Inschrijven(ProgrammaController programmaC)
 	{
 		this.programmaC=programmaC;
+		
 		
 		recept_tekst.setEditable(true);
 		recept_tekst.setText("Type hier uw recept");
