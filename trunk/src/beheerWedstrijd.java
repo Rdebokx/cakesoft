@@ -42,7 +42,7 @@ public class beheerWedstrijd {
 			while(res.next())
 			{
 				//Stel de waarden in
-				wedstrijdid = res.getInt("p_wedstrijd_id");
+				wedstrijdid = res.getInt("wedstrijd_id");
 				datum = res.getDate("datum");
 				locatie = res.getString("locatie");
 				inschrijvingOpen = res.getBoolean("inschrijvingOpen");
@@ -66,7 +66,7 @@ public class beheerWedstrijd {
 	{
 		//Maak een queryInsert aan en vul deze in.		
 		queryInsert insertQuery = new queryInsert("wedstrijd");
-		insertQuery.stelNieuwIn("p_wedstrijd_id", String.valueOf(wedstrijd.getWedstrijd_id()));
+		insertQuery.stelNieuwIn("wedstrijd_id", String.valueOf(wedstrijd.getWedstrijd_id()));
 		insertQuery.stelNieuwIn("datum", wedstrijd.getDatumString());
 		insertQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
 		insertQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
@@ -87,7 +87,7 @@ public class beheerWedstrijd {
 		int wedstrijd_id = wedstrijd.getWedstrijd_id();
 		
 		queryUpdate updateQuery = new queryUpdate("wedstrijd");
-		updateQuery.stelVoorwaardeIn("p_wedstrijd_id", query.GELIJK, wedstrijd_id);
+		updateQuery.stelVoorwaardeIn("wedstrijd_id", query.GELIJK, wedstrijd_id);
 		updateQuery.stelNieuwIn("datum", wedstrijd.getDatumString());
 		updateQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
 		updateQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
