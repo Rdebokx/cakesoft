@@ -31,12 +31,12 @@ public class beheerLid {
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		
-		ResultSet res = db.select("lid", "naam LIKE %" + naam_deel + "%");
+		ResultSet res = db.select("lid", "naam LIKE '%" + naam_deel + "%'");
 				
 		try {
 			while(res.next())
 			{
-				lid_id = res.getInt("p_lid_id");
+				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
 				hoofdbeheerder = res.getBoolean("hoofdbeheerder");
@@ -65,9 +65,9 @@ public class beheerLid {
 		Lid uitvoer = null;
 		
 		try {
-			ResultSet res = db.select("reactie", "p_reactie_id = " + String.valueOf(reactie_id));
+			ResultSet res = db.select("reactie", "reactie_id = " + String.valueOf(reactie_id));
 			
-			lid_id = res.getInt("p_lid_id");
+			lid_id = res.getInt("lid_id");
 			naam = res.getString("naam");
 			wachtwoord = res.getString("wachtwoord");
 			hoofdbeheerder = res.getBoolean("hoofdbeheerder");
@@ -95,11 +95,11 @@ public class beheerLid {
 		Lid uitvoer = null;
 		
 		try {
-			ResultSet res = db.select("lid", "p_lid_id = " + String.valueOf(lid.getLid_id()) + " AND wachtwoord = " + lid.getLid_id());
+			ResultSet res = db.select("lid", "lid_id = " + String.valueOf(lid.getLid_id()) + " AND wachtwoord = '" + lid.getWachtwoord() + "'");
 			
 			while(res.next())
 			{
-				lid_id = res.getInt("p_lid_id");
+				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
 				hoofdbeheerder = res.getBoolean("hoofdbeheerder");
