@@ -65,7 +65,11 @@ public class beheerLid {
 		Lid uitvoer = null;
 		
 		try {
-			ResultSet res = db.select("reactie", "reactie_id = " + String.valueOf(reactie_id));
+			//Maak query en stel 'em in.
+			querySelect selecteerQuery = new querySelect("reactie");
+			selecteerQuery.stelVoorwaardeIn("reactie_id", query.LIKE, String.valueOf(reactie_id));
+			
+			ResultSet res = db.select(selecteerQuery);
 			
 			lid_id = res.getInt("lid_id");
 			naam = res.getString("naam");
@@ -95,7 +99,12 @@ public class beheerLid {
 		Lid uitvoer = null;
 		
 		try {
-			ResultSet res = db.select("lid", "lid_id = " + String.valueOf(lid.getLid_id()) + " AND wachtwoord = '" + lid.getWachtwoord() + "'");
+			//Maak query en stel 'em in.
+			querySelect selecteerQuery = new querySelect("lid");
+			selecteerQuery.stelVoorwaardeIn("lid_id", query.LIKE, String.valueOf(lid.getLid_id()));
+			selecteerQuery.stelVoorwaardeIn("wachtwoord", query.LIKE, String.valueOf(lid.getWachtwoord()));
+			
+			ResultSet res = db.select(selecteerQuery);
 			
 			while(res.next())
 			{
