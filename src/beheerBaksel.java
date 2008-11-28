@@ -20,7 +20,15 @@ public class beheerBaksel
 	 */
 	public void voegBakselToe(Baksel baksel)
 	{
-		datab.insert("Baksel", "" + baksel.getNaam() + baksel.getPrijs() + baksel.getCategorie() + baksel.getIngredienten() + baksel.getRecept());
+		queryInsert query1 = new queryInsert("baksel");
+		query1.stelNieuwIn("naam",baksel.getNaam());
+		query1.stelNieuwIn("prijs",baksel.getPrijs());
+		query1.stelNieuwIn("categorie",baksel.getCategorie());
+		query1.stelNieuwIn("ingredienten",baksel.getIngredienten());
+		query1.stelNieuwIn("recept",baksel.getRecept());
+		
+
+		datab.insert(query1);
 	}
 
     /**
@@ -31,7 +39,12 @@ public class beheerBaksel
 	public ArrayList<Baksel> getBakselsVanWedstrijd(Wedstrijd wedstrijd)
 	{
 		ArrayList<Baksel> bakselList = new ArrayList<Baksel>();
-		ResultSet res = datab.select("Baksel", "Baksel.baksel_id = Deelnemer.baksel_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
+
+		querySelect query3=new querySelect("baksel");
+		query3.stelVoorwaardeIn("baksel.baksel_id",query.LIKE,"%deelnemer.baksel_id%");
+		query3.stelVoorwaardeIn("deelnemer.wedstrijd_id",query.LIKE,wedstrijd.getWedstrijd_id());
+
+		ResultSet res = datab.select(query3);
 		int baksel_id;
 		String naam;
 		double prijs;
@@ -66,7 +79,12 @@ public class beheerBaksel
 	public ArrayList<Deelnemer> getDeelnemersVanWedstrijd(Wedstrijd wedstrijd)
 	{
 		ArrayList<Deelnemer> deelList = new ArrayList<Deelnemer>();
-		ResultSet res = datab.select("Deelnemer, Lid", "Deelnemer.lid_id = Lid.lid_id AND Deelnemer.wedstrijd_id = " + wedstrijd.getWedstrijd_id());
+		
+		querySelect query3=new querySelect("deelnemer, lid");
+		query3.stelVoorwaardeIn("deelnemer.lid_id",query.LIKE,"%lid.lid_id%");
+		query3.stelVoorwaardeIn("deelnemer.wedstrijd_id",query.LIKE,wedstrijd.getWedstrijd_id());
+		
+		ResultSet res = datab.select(query3);
         int deelnemer_id;
         int lid_id;
         String naam;
