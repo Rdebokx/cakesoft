@@ -2,7 +2,7 @@
 /**
  * Deze methode bevat alle methoden voor het werken met Deelnemer objecten.
  * @author Groep 11
- * @version 1.0
+ * @version 2.0
  *
  */
 public class beheerDeelnemer {
