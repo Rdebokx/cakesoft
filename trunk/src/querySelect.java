@@ -17,13 +17,14 @@ public class querySelect extends query
 	
 	
 	/**
-	 * getQuery, geeft de opgegeven query terug, compleet met escapen van quotes in de vorm SELECT * FROM tabel WHERE voorwaarden.
-	 * @return	String-representatie van de query in de vorm SELECT * FROM tabel WHERE voorwaarden
+	 * getQuery, geeft de opgegeven query terug, compleet met escapen van '.
+	 * @return
 	 */
 	public String getQuery()
 	{
 		int i;
-		String query="SELECT * FROM " + this.tabel + " WHERE ";
+		String query="SELECT * FROM " + this.tabel;
+		if(this.voorwaarden.size()>0) query+= " WHERE ";
 		
 		for(i=0;i<this.voorwaarden.size();i++)
 			query+=this.voorwaarden.get(i)+(i<this.voorwaarden.size()-1?" AND ":"");
