@@ -61,13 +61,18 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 		datum.setBounds(30,30,300,20);
 		locatie.setBounds(30,60,300,20);
 
-		bakselnaam.setBounds(375,120,300,20);
-		categorie.setBounds(375,130,300,20);
-		prijs.setBounds(375,150,300,20);
-		recept.setBounds(375,170,250,20);
-		recept_scroll.setBounds(375,190,250,60);
+		bakselnaam.setBounds(30,120,300,20);
+		bakselnaam_veld.setBounds(120,120,120,20);
+		categorie.setBounds(30,140,300,20);
+		catogorie_veld.setBounds(120,145,120,20);
+		prijs.setBounds(30,165,300,20);
+		prijs_veld.setBounds(120,170,120,20);
+		ingredienten.setBounds(30,190,250,20);
+		ingredienten_scroll.setBounds(30,210,250,120);
+		recept.setBounds(350,190,250,20);
+		recept_scroll.setBounds(350,210,360,120);
 		
-		inschrijf_knop.setBounds(30,30,200,50);		
+		inschrijf_knop.setBounds(520,30,200,50);		
 		terug_knop.setBounds(30,380,75,25);
 		
 		//aan het frame toevoegen
