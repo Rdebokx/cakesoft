@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -64,7 +65,15 @@ public class query
 		if(waarde instanceof Date)
 		{
 			//TODO: werkend maken
-			strWaarde="'2000-10-10'";
+			Date uitvoerDatum = (Date)waarde;
+			
+			SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
+			//Maak een nieuwe String aan met de datum in ons format
+			String datumYYYYMMDD = new String( dateformatYYYYMMDD.format( uitvoerDatum ) );
+
+			//Geef een String terug
+			strWaarde = "'" + datumYYYYMMDD.toString() + "'";
+			
 		}
 		
 		return strWaarde;
