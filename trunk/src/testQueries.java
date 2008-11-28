@@ -3,11 +3,11 @@ public class testQueries {
 	public static void main(String[] args)
 	{
 		//inserten
-		queryInsert query=new queryInsert("tabelnaam");
-		query.stelNieuwIn("bericht","Da's de winnaar");
-		query.stelNieuwIn("bericht2","Da's de winnaar ook");
+		queryInsert query1=new queryInsert("tabelnaam");
+		query1.stelNieuwIn("bericht","Da's de winnaar");
+		query1.stelNieuwIn("bericht2","Da's de winnaar ook");
 		
-		System.out.println(query.getQuery());
+		System.out.println(query1.getQuery());
 		
 		//updaten
 		queryUpdate query2=new queryUpdate("tabelnaam");
