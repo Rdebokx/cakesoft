@@ -28,9 +28,10 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	private JButton loguit_knop = new JButton("Loguit");
 	
 	private ArrayList<Wedstrijd> WedstrijdLijst;
+	private boolean hoofdbeheer;
 
 		
-	public Scherm_Hoofdscherm(ProgrammaController programmaC)
+	public Scherm_Hoofdscherm(ProgrammaController programmaC, boolean hoofdbeheer)
 	{
 		this.programmaC=programmaC;
 		
@@ -46,7 +47,7 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		this.besteld_items[2]="besteld3";
 		this.besteld_lijst.setListData(this.besteld_items);
 		this.besteld_scroll.setViewportView(this.besteld_lijst);
-
+		
   		//basis-instellingen scherm
 		setTitle("CakeSoft - Hoofdscherm");
 		setSize(750,450);
@@ -59,7 +60,8 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		wedstrijd.setBounds(30,30,300,20);
 		wedstrijd_scroll.setBounds(30,50,300,175);
 		bekijkWedstrijd_knop.setBounds(30,225,150,20);
-		nieuwWedstrijd_knop.setBounds(180,225,150,20);
+		if(this.hoofdbeheer)
+			nieuwWedstrijd_knop.setBounds(180,225,150,20);
 		
 		ontvangen.setBounds(400,30,300,20);
 		ontvangen_scroll.setBounds(400,50,300,120);
@@ -74,7 +76,8 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		add(wedstrijd_scroll);
 		add(wedstrijd);
 		add(bekijkWedstrijd_knop);
-		add(nieuwWedstrijd_knop);
+		if(this.hoofdbeheer)
+			add(nieuwWedstrijd_knop);
 		
 		add(ontvangen);
 		add(ontvangen_scroll);
@@ -87,7 +90,8 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		
 		//scherm-object luistert naar de events
 		bekijkWedstrijd_knop.addActionListener(this);
-		nieuwWedstrijd_knop.addActionListener(this);
+		if(this.hoofdbeheer)
+			nieuwWedstrijd_knop.addActionListener(this);
 		verwijderBestelling_knop.addActionListener(this);
 		loguit_knop.addActionListener(this);
 		
@@ -100,7 +104,7 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		{
 			programmaC.actieBekijkWedstrijd();
 		}
-		else if(e.getSource() == this.nieuwWedstrijd_knop)
+		else if(e.getSource() == this.nieuwWedstrijd_knop && this.hoofdbeheer)
 		{
 			programmaC.actieNieuwWedstrijd();
 		}
