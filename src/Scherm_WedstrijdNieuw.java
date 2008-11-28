@@ -57,19 +57,18 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 		juryveld_2.setBounds(600,60,125,25);
 		juryveld_3.setBounds(600,90,125,25);
 		
-		add(jurylid_1);
-		add(jurylid_2);
-		add(jurylid_3);
-		add(juryveld_1);
-		add(juryveld_2);
-		add(juryveld_3);
-		
 		terug_knop.setBounds(30,380,75,25);
 
 		//aan het frame toevoegen
 		add(paneel);
 		add(paneel2);
 		
+		add(jurylid_1);
+		add(jurylid_2);
+		add(jurylid_3);
+		add(juryveld_1);
+		add(juryveld_2);
+		add(juryveld_3);
 		add(terug_knop);
 		
 		//scherm-object luistert naar de events
