@@ -38,7 +38,7 @@ public class ProgrammaController
 	
 	public void openOverzicht()
 	{
-		this.hoofdschermS=new Scherm_Hoofdscherm(this,this.ingelogdLid.isHoofdbeheerder());
+		this.hoofdschermS=new Scherm_Hoofdscherm(this,this.ingelogdLid.isHoofdbeheer());
 		ArrayList<Wedstrijd> wedstrijden=this.bWedstrijd.getAlleWedstrijden();
 		ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
 		ArrayList<Bestelling> bestellingen_uitgaand=this.bBestelling.getBestellingenUitgaand(this.ingelogdLid);
