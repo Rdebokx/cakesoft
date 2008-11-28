@@ -2,7 +2,7 @@
 /**
  * De klasse beheerJury bevat alle methoden om met jury objecten te werken
  * @author Groep 11
- * @version 1.0
+ * @version 2.0
  */
 public class beheerJury {
 	
@@ -25,10 +25,13 @@ public class beheerJury {
 	 */
 	public void voegJuryToe(Jury jury, Wedstrijd wedstrijd)
 	{
-		String waarden = "," + jury.getLid_id() + "," + wedstrijd.getWedstrijd_id();  //eerste waarde niet invoeren, is auto-increment
+		//query construeren
+		queryInsert q = new queryInsert("jury");
+		q.stelNieuwIn("lid_id", jury.getLid_id());
+		q.stelNieuwIn("wedstrijd_id", wedstrijd.getWedstrijd_id());
 		
 		//de gegevens in de database invoeren
-		int jury_id = database.insert("jury", waarden);
+		int jury_id = database.insert(q);
 		jury.setJury_id(jury_id);
 	}
 
