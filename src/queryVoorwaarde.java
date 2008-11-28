@@ -1,4 +1,3 @@
-
 /**
  * queryVoorwaarde, bevat de voorwaarden van een query aan de database.
  * @author Groep 11
