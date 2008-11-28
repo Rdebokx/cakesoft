@@ -109,6 +109,3 @@ public class beheerBaksel
 		return deelList;
 	}
 }
-
-
-
