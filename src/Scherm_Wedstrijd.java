@@ -9,6 +9,8 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	//
 	
 	private ProgrammaController programmaC;
+	private Wedstrijd wedstrijd;
+	
 	//Inhoud van het Inlogscherm
 	private JLabel deelnemers = new JLabel("Deelnemers");
 	private JLabel locatie = new JLabel("Locatie");
@@ -35,9 +37,10 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private JTextField bestellen_veld = new JTextField();
 	
 		
-	public Scherm_Wedstrijd(ProgrammaController programmaC)
+	public Scherm_Wedstrijd(ProgrammaController programmaC, Wedstrijd wedstrijd)
 	{
 		this.programmaC=programmaC;
+		this.wedstrijd=wedstrijd;
 		
 		this.deelnemers_items=new String[3];
 		this.deelnemers_items[0]="deelnemer1";
@@ -133,7 +136,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		}
 		else if(e.getSource() == this.terug_knop)
 		{
-			programmaC.actieTerug();
+			programmaC.actieTerugNaarHoofdscherm();
 		}		
 	}
 	

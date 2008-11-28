@@ -133,11 +133,11 @@ public class Bestelling {
 	
 	public String toStringInkomend()
 	{
-		return "todo IN - "+this.baksel.getNaam();
+		return "Van "+this.lid_besteller.getNaam()+": "+this.aantal+"x "+this.baksel.getNaam();
 	}
 	
 	public String toStringUitgaand()
 	{
-		return "todo UIT - "+this.baksel.getNaam();
+		return "Bij "+this.lid_bakker.getNaam()+": "+this.aantal+"x "+this.baksel.getNaam();
 	}
 }

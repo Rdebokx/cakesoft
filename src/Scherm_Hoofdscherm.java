@@ -39,13 +39,6 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		this.programmaC=programmaC;
 		this.hoofdbeheer=hoofdbeheer;
 		
-		this.besteld_items=new String[3];
-		this.besteld_items[0]="besteld1";
-		this.besteld_items[1]="besteld2";
-		this.besteld_items[2]="besteld3";
-		this.besteld_lijst.setListData(this.besteld_items);
-		this.besteld_scroll.setViewportView(this.besteld_lijst);
-		
   		//basis-instellingen scherm
 		setTitle("CakeSoft - Hoofdscherm");
 		setSize(750,450);
@@ -94,6 +87,16 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		loguit_knop.addActionListener(this);
 		
 		setVisible(true);
+	}
+	
+	public Wedstrijd getGeselecteerdeWedstrijd()
+	{
+		int geselecteerd=this.wedstrijd_lijst.getSelectedIndex();
+		
+		if(geselecteerd<0)
+			return null;
+		else
+			return this.WedstrijdLijst.get(geselecteerd);
 	}
 		
 	public void actionPerformed(ActionEvent e)
@@ -144,7 +147,15 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	
 	public void setBestellingUitgaand(ArrayList<Bestelling> UitBestellingLijst)
 	{
+		this.UitBestellingLijst = UitBestellingLijst;
 		
+		this.besteld_items=new String[this.UitBestellingLijst.size()];
+		for(int i=0;i < this.UitBestellingLijst.size();i++)
+		{
+			this.besteld_items[i]= this.UitBestellingLijst.get(i).toStringUitgaand();
+		}
+		this.besteld_lijst.setListData(this.besteld_items);
+		this.besteld_scroll.setViewportView(this.besteld_lijst);
 	}
 
 }

@@ -129,6 +129,7 @@ public class beheerBestelling
 								
 				query4=new querySelect("lid, deelnemer");
 				query4.stelVoorwaardeIn("deelnemer.baksel_id",query.GELIJK,baksel_id);
+				query4.stelLinkVoorwaardeIn("deelnemer.lid_id",query.GELIJK,"lid.lid_id");
 				res2=datab.select(query4);
 				res2.next();
 				

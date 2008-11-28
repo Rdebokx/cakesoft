@@ -148,7 +148,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		}
 		else if(e.getSource() == this.terug_knop)
 		{
-			programmaC.actieTerug();
+			programmaC.actieTerugNaarHoofdscherm();
 		}		
 	}
 }

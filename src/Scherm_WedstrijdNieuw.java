@@ -73,6 +73,7 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 		
 		//scherm-object luistert naar de events
 		maak_knop.addActionListener(this);
+		terug_knop.addActionListener(this);
 		
 		setVisible(true);
 	}
@@ -81,5 +82,7 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 	{
 		if(e.getSource()==this.maak_knop)
 			this.programmaC.actieMaak();
+		if(e.getSource()==this.terug_knop)
+			this.programmaC.actieTerugNaarHoofdscherm();
 	}
 }
