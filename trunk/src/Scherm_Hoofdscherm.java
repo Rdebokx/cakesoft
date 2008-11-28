@@ -34,12 +34,6 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	{
 		this.programmaC=programmaC;
 		
-		this.wedstrijd_items=new String[3];
-		this.wedstrijd_items[0]="wedstrijd1";
-		this.wedstrijd_items[1]="wedstrijd2";
-		this.wedstrijd_items[2]="wedstrijd3";
-		this.wedstrijd_lijst.setListData(this.wedstrijd_items);
-		this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);
 		this.ontvangen_items=new String[3];
 		this.ontvangen_items[0]="ontvangen1";
 		this.ontvangen_items[1]="ontvangen2";
