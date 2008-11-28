@@ -19,6 +19,15 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 	private JButton maak_knop = new JButton("Maak een nieuwe wedstrijd");
 	private JButton terug_knop = new JButton("Terug");
 	
+	private JLabel jurylid_1 = new JLabel ("Jurylid 1:");
+	private JLabel jurylid_2 = new JLabel ("Jurylid 2:");
+	private JLabel jurylid_3 = new JLabel ("Jurylid 3:");
+	
+	private JTextField juryveld_1 = new JTextField();
+	private JTextField juryveld_2 = new JTextField();
+	private JTextField juryveld_3 = new JTextField();
+	
+	
 	public Scherm_WedstrijdNieuw(ProgrammaController programmaC)
 	{
 		this.programmaC=programmaC;
@@ -39,6 +48,21 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 		paneel2.add(maak_knop);
 		paneel.setBounds(225,150,300,90);
 		paneel2.setBounds(225,240,300,45);
+		
+		jurylid_1.setBounds(525,30,250,20);
+		jurylid_2.setBounds(525,60,250,20);
+		jurylid_3.setBounds(525,90,250,20);
+		
+		juryveld_1.setBounds(600,30,125,25);
+		juryveld_2.setBounds(600,60,125,25);
+		juryveld_3.setBounds(600,90,125,25);
+		
+		add(jurylid_1);
+		add(jurylid_2);
+		add(jurylid_3);
+		add(juryveld_1);
+		add(juryveld_2);
+		add(juryveld_3);
 		
 		terug_knop.setBounds(30,380,75,25);
 
