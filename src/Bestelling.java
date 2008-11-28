@@ -115,4 +115,14 @@ public class Bestelling {
 	{
 		this.lid=lid;
 	}
+	
+	public String toStringInkomend()
+	{
+		return "todo IN - "+this.baksel.getNaam();
+	}
+	
+	public String toStringUitgaand()
+	{
+		return "todo UIT - "+this.baksel.getNaam();
+	}
 }
