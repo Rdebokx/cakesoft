@@ -1,4 +1,3 @@
-
 /**
  * querySelect, specificeert een select-query op basis van de query klasse.
  * @author Groep 11
@@ -18,8 +17,8 @@ public class querySelect extends query
 	
 	
 	/**
-	 * getQuery, geeft de opgegeven query terug, compleet met escapen van '.
-	 * @return
+	 * getQuery, geeft de opgegeven query terug, compleet met escapen van quotes in de vorm SELECT * FROM tabel WHERE voorwaarden.
+	 * @return	String-representatie van de query in de vorm SELECT * FROM tabel WHERE voorwaarden
 	 */
 	public String getQuery()
 	{
