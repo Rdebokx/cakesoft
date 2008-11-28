@@ -12,7 +12,7 @@ public class querySelect extends query
 	public String getQuery()
 	{
 		int i;
-		String query="SELET * FROM "+this.tabel+" WHERE ";
+		String query="SELECT * FROM "+this.tabel+" WHERE ";
 		
 		for(i=0;i<this.voorwaarden.size();i++)
 			query+=this.voorwaarden.get(i)+(i<this.voorwaarden.size()-1?" AND ":"");
