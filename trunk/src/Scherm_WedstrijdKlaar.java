@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.event.*;
 
 public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
@@ -35,6 +36,10 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
 	private JButton terug_knop = new JButton("Terug");
+	
+	private JButton bestel_knop = new JButton("Bestel dit");
+	private JLabel bestellen = new JLabel("Aantal gebak bestellen:");
+	private JTextField bestellen_veld = new JTextField();
 		
 	public Scherm_WedstrijdKlaar(ProgrammaController programmaC)
 	{
@@ -72,6 +77,10 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		locatie.setBounds(30,60,300,20);
 		winnaar.setBounds(275,30,200,20);
 
+		bestellen.setBounds(485,30,200,20);
+		bestellen_veld.setBounds(485,60,100,25);
+		bestel_knop.setBounds(590,60,100,25);
+		
 		deelnemers.setBounds(30,120,200,20);
 		deelnemers_scroll.setBounds(30,140,200,120);
 		bekijkDeelnemer_knop.setBounds(30,260,200,20);
@@ -98,6 +107,10 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		add(deelnemers_scroll);
 		add(deelnemers);
 		add(bekijkDeelnemer_knop);
+		
+		add(bestellen);
+		add(bestellen_veld);
+		add(bestel_knop);
 
 		add(datum);		
 		add(locatie);
