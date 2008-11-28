@@ -7,7 +7,7 @@ public class Lid {
 	private String naam;
 	private int lid_id;
 	private String wachtwoord;
-	private boolean hoofdbeheerder;
+	private boolean hoofdbeheer;
 	
 	/**
 	 * Constructor voor Lid, stelt waarden in op -1, false en null zover mogelijk.
@@ -16,7 +16,7 @@ public class Lid {
 		this.naam = "";
 		this.lid_id = -1;
 		this.wachtwoord = null;
-		this.hoofdbeheerder = false;
+		this.hoofdbeheer = false;
 	}
 	
 	/**
@@ -24,14 +24,14 @@ public class Lid {
 	 * @param naam				String
 	 * @param lid_id			int
 	 * @param wachtwoord		String
-	 * @param hoofdbeheerder	boolean
+	 * @param hoofdbeheer	boolean
 	 */
-	public Lid(String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
+	public Lid(String naam, int lid_id, String wachtwoord, boolean hoofdbeheer)
 	{
 		this.naam = naam;
 		this.lid_id = lid_id;
 		this.wachtwoord = wachtwoord;
-		this.hoofdbeheerder = hoofdbeheerder;
+		this.hoofdbeheer = hoofdbeheer;
 	}
 	
 	/**
@@ -62,12 +62,12 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode setHoofdbeheerder, stelt hoofdbeheerder in.
-	 * @param hoofdbeheerder	boolean
+	 * Methode setHoofdbeheer, stelt hoofdbeheer in.
+	 * @param hoofdbeheer	boolean
 	 */
-	public void setHoofdbeheerder(boolean hoofdbeheerder)
+	public void setHoofdbeheer(boolean hoofdbeheer)
 	{
-		this.hoofdbeheerder = hoofdbeheerder;
+		this.hoofdbeheer = hoofdbeheer;
 	}
 	
 	/**
@@ -98,12 +98,12 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode isHoofdbeheerder, geeft boolean waarde terug.
+	 * Methode isHoofdbeheer, geeft boolean waarde terug.
 	 * @return boolean
 	 */
-	public boolean isHoofdbeheerder()
+	public boolean isHoofdbeheer()
 	{
-		return hoofdbeheerder;
+		return hoofdbeheer;
 	}
 	
 	/**

@@ -21,9 +21,9 @@ public class Deelnemer extends Lid {
 	/**
 	 * Constructor voor Deelnemer, maakt een nieuw Deelnemer object aan, met alle parameters.
 	 */
-	public Deelnemer(int deelnemer_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
+	public Deelnemer(int deelnemer_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheer)
 	{
-		super(naam, lid_id, wachtwoord, hoofdbeheerder);
+		super(naam, lid_id, wachtwoord, hoofdbeheer);
 		this.deelnemer_id = deelnemer_id;
 		this.baksel = null;
 		this.plaats = -1;
@@ -34,7 +34,7 @@ public class Deelnemer extends Lid {
 	 */
 	public Deelnemer(Lid lid)
 	{
-		super(lid.getNaam(), lid.getLid_id(), lid.getWachtwoord(), lid.isHoofdbeheerder());
+		super(lid.getNaam(), lid.getLid_id(), lid.getWachtwoord(), lid.isHoofdbeheer());
 	}
 		
 	/**

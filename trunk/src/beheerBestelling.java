@@ -29,7 +29,7 @@ public class beheerBestelling
 		query3.stelLinkVoorwaardeIn("bestelling.baksel_id",query.GELIJK,"deelnemer.baksel_id");
 		query3.stelLinkVoorwaardeIn("baksel.baksel_id",query.GELIJK,"deelnemer.baksel_id");
 		
-		
+		querySelect query4;
 		ResultSet res = datab.select(query3);
 		ResultSet res2;
 		int aantal;
@@ -60,8 +60,17 @@ public class beheerBestelling
 				ingredienten = res.getString("ingredienten");
 				recept = res.getString("recept");
 				
+				
+				query4=new querySelect("lid");
+				query4.stelVoorwaardeIn("lid_id",query.GELIJK,res.getInt("lid_id"));
+				res2=datab.select(query4);
+				res2.next();
+				
+				Lid lid_besteller=new Lid(res2.getString("naam"),res2.getInt("lid_id"),res2.getString("wachtwoord"),res2.getInt("hoofdbeheer")==1);
+				
 				bestelling=new Bestelling(aantal, bestelling_id, new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs));
-				bestelling.setLid(lid);
+				bestelling.setLid_bakker(lid);
+				bestelling.setLid_besteller(lid_besteller);
 				
 				bestelList.add(bestelling);
 			}
@@ -117,8 +126,18 @@ public class beheerBestelling
 				categorie = res.getString("categorie");
 				ingredienten = res.getString("ingredienten");
 				recept = res.getString("recept");
+								
+				query4=new querySelect("lid, deelnemer");
+				query4.stelVoorwaardeIn("deelnemer.baksel_id",query.GELIJK,baksel_id);
+				res2=datab.select(query4);
+				res2.next();
+				
+				Lid lid_bakker=new Lid(res2.getString("naam"),res2.getInt("lid_id"),res2.getString("wachtwoord"),res2.getInt("hoofdbeheer")==1);
+				
 				bestelling=new Bestelling(aantal, bestelling_id, new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs));
-				bestelling.setLid(lid);
+				bestelling.setLid_besteller(lid);
+				bestelling.setLid_bakker(lid_bakker);
+				
 				besteldList.add(bestelling);
 			}
 		}
@@ -138,7 +157,7 @@ public class beheerBestelling
 		queryInsert query1 = new queryInsert("bestelling");
 		query1.stelNieuwIn("bestelling_id",bestelling.getBestelling_id());
 		query1.stelNieuwIn("aantal",bestelling.getAantal());
-		query1.stelNieuwIn("lid_id",bestelling.getLid().getLid_id());
+		query1.stelNieuwIn("lid_id",bestelling.getLid_besteller().getLid_id());
 		datab.insert(query1);
 	}
 	

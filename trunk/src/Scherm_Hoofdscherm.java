@@ -37,6 +37,7 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	public Scherm_Hoofdscherm(ProgrammaController programmaC, boolean hoofdbeheer)
 	{
 		this.programmaC=programmaC;
+		this.hoofdbeheer=hoofdbeheer;
 		
 		this.besteld_items=new String[3];
 		this.besteld_items[0]="besteld1";

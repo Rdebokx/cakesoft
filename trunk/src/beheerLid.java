@@ -43,6 +43,7 @@ public class beheerLid {
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
 				hoofdbeheer = res.getInt("hoofdbeheer")==1;
+				
 				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheer));
 			}
 		}

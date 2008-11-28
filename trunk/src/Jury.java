@@ -23,9 +23,9 @@ public class Jury extends Lid {
 	 * @param wachtwoord		String
 	 * @param hoofdbeheerder	boolean
 	 */
-	public Jury(int jury_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheerder)
+	public Jury(int jury_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheer)
 	{
-		super(naam, lid_id, wachtwoord, hoofdbeheerder);
+		super(naam, lid_id, wachtwoord, hoofdbeheer);
 		this.jury_id = jury_id;
 	}
 
@@ -36,7 +36,7 @@ public class Jury extends Lid {
 	public Jury(Lid lid)
 	{
 		//TODO: Kan iemand dit valideren, Leendert bijvoorbeeld?
-		super(lid.getNaam(), lid.getLid_id(), lid.getWachtwoord(), lid.isHoofdbeheerder());
+		super(lid.getNaam(), lid.getLid_id(), lid.getWachtwoord(), lid.isHoofdbeheer());
 		jury_id = -1;
 	}
 
