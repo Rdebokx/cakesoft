@@ -27,10 +27,14 @@ public class beheerDeelnemer {
 	 */
 	public void voegDeelnemerToe(Deelnemer deelnemer, Baksel baksel, Wedstrijd wedstrijd)
 	{
-		String waarden = "," + deelnemer.getLid_id() + "," + wedstrijd.getWedstrijd_id() + "," + baksel.getBaksel_id();  //eerste waarde niet invoeren, is auto-increment
+		//een query construeren
+		queryInsert q = new queryInsert("deelnemer");
+		q.stelNieuwIn("lid_id", deelnemer.getLid_id());
+		q.stelNieuwIn("wedstrijd_id", wedstrijd.getWedstrijd_id());
+		q.stelNieuwIn("baksel", baksel.getBaksel_id());
 		
 		//de gegevens in de database invoeren
-		int deelnemer_id = database.insert("deelnemer", waarden);
+		int deelnemer_id = database.insert(q);
 		deelnemer.setDeelnemer_id(deelnemer_id);
 	}
 	
