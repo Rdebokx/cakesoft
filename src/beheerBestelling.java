@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class beheerBestelling
 {
-	Database datab;
+	private Database datab;
 	
 	/**
 	 * Constructor, maakt een nieuw beheerBestelling object aan
@@ -24,7 +24,7 @@ public class beheerBestelling
 	public ArrayList<Bestelling> getBestellingenInkomend(Lid lid)
 	{
 		ArrayList<Bestelling> bestelList = new ArrayList<Bestelling>();
-		ResultSet res = datab.select("Bestelling", "Bestelling.baksel_id = Deelnemer.baksel_id AND Deelnemer.lid_id = Lid.lid_id AND Lid.lid_id = " + lid.getLid_id());
+		ResultSet res = datab.select("Bestelling", "Bestelling.baksel_id = Deelnemer.baksel_id AND Deelnemer.lid_id = " + lid.getLid_id());
 		ResultSet res2;
 		int aantal;
 		int bestelling_id;
@@ -60,9 +60,9 @@ public class beheerBestelling
 	}
 	
 	/**
-	 * getBestellingenInkomend, geeft een lijst van alle bestellingen die bij een lid zijn geplaatst
+	 * getBestellingenInkomend, geeft een lijst van alle bestellingen die een lid geplaatst heeft
 	 * @param lid	Bevat het Lid dat de zoekopdracht uitvoert
-	 * @return			Geeft een ArrayList terug met alle bestellingen die bij dit lid geplaatst zijn
+	 * @return			Geeft een ArrayList terug met alle bestellingen die door dit lid geplaatst zijn
 	 */
 	public ArrayList<Bestelling> getBestellingenUitgaand(Lid lid)
 	{
