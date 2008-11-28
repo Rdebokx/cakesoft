@@ -32,8 +32,11 @@ public class beheerWedstrijd {
 		boolean inschrijvingOpen = false;
 		boolean beoordelingOpen = false;
 		
+		querySelect selecteerQuery = new querySelect("wedstrijd");
+		selecteerQuery.stelSorteringIn("datum",false);
+		
 		//Query voor 'alles'
-		ResultSet res = db.select("wedstrijd", null);
+		ResultSet res = db.select(selecteerQuery);
 				
 		try {
 			while(res.next())
@@ -61,11 +64,16 @@ public class beheerWedstrijd {
 	 */
 	public void voegWedstrijdToe(Wedstrijd wedstrijd)
 	{
-		//Stop alle argumenten in één String en voer de query uit.
-		String argumenten = String.valueOf(wedstrijd.getWedstrijd_id()) + ", " + wedstrijd.getDatumString() + ", " + wedstrijd.getLocatie() + ", " + 
-				String.valueOf(wedstrijd.isInschrijvingOpen()) + ", " + String.valueOf(wedstrijd.isBeoordelingOpen());
+		//Maak een queryInsert aan en vul deze in.		
+		queryInsert insertQuery = new queryInsert("wedstrijd");
+		insertQuery.stelNieuwIn("p_wedstrijd_id", String.valueOf(wedstrijd.getWedstrijd_id()));
+		insertQuery.stelNieuwIn("datum", wedstrijd.getDatumString());
+		insertQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
+		insertQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
+		insertQuery.stelNieuwIn("beoordelingOpen", String.valueOf(wedstrijd.isBeoordelingOpen()));
 		
-		db.insert("wedstrijd", argumenten);
+		//Voer de query uit.
+		db.insert(insertQuery);
 	}
 
 	
@@ -75,12 +83,18 @@ public class beheerWedstrijd {
 	 */
 	public void updateWedstrijd(Wedstrijd wedstrijd)
 	{
+		//Vraag het wedstrijd_id op van het wedstrijd-object
 		int wedstrijd_id = wedstrijd.getWedstrijd_id();
-		String waarden = "datum = `" + wedstrijd.getDatumString() + "`, locatie = `" + wedstrijd.getLocatie() + 
-				"`, inschrijvingOpen = `" + String.valueOf(wedstrijd.isInschrijvingOpen()) + "`, beoordelingOpen = `" 
-				+ String.valueOf(wedstrijd.isBeoordelingOpen());
-
-		db.update("wedstrijd", waarden, "p_wedstrijd_id = " + String.valueOf(wedstrijd_id));
+		
+		queryUpdate updateQuery = new queryUpdate("wedstrijd");
+		updateQuery.stelVoorwaardeIn("p_wedstrijd_id", query.GELIJK, wedstrijd_id);
+		updateQuery.stelNieuwIn("datum", wedstrijd.getDatumString());
+		updateQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
+		updateQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
+		updateQuery.stelNieuwIn("beoordelingOpen", String.valueOf(wedstrijd.isBeoordelingOpen()));
+		
+		//Voer de query aan.
+		db.update(updateQuery);
 	}
 
 }
