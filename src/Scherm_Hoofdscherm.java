@@ -122,12 +122,12 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	
 	public void setWedstrijden(ArrayList<Wedstrijd> WedstrijdLijst)
 	{
-			WedstrijdLijst = this.WedstrijdLijst;
+			this.WedstrijdLijst = WedstrijdLijst;
 			
-			this.wedstrijd_items=new String[WedstrijdLijst.size()];
-			for(int i=0;i < WedstrijdLijst.size();i++)
+			this.wedstrijd_items=new String[this.WedstrijdLijst.size()];
+			for(int i=0;i < this.WedstrijdLijst.size();i++)
 			{
-				this.wedstrijd_items[i]= WedstrijdLijst.get(i).toString();
+				this.wedstrijd_items[i]= this.WedstrijdLijst.get(i).toString();
 			}
 			this.wedstrijd_lijst.setListData(this.wedstrijd_items);
 			this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);		
