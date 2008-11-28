@@ -116,10 +116,10 @@ public class Wedstrijd {
 	{
 		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
 		//Maak een nieuwe Stringbuilder aan met de datum in ons format
-		StringBuilder nowYYYYMMDD = new StringBuilder( dateformatYYYYMMDD.format( dateformatYYYYMMDD ) );
+		StringBuilder datumInYYYYMMDD = new StringBuilder( dateformatYYYYMMDD.format( datum ) );
 
 		//Geef een String terug
-		return nowYYYYMMDD.toString();
+		return datumInYYYYMMDD.toString();
 	}
 	
 	/**
