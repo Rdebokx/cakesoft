@@ -4,7 +4,7 @@ import java.sql.*;
 /**
  * Deze klasse bevat alle methoden om met Beoordeling objecten te werken
  * @author Groep 11
- * @version 1.0
+ * @version 2.0
  *
  */
 public class beheerBeoordeling {
@@ -33,8 +33,18 @@ public class beheerBeoordeling {
 		waarden+= beoordeling.getPrijs() + "," + beoordeling.getCalo() + ",";
 		waarden+= beoordeling.getSmaak() + "," + jury.getJury_id() + "," + baksel.getBaksel_id();
 		
-		//de gegevens in de database invoeren
-		int beoordeling_id = database.insert("beoordeling", waarden);
+		//een query construeren
+		queryInsert q = new queryInsert("beoordeling");
+		q.stelNieuwIn("commentaar", beoordeling.getCommentaar());
+		q.stelNieuwIn("kwaliteit", beoordeling.getKwaliteit());
+		q.stelNieuwIn("prijs", beoordeling.getPrijs());
+		q.stelNieuwIn("calo", beoordeling.getCalo());
+		q.stelNieuwIn("smaak", beoordeling.getSmaak());
+		q.stelNieuwIn("jury_id", jury.getJury_id());
+		q.stelNieuwIn("baksel_id", baksel.getBaksel_id());
+		
+		//de query uit laten voeren
+		int beoordeling_id = database.insert(q);
 		beoordeling.setBeoordeling_id(beoordeling_id);
 	}
 	
@@ -46,9 +56,13 @@ public class beheerBeoordeling {
 	public ArrayList<Beoordeling> getBeoordelingenVanBaksel(Baksel baksel)
 	{
 		ArrayList<Beoordeling> res = new ArrayList<Beoordeling>();
-		String voorwaarde = "baksel_id=" + baksel.getBaksel_id();
 		
-		ResultSet data = database.select("beoordeling", voorwaarde);
+		//een query construeren
+		querySelect q = new querySelect("beoordeling");
+		q.stelVoorwaardeIn("baksel_id", query.GELIJK, baksel.getBaksel_id());
+		
+		//de queyr uit laten voeren
+		ResultSet data = database.select(q);
 		
 		try
 		{
@@ -80,12 +94,13 @@ public class beheerBeoordeling {
 	 * @return			geeft een specifieke beoordeling terug.
 	 */
 	public Beoordeling getBeoordelingVanJuryVoorBaksel(Jury jury, Baksel baksel)
-	{
-		int jury_id = jury.getJury_id();
-		int baksel_id = baksel.getBaksel_id();
-		String voorwaarde = "jury_id=" + jury_id + " AND baksel_id=" + baksel_id;
+	{		
+		//query construeren
+		querySelect q = new querySelect("beoordeling");
+		q.stelVoorwaardeIn("jury_id", query.GELIJK, jury.getJury_id());
+		q.stelVoorwaardeIn("baksel_id", query.GELIJK, baksel.getBaksel_id());
 		
-		ResultSet data = database.select("beoordeling", voorwaarde);
+		ResultSet data = database.select(q);
 		Beoordeling res = new Beoordeling();
 		
 		try
