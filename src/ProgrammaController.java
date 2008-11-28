@@ -1,4 +1,4 @@
-import java.awt.event.*;
+import java.util.*;
 
 public class ProgrammaController
 {
@@ -10,13 +10,26 @@ public class ProgrammaController
 	
 	private beheerLid bLid;
 	private beheerWedstrijd bWedstrijd;
+	private beheerBaksel bBaksel;
+	private beheerBestelling bBestelling;
+	private beheerDeelnemer bDeelnemer;
+	private beheerReactie bReactie;
+	private beheerBeoordeling bBeoordeling;
+	private beheerJury bJury;
+	
 	private Database db;
 	
 	public ProgrammaController()
 	{
 		
 		this.db=new Database("jdbc:mysql://130.161.47.78/cakesoft","cakesoft_team","hjka7812");
+		this.bBaksel=new beheerBaksel(this.db);
+		this.bBeoordeling=new beheerBeoordeling(this.db);
+		this.bBestelling=new beheerBestelling(this.db);
+		this.bDeelnemer=new beheerDeelnemer(this.db);
+		this.bJury=new beheerJury(this.db);
 		this.bLid=new beheerLid(this.db);
+		this.bReactie=new beheerReactie(this.db);
 		this.bWedstrijd=new beheerWedstrijd(this.db);
 		
 		
@@ -26,6 +39,11 @@ public class ProgrammaController
 	public void openOverzicht()
 	{
 		this.hoofdschermS=new Scherm_Hoofdscherm(this);
+		ArrayList<Wedstrijd> wedstrijden=this.bWedstrijd.getAlleWedstrijden();
+		//ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
+		//ArrayList<Bestelling> bestellingen_uitgaand=this.bBestelling.getBestellingenUitgaand(this.ingelogdLid);
+		
+		this.hoofdschermS.setWedstrijden(wedstrijden);
 		//set gegevens als wedstrijden, bestellingen
 	}
 
@@ -52,6 +70,7 @@ public class ProgrammaController
 			this.ingelogdLid=ingelogdLid;
 			
 			this.loginS.dispose();
+			
 			this.openOverzicht();
 		}
 		

@@ -24,9 +24,9 @@ public class beheerBestelling
 	public ArrayList<Bestelling> getBestellingenInkomend(Lid lid)
 	{
 		ArrayList<Bestelling> bestelList = new ArrayList<Bestelling>();
-		querySelect query3 = new querySelect("bestelling");
-		query3.stelVoorwaardeIn("bestelling.baksel_id",query.LIKE,"%deelnemer.baksel_id%");
-		query3.stelVoorwaardeIn("deelnemer.lid_id",query.LIKE,lid.getLid_id());
+		querySelect query3 = new querySelect("bestelling, deelnemer");
+		query3.stelLinkVoorwaardeIn("bestelling.baksel_id",query.GELIJK,"deelnemer.baksel_id");
+		query3.stelVoorwaardeIn("deelnemer.lid_id",query.GELIJK,lid.getLid_id());
 		
 		ResultSet res = datab.select(query3);
 		ResultSet res2;
@@ -46,9 +46,9 @@ public class beheerBestelling
 				bestelling_id = res.getInt("bestelling_id");
 
 				//Geen while loop nodig voor zover ik weet, aangezien je nooit meer dan één baksel terug krijgt.
-				querySelect query4 = new querySelect("baksel");
-				query4.stelVoorwaardeIn("baksel.baksel_id",query.LIKE,"%bestelling.baksel_id%");
-				query4.stelVoorwaardeIn("bestelling.bestelling_id",query.LIKE,bestelling_id);
+				querySelect query4 = new querySelect("baksel, bestelling");
+				query4.stelVoorwaardeIn("baksel.baksel_id",query.GELIJK,"bestelling.baksel_id");
+				query4.stelVoorwaardeIn("bestelling.bestelling_id",query.GELIJK,bestelling_id);
 				res2 = datab.select(query4);
 				baksel_id = res2.getInt("baksel_id");
 				naam = res2.getString("naam");
@@ -75,7 +75,7 @@ public class beheerBestelling
 	{
 		ArrayList<Bestelling> besteldList = new ArrayList<Bestelling>();
 		querySelect query3 = new querySelect("bestelling");
-		query3.stelVoorwaardeIn("bestelling.lid_id",query.LIKE,lid.getLid_id());
+		query3.stelVoorwaardeIn("bestelling.lid_id",query.GELIJK,lid.getLid_id());
 
 		ResultSet res = datab.select(query3);
 		ResultSet res2;
@@ -88,6 +88,9 @@ public class beheerBestelling
 		String naam;
 		String categorie;
 		double prijs;
+		Bestelling bestelling;
+		querySelect query4;
+		
 		try
 		{
 			while (res.next())
@@ -96,9 +99,8 @@ public class beheerBestelling
 				bestelling_id = res.getInt("bestelling_id");
 
 				//Geen while loop nodig voor zover ik weet, aangezien je nooit meer dan één baksel terug krijgt.
-				querySelect query4 = new querySelect("baksel");
-				query4.stelVoorwaardeIn("baksel.baksel_id",query.LIKE,"%bestelling.baksel_id%");
-				query4.stelVoorwaardeIn("bestelling.bestelling_id",query.LIKE,bestelling_id);
+				query4 = new querySelect("baksel");
+				query4.stelVoorwaardeIn("baksel.baksel_id",query.GELIJK,bestelling_id);
 				
 				res2 = datab.select(query4);
 				baksel_id = res2.getInt("baksel_id");
@@ -107,7 +109,9 @@ public class beheerBestelling
 				categorie = res2.getString("categorie");
 				ingredienten = res2.getString("ingredienten");
 				recept = res2.getString("recept");
-				besteldList.add(new Bestelling(aantal, bestelling_id, new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs)));
+				bestelling=new Bestelling(aantal, bestelling_id, new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs));
+				bestelling.setLid(lid);
+				besteldList.add(bestelling);
 			}
 		}
 		catch (SQLException e)
@@ -137,9 +141,9 @@ public class beheerBestelling
 	public void verwijderBestelling(Bestelling bestelling)
 	{
 		queryDelete query3=new queryDelete("bestelling");
-		query3.stelVoorwaardeIn("bestelling_id",query.LIKE,bestelling.getBestelling_id());
-		query3.stelVoorwaardeIn("aantal",query.LIKE,bestelling.getAantal());
-		query3.stelVoorwaardeIn("lid_id",query.LIKE,bestelling.getLid().getLid_id());
+		//query3.stelVoorwaardeIn("bestelling_id",query.GELIJK,bestelling.getBestelling_id());
+		//query3.stelVoorwaardeIn("aantal",query.GELIJK,bestelling.getAantal());
+		query3.stelVoorwaardeIn("lid_id",query.GELIJK,bestelling.getLid().getLid_id());
 		datab.delete(query3);
 	}
 }

@@ -110,4 +110,9 @@ public class Bestelling {
 	public void setBaksel(Baksel baksel) {
 		this.baksel = baksel;
 	}
+	
+	public void setLid(Lid lid)
+	{
+		this.lid=lid;
+	}
 }
