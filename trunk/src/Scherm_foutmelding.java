@@ -13,7 +13,7 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(new Rectangle(100,100,400,100));
-		this.setSize(400,100);
+		this.setSize(400,110);
 		this.setLocationRelativeTo(null);
 		//Point oude_locatie=this.getLocation();
 		//oude_locatie.y+=100;
