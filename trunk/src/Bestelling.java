@@ -7,6 +7,7 @@ public class Bestelling {
 	private int bestelling_id;
 	private int aantal;
 	private Baksel baksel;
+	private Lid lid;
 
 	/**
 	 * Constructor voor Bestelling, geen parameters
@@ -26,13 +27,39 @@ public class Bestelling {
 	}
 
 	/**
-	 * Constructor voor Bestelling, parameter aantal en Baksel
+	 * Constructor voor Bestelling, parameter aantal en bestelling_id
 	 * @param aantal
 	 * @param bestelling_id
 	 */
 	public Bestelling(int aantal, int bestelling_id) {
 		this.aantal = aantal;
 		this.bestelling_id = bestelling_id;
+	}
+	
+	/**
+	 * Constructor voor Bestelling, parameter aantal, bestelling_id en baksel
+	 * @param aantal
+	 * @param bestelling_id
+	 * @param baksel
+	 */
+	public Bestelling(int aantal, int bestelling_id, Baksel baksel) {
+		this.aantal = aantal;
+		this.bestelling_id = bestelling_id;
+		this.baksel = baksel;
+	}
+	
+	/**
+	 * Constructor voor Bestelling, parameter aantal, bestelling_id, baksel en lid
+	 * @param aantal
+	 * @param bestelling_id
+	 * @param baksel
+	 * @param lid Bevat het lid dat de bestelling geplaatst heeft
+	 */
+	public Bestelling(int aantal, int bestelling_id, Baksel baksel, Lid lid) {
+		this.aantal = aantal;
+		this.bestelling_id = bestelling_id;
+		this.baksel = baksel;
+		this.lid = lid;
 	}
 
 	/**
@@ -54,6 +81,13 @@ public class Bestelling {
 	 */
 	public Baksel getBaksel() {
 		return baksel;
+	}
+	
+	/**
+	 * @return the lid
+	 */
+	public Lid getLid() {
+		return lid;
 	}
 
 	/**
