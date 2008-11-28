@@ -29,7 +29,7 @@ public class beheerLid {
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
-		boolean hoofdbeheerd = false;
+		boolean hoofdbeheer = false;
 		
 		querySelect selecteerQuery = new querySelect("lid");
 		selecteerQuery.stelVoorwaardeIn("lid_id", query.LIKE, "%" + naam_deel + "%");
@@ -42,8 +42,8 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheerd = res.getBoolean("hoofdbeheerd");
-				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheerd));
+				hoofdbeheer = res.getBoolean("hoofdbeheer");
+				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheer));
 			}
 		}
 		catch (SQLException e) {
@@ -64,7 +64,7 @@ public class beheerLid {
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
-		boolean hoofdbeheerd = false;
+		boolean hoofdbeheer = false;
 		Lid uitvoer = null;
 		
 		try {
@@ -77,9 +77,9 @@ public class beheerLid {
 			lid_id = res.getInt("lid_id");
 			naam = res.getString("naam");
 			wachtwoord = res.getString("wachtwoord");
-			hoofdbeheerd = res.getBoolean("hoofdbeheerd");
+			hoofdbeheer = res.getBoolean("hoofdbeheer");
 			
-			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerd);
+			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheer);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class beheerLid {
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
-		boolean hoofdbeheerd = false;
+		boolean hoofdbeheer = false;
 		Lid uitvoer = null;
 		
 		try {
@@ -114,11 +114,11 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheerd = res.getBoolean("hoofdbeheerd");
+				hoofdbeheer = res.getBoolean("hoofdbeheer");
 				
 				if (lid_id == lid.getLid_id())
 				{
-					uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerd);
+					uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheer);
 				}
 			}
 		}
