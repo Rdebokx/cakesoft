@@ -70,7 +70,7 @@ public class beheerLid {
 		try {
 			//Maak query en stel 'em in.
 			querySelect selecteerQuery = new querySelect("reactie");
-			selecteerQuery.stelVoorwaardeIn("reactie_id", query.LIKE, String.valueOf(reactie_id));
+			selecteerQuery.stelVoorwaardeIn("reactie_id", query.GELIJK, String.valueOf(reactie_id));
 			
 			ResultSet res = db.select(selecteerQuery);
 			
@@ -104,8 +104,8 @@ public class beheerLid {
 		try {
 			//Maak query en stel 'em in.
 			querySelect selecteerQuery = new querySelect("lid");
-			selecteerQuery.stelVoorwaardeIn("lid_id", query.LIKE, String.valueOf(lid.getLid_id()));
-			selecteerQuery.stelVoorwaardeIn("wachtwoord", query.LIKE, String.valueOf(lid.getWachtwoord()));
+			selecteerQuery.stelVoorwaardeIn("lid_id", query.GELIJK, String.valueOf(lid.getLid_id()));
+			selecteerQuery.stelVoorwaardeIn("wachtwoord", query.GELIJK, String.valueOf(lid.getWachtwoord()));
 			
 			ResultSet res = db.select(selecteerQuery);
 			

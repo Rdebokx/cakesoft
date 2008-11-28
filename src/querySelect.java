@@ -1,7 +1,15 @@
 
+/**
+ * querySelect, specificeert een select-query op basis van de query klasse.
+ * @author Groep 11
+ */
 public class querySelect extends query
 {
 	
+	/**
+	 * Constructor voor querySelect, maakt een querySelect aan en geeft de tabel door aan de query klasse.
+	 * @param tabel	De te gebruiken tabel.
+	 */
 	public querySelect(String tabel)
 	{
 		super(tabel);
@@ -9,6 +17,10 @@ public class querySelect extends query
 	
 	
 	
+	/**
+	 * getQuery, geeft de opgegeven query terug, compleet met escapen van '.
+	 * @return
+	 */
 	public String getQuery()
 	{
 		int i;
