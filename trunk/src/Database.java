@@ -49,23 +49,24 @@ public class Database {
          * @param voorwaarde   			bevat de voorwaarde, volledig in SQL stijl (excl. WHERE)
          * @return                      geeft de resultset van de uitgevoerde query terug.
          */
-        public ResultSet select(String tabel, String voorwaarde)
+        public ResultSet select(querySelect query)
         {
-                String query = "SELECT * FROM " + tabel + " WHERE " + voorwaarde;
-                ResultSet res = null;
-                System.out.println(query);
-                
-                try{
-                        Statement statement = connection.createStatement();
-                        res = statement.executeQuery(query);
-                }
-                catch(Exception e)
-                {
-                        e.printStackTrace();
-                        System.out.println(e.toString());
-                }
-                
-                return res;
+        	String queryStr=query.getQuery();
+			//String query = "SELECT * FROM " + tabel + " WHERE " + voorwaarde;
+			ResultSet res = null;
+			System.out.println(queryStr);
+			
+			try{
+			    Statement statement = connection.createStatement();
+			    res = statement.executeQuery(queryStr);
+			}
+			catch(Exception e)
+			{
+			    e.printStackTrace();
+			    System.out.println(e.toString());
+			}
+			
+			return res;
         }
         
         /**
@@ -76,7 +77,7 @@ public class Database {
          * @param sorteerOp             bevat de naam van de kolom waarop gesorteerd moet worden
          * @param oplopend              Als true, worden de resutlaten oplopend gerangschikt, indien false, aflopend
          */
-        public ResultSet select(String tabel, String voorwaarde, String sorteerOp, boolean oplopend)
+        /*public ResultSet select(String tabel, String voorwaarde, String sorteerOp, boolean oplopend)
         {
                 String query = "SELECT * FROM " + tabel + " WHERE " + voorwaarde; //dit gedeelte van de statement moet zowiezo worden uitgevoerd 
                 if(oplopend)
@@ -101,7 +102,7 @@ public class Database {
                 }
                 
                 return res;
-        }
+        }*/
         
         /**
          * Deze methode print de Resultset af, enkel bedoelt voor debug doeleinden
@@ -139,27 +140,28 @@ public class Database {
          * 						N.B. Deze moeten in de goeie volgorde gelevert worden en in SQL stijl geschreven zijn (zojnder haakjes)
          * @return              geeft het id terug van de nieuwe record
          */
-        public int insert(String tabel, String waarden)
+        public int insert(queryInsert query)
         {
-                String query = "INSERT INTO " + tabel + " VALUES (" + waarden + ")";
-                int id = -1;
-                
-                System.out.println(query);
-                
-                try
-                {
-                        Statement statement = connection.createStatement();
-                        statement.executeQuery(query);
-                        ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID as new_id");
-                        id = Integer.parseInt(res.toString());
-                }
-                catch (Exception e)
-                {
-                        e.printStackTrace();
-                        System.out.println(e.toString());
-                }
-                
-                return id;      
+        	String queryStr=query.getQuery();
+            //String query = "INSERT INTO " + tabel + " VALUES (" + waarden + ")";
+            int id = -1;
+            
+            System.out.println(queryStr);
+            
+            try
+            {
+                    Statement statement = connection.createStatement();
+                    statement.executeQuery(queryStr);
+                    ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID as new_id");
+                    id = Integer.parseInt(res.toString());
+            }
+            catch (Exception e)
+            {
+                    e.printStackTrace();
+                    System.out.println(e.toString());
+            }
+            
+            return id;      
         }
         
         /**
@@ -168,19 +170,20 @@ public class Database {
          * @param veranderingen         bevat de veranderingen die moeten worden doorgevoerd, in sql, gescheiden door een komma
          * @param voorwaarde            bevat de voorwaarde waaraan de te veranderen regels moeten voldoen, in SQL stijl geschreven (excl. WHERE)
          */
-        public void update(String tabel, String veranderingen, String voorwaarde) //aanpassingen moeten in sql geschreven worden
+        public void update(queryUpdate query) //aanpassingen moeten in sql geschreven worden
         {
-                String query = "UPDATE " + tabel + " SET " + veranderingen + " WHERE " + voorwaarde;
-                try
-                {
-                        Statement statement = connection.createStatement();
-                        statement.executeQuery(query);
-                }
-                catch (Exception e)
-                {
-                        e.printStackTrace();
-                        System.out.println(e.toString());
-                }
+        	String queryStr=query.getQuery();
+            //String query = "UPDATE " + tabel + " SET " + veranderingen + " WHERE " + voorwaarde;
+            try
+            {
+                Statement statement = connection.createStatement();
+                statement.executeQuery(queryStr);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                System.out.println(e.toString());
+            }
         }
         
         /**
@@ -188,19 +191,20 @@ public class Database {
          * @param tabel			bevat de naam van de tabel
          * @param voorwaarde	bevat de voorwaarde, in SQL geschreven(excl. WHERE)
          */
-        public void delete(String tabel, String voorwaarde)
+        public void delete(queryDelete query)
         {
-                String query = "DELETE FROM " + tabel + " WHERE " + voorwaarde;
-                try
-                {
-                        Statement statement = connection.createStatement();
-                        statement.executeQuery(query);
-                }
-                catch (Exception e)
-                {
-                        e.printStackTrace();
-                        System.out.println(e.toString());
-                }
+        	String queryStr=query.getQuery();
+            //String query = "DELETE FROM " + tabel + " WHERE " + voorwaarde;
+            try
+            {
+                    Statement statement = connection.createStatement();
+                    statement.executeQuery(queryStr);
+            }
+            catch (Exception e)
+            {
+                    e.printStackTrace();
+                    System.out.println(e.toString());
+            }
         }
         
         
