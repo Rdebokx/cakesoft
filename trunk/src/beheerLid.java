@@ -31,7 +31,10 @@ public class beheerLid {
 		String wachtwoord = null;
 		boolean hoofdbeheerder = false;
 		
-		ResultSet res = db.select("lid", "naam LIKE '%" + naam_deel + "%'");
+		querySelect selecteerQuery = new querySelect("lid");
+		selecteerQuery.stelVoorwaardeIn("lid_id", query.LIKE, "%" + naam_deel + "%");
+		
+		ResultSet res = db.select(selecteerQuery);
 				
 		try {
 			while(res.next())
