@@ -29,7 +29,7 @@ public class beheerLid {
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
-		boolean hoofdbeheerder = false;
+		boolean hoofdbeheerd = false;
 		
 		querySelect selecteerQuery = new querySelect("lid");
 		selecteerQuery.stelVoorwaardeIn("lid_id", query.LIKE, "%" + naam_deel + "%");
@@ -42,8 +42,8 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheerder = res.getBoolean("hoofdbeheerder");
-				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheerder));
+				hoofdbeheerd = res.getBoolean("hoofdbeheerd");
+				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheerd));
 			}
 		}
 		catch (SQLException e) {
@@ -64,7 +64,7 @@ public class beheerLid {
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
-		boolean hoofdbeheerder = false;
+		boolean hoofdbeheerd = false;
 		Lid uitvoer = null;
 		
 		try {
@@ -77,9 +77,9 @@ public class beheerLid {
 			lid_id = res.getInt("lid_id");
 			naam = res.getString("naam");
 			wachtwoord = res.getString("wachtwoord");
-			hoofdbeheerder = res.getBoolean("hoofdbeheerder");
+			hoofdbeheerd = res.getBoolean("hoofdbeheerd");
 			
-			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerder);
+			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerd);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class beheerLid {
 		int lid_id = -1;
 		String naam = null;
 		String wachtwoord = null;
-		boolean hoofdbeheerder = false;
+		boolean hoofdbeheerd = false;
 		Lid uitvoer = null;
 		
 		try {
@@ -114,9 +114,12 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheerder = res.getBoolean("hoofdbeheerder");
+				hoofdbeheerd = res.getBoolean("hoofdbeheerd");
 				
-				uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerder);
+				if (lid_id == lid.getLid_id())
+				{
+					uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheerd);
+				}
 			}
 		}
 		catch (SQLException e) {
