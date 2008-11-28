@@ -14,7 +14,7 @@ public class ProgrammaController
 	
 	public ProgrammaController()
 	{
-		this.db=new Database("jdbc:mysql://localhost/cakesoft","root","");
+		this.db=new Database("jdbc:mysql://130.161.47.78/cakesoft","cakesoft_team","hjka7812");
 		this.bLid=new beheerLid(this.db);
 		this.bWedstrijd=new beheerWedstrijd(this.db);
 		
