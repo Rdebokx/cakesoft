@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class beheerBaksel
 {
-	Database datab;
+	private Database datab;
 
 	/**
 	 * Constructor, maakt een nieuw beheerBaksel object aan
