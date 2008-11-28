@@ -114,7 +114,7 @@ public class Wedstrijd {
 	
 	public String getDatumString()
 	{
-		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyy-MM-dd");
 		//Maak een nieuwe Stringbuilder aan met de datum in ons format
 		StringBuilder datumInYYYYMMDD = new StringBuilder( dateformatYYYYMMDD.format( datum ) );
 
