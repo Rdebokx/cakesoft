@@ -28,6 +28,9 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	private JButton loguit_knop = new JButton("Loguit");
 	
 	private ArrayList<Wedstrijd> WedstrijdLijst;
+	private ArrayList<Bestelling> InBestellingLijst;
+	private ArrayList<Bestelling> UitBestellingLijst;
+	
 	private boolean hoofdbeheer;
 
 		
@@ -35,12 +38,6 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	{
 		this.programmaC=programmaC;
 		
-		this.ontvangen_items=new String[3];
-		this.ontvangen_items[0]="ontvangen1";
-		this.ontvangen_items[1]="ontvangen2";
-		this.ontvangen_items[2]="ontvangen3";
-		this.ontvangen_lijst.setListData(this.ontvangen_items);
-		this.ontvangen_scroll.setViewportView(this.ontvangen_lijst);
 		this.besteld_items=new String[3];
 		this.besteld_items[0]="besteld1";
 		this.besteld_items[1]="besteld2";
@@ -120,20 +117,28 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	
 	public void setWedstrijden(ArrayList<Wedstrijd> WedstrijdLijst)
 	{
-			this.WedstrijdLijst = WedstrijdLijst;
-			
-			this.wedstrijd_items=new String[this.WedstrijdLijst.size()];
-			for(int i=0;i < this.WedstrijdLijst.size();i++)
-			{
-				this.wedstrijd_items[i]= this.WedstrijdLijst.get(i).toString();
-			}
-			this.wedstrijd_lijst.setListData(this.wedstrijd_items);
-			this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);		
+		this.WedstrijdLijst = WedstrijdLijst;
+		
+		this.wedstrijd_items=new String[this.WedstrijdLijst.size()];
+		for(int i=0;i < this.WedstrijdLijst.size();i++)
+		{
+			this.wedstrijd_items[i]= this.WedstrijdLijst.get(i).toString();
+		}
+		this.wedstrijd_lijst.setListData(this.wedstrijd_items);
+		this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);		
 	}
 	
 	public void setBestellingInkomend(ArrayList<Bestelling> InBestellingLijst)
 	{
+		this.InBestellingLijst = InBestellingLijst;
 		
+		this.ontvangen_items=new String[this.InBestellingLijst.size()];
+		for(int i=0;i < this.InBestellingLijst.size();i++)
+		{
+			this.ontvangen_items[i]= this.InBestellingLijst.get(i).toStringInkomend();
+		}
+		this.ontvangen_lijst.setListData(this.ontvangen_items);
+		this.ontvangen_scroll.setViewportView(this.ontvangen_lijst);	
 	}
 	
 	public void setBestellingUitgaand(ArrayList<Bestelling> UitBestellingLijst)
