@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Scherm_Wedstrijd extends JFrame implements ActionListener
 {
@@ -32,6 +33,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private JButton terug_knop = new JButton("Terug");
 	private JButton bestel_knop = new JButton("Bestel dit");
 	private JTextField bestellen_veld = new JTextField();
+	
 		
 	public Scherm_Wedstrijd(ProgrammaController programmaC)
 	{
@@ -134,4 +136,5 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 			programmaC.actieTerug();
 		}		
 	}
+	
 }

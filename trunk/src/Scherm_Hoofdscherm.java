@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 {
@@ -25,6 +26,9 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 	private JButton nieuwWedstrijd_knop = new JButton("Nieuwe wedstrijd");
 	private JButton verwijderBestelling_knop = new JButton("Verwijder bestelling");
 	private JButton loguit_knop = new JButton("Loguit");
+	
+	private ArrayList<Wedstrijd> WedstrijdLijst;
+
 		
 	public Scherm_Hoofdscherm(ProgrammaController programmaC)
 	{
@@ -115,4 +119,18 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 			programmaC.actieLoguit();
 		}		
 	}
+	
+	public void setWedstrijden(ArrayList<Wedstrijd> WedstrijdLijst)
+	{
+			WedstrijdLijst = this.WedstrijdLijst;
+			
+			this.wedstrijd_items=new String[WedstrijdLijst.size()];
+			for(int i=0;i < WedstrijdLijst.size();i++)
+			{
+				this.wedstrijd_items[i]= WedstrijdLijst.get(i).toString();
+			}
+			this.wedstrijd_lijst.setListData(this.wedstrijd_items);
+			this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);		
+	}
+
 }
