@@ -42,7 +42,7 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheer = res.getBoolean("hoofdbeheer");
+				hoofdbeheer = res.getInt("hoofdbeheer")==1;
 				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheer));
 			}
 		}
@@ -77,7 +77,7 @@ public class beheerLid {
 			lid_id = res.getInt("lid_id");
 			naam = res.getString("naam");
 			wachtwoord = res.getString("wachtwoord");
-			hoofdbeheer = res.getBoolean("hoofdbeheer");
+			hoofdbeheer = res.getInt("hoofdbeheer")==1;
 			
 			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheer);
 		}
@@ -114,7 +114,7 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheer = res.getBoolean("hoofdbeheer");
+				hoofdbeheer = res.getInt("hoofdbeheer")==1;
 				
 				if (lid_id == lid.getLid_id())
 				{
