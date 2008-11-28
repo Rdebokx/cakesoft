@@ -108,7 +108,7 @@ public class query
 		{
 			Date uitvoerDatum = (Date)waarde;
 			
-			SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyy-MM-dd");
 			//Maak een nieuwe String aan met de datum in ons format
 			String datumYYYYMMDD = new String( dateformatYYYYMMDD.format( uitvoerDatum ) );
 
