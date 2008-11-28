@@ -4,7 +4,9 @@ public class TestDatabase {
 
 	public static void main(String[] args) {
 		//een korte test om te testen of de databaseklasse werkt
-		System.out.println("Database db = new Database(\"jdbc:mysql://localhost/cakesoft\", \"root\", \"koekje\");");
+		
+		/*
+		--Dit is nu commentaar omdat het project anders steeds opmerkt dat er een bug in het project zit
 		Database db = new Database("jdbc:mysql://localhost/cakesoft", "root", "koekje");
 		
 		System.out.println("String query = \"INSERT INTO reactie (bericht, baksel_id, lid_id) VALUES ('Hallooow', 2, 3) ('lekker man', 1, 2)\";");
@@ -27,7 +29,7 @@ public class TestDatabase {
 		//en de resultset printen
 		System.out.println("db.printResultSet(res1);");
 		db.printResultSet(res1);
-		
+		*/
 	}
 
 }

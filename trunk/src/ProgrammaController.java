@@ -1,12 +1,12 @@
 import java.util.*;
+import javax.swing.*;
 
 public class ProgrammaController
 {
 	private Lid ingelogdLid=null;
+	private Wedstrijd actieveWedstrijd=null;
 	
-	private Scherm_Login loginS;
-	private Scherm_foutmelding foutS;
-	private Scherm_Hoofdscherm hoofdschermS;
+	private JFrame actiefScherm;
 	
 	private beheerLid bLid;
 	private beheerWedstrijd bWedstrijd;
@@ -33,23 +33,30 @@ public class ProgrammaController
 		this.bWedstrijd=new beheerWedstrijd(this.db);
 		
 		
-		this.loginS=new Scherm_Login(this);
+		this.actiefScherm=new Scherm_Login(this);
 	}
 	
 	public void openOverzicht()
 	{
-		this.hoofdschermS=new Scherm_Hoofdscherm(this,this.ingelogdLid.isHoofdbeheer());
+		this.actiefScherm.dispose();
+		this.actiefScherm=new Scherm_Hoofdscherm(this,this.ingelogdLid.isHoofdbeheer());
 		ArrayList<Wedstrijd> wedstrijden=this.bWedstrijd.getAlleWedstrijden();
 		ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
 		ArrayList<Bestelling> bestellingen_uitgaand=this.bBestelling.getBestellingenUitgaand(this.ingelogdLid);
 		
-		this.hoofdschermS.setWedstrijden(wedstrijden);
-		this.hoofdschermS.setBestellingInkomend(bestellingen_binnenkomend);
-		this.hoofdschermS.setBestellingUitgaand(bestellingen_uitgaand);
+		((Scherm_Hoofdscherm)this.actiefScherm).setWedstrijden(wedstrijden);
+		((Scherm_Hoofdscherm)this.actiefScherm).setBestellingInkomend(bestellingen_binnenkomend);
+		((Scherm_Hoofdscherm)this.actiefScherm).setBestellingUitgaand(bestellingen_uitgaand);
 		
 		//set gegevens als wedstrijden, bestellingen
 	}
-
+	
+	public void openWedstrijd()
+	{
+		this.actiefScherm.dispose();
+		this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd);
+		//stel wat dingen in
+	}
 
 //
 // Acties voor Scherm_login
@@ -57,23 +64,22 @@ public class ProgrammaController
 	
 	public void actieLogin()
 	{
-		Lid ingevuldLid=this.loginS.getLid();
+		if(!(this.actiefScherm instanceof Scherm_Login))
+			return;//zou niet moeten kunnen
+		Lid ingevuldLid=((Scherm_Login)this.actiefScherm).getLid();
 		
 		Lid ingelogdLid=this.bLid.getLidDoorLogin(ingevuldLid);
 		if(ingelogdLid==null)
 		{
 			//foutieve login
 			
-			this.foutS=new Scherm_foutmelding("U hebt een verkeerd lid id of wachtwoord ingevoerd.");
+			new Scherm_foutmelding("U hebt een verkeerd lid id of wachtwoord ingevoerd.");
 		}
 		else
 		{
 			//succesvolle login
 			
 			this.ingelogdLid=ingelogdLid;
-			
-			this.loginS.dispose();
-			
 			this.openOverzicht();
 		}
 		
@@ -86,12 +92,23 @@ public class ProgrammaController
 	
 	public void actieBekijkWedstrijd()
 	{
+		if(!(this.actiefScherm instanceof Scherm_Hoofdscherm))
+			return;
+		Wedstrijd wedstrijd=((Scherm_Hoofdscherm)this.actiefScherm).getGeselecteerdeWedstrijd();
+		if(wedstrijd==null)
+			new Scherm_foutmelding("U moet eerst een wedstrijd uit de lijst selecteren.");
+		else
+		{
+			this.actieveWedstrijd=wedstrijd;
+			this.openWedstrijd();
+		}
 		
 	}
 
 	public void actieNieuwWedstrijd()
 	{
-		
+		this.actiefScherm.dispose();
+		this.actiefScherm=new Scherm_WedstrijdNieuw(this);
 	}
 	
 	public void actieVerwijderBestelling()
@@ -103,8 +120,8 @@ public class ProgrammaController
 	{
 		this.ingelogdLid=null;
 		
-		this.hoofdschermS.dispose();
-		this.loginS=new Scherm_Login(this);
+		this.actiefScherm.dispose();
+		this.actiefScherm=new Scherm_Login(this);
 	}
 
 //
@@ -143,8 +160,14 @@ public class ProgrammaController
 //
 //	Repeterende Acties
 //
-	public void actieTerug()
+	public void actieTerugNaarHoofdscherm()
 	{
-		
+		this.openOverzicht();
+	}
+	
+	
+	public void actieTerugNaarWedstrijd()
+	{
+		//
 	}
 }

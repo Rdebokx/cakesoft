@@ -114,7 +114,7 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 		}
 		else if(e.getSource() == this.terug_knop)
 		{
-			programmaC.actieTerug();
+			programmaC.actieTerugNaarWedstrijd();
 		}		
 	}	
 }
