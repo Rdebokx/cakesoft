@@ -126,5 +126,15 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 			this.wedstrijd_lijst.setListData(this.wedstrijd_items);
 			this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);		
 	}
+	
+	public void setBestellingInkomend(ArrayList<Bestelling> InBestellingLijst)
+	{
+		
+	}
+	
+	public void setBestellingUitgaand(ArrayList<Bestelling> UitBestellingLijst)
+	{
+		
+	}
 
 }
