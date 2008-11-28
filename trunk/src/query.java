@@ -38,6 +38,12 @@ public class query
 	 * @param operator	Operator, zoals query.LIKE, query.LIKE en query.KLEINER_DAN
 	 * @param waarde	De te controleren waarde.
 	 */
+	
+	public void stelLinkVoorwaardeIn(Object kolom, String operator, Object waarde)
+	{
+		this.voorwaarden.add(new queryVoorwaarde(kolom,operator,waarde,true));
+	}
+	
 	public void stelVoorwaardeIn(Object kolom, String operator, Object waarde)
 	{
 		this.voorwaarden.add(new queryVoorwaarde(kolom,operator,waarde));
