@@ -98,6 +98,14 @@ public class ProgrammaController
 		
 	}
 	
+//
+//	Acties voor Scherm_WedstrijdNieuw
+//
+	
+	public void actieMaak()
+	{
+		
+	}
 	
 //
 //	Acties voor Scherm_Inscrijven
@@ -108,6 +116,7 @@ public class ProgrammaController
 		
 	}
 
+	
 //
 //	Repeterende Acties
 //
