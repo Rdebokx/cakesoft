@@ -40,10 +40,13 @@ public class ProgrammaController
 	{
 		this.hoofdschermS=new Scherm_Hoofdscherm(this);
 		ArrayList<Wedstrijd> wedstrijden=this.bWedstrijd.getAlleWedstrijden();
-		//ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
-		//ArrayList<Bestelling> bestellingen_uitgaand=this.bBestelling.getBestellingenUitgaand(this.ingelogdLid);
+		ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
+		ArrayList<Bestelling> bestellingen_uitgaand=this.bBestelling.getBestellingenUitgaand(this.ingelogdLid);
 		
 		this.hoofdschermS.setWedstrijden(wedstrijden);
+		this.hoofdschermS.setBestellingInkomend(bestellingen_binnenkomend);
+		this.hoofdschermS.setBestellingUitgaand(bestellingen_uitgaand);
+		
 		//set gegevens als wedstrijden, bestellingen
 	}
 
