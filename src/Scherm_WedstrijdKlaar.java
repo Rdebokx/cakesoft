@@ -12,6 +12,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	
 	private Wedstrijd wedstrijd;
 	private ArrayList<Deelnemer> deelnemerLijst;
+	private Deelnemer deelnemer;
 	
 	private ProgrammaController programmaC;
 	
@@ -159,6 +160,28 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 			return this.deelnemerLijst.get(geselecteerd);
 	}
 	
+	public Bestelling getBestelling()
+	{
+		int aantal=-1;
+		try
+		{
+			aantal=Integer.valueOf(this.bestellen_veld.getText());
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+		
+		//maak het aantal veld nu leeg
+		this.bestellen_veld.setText("");
+		
+		Bestelling bestelling=new Bestelling();
+		bestelling.setAantal(aantal);
+		bestelling.setBaksel(this.deelnemer.getBaksel());
+		
+		return bestelling;
+	}
+	
 	public void setDeelnemers(ArrayList<Deelnemer> deelnemerLijst)
 	{
 		this.deelnemerLijst=deelnemerLijst;
@@ -174,6 +197,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	
 	public void toonDeelnemer(Deelnemer deelnemer)
 	{
+		this.deelnemer=deelnemer;
 		this.baksel.setText("Baksel van "+deelnemer.getNaam()+":");
 		this.naam.setText("Naam: "+deelnemer.getBaksel().getNaam());
 		this.categorie.setText("Categorie: "+deelnemer.getBaksel().getCategorie());
@@ -190,9 +214,13 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		{
 			programmaC.actieBekijkDeelnemer();
 		}
-		else if(e.getSource() == this.terug_knop)
+		if(e.getSource() == this.terug_knop)
 		{
 			programmaC.actieTerugNaarHoofdscherm();
-		}		
+		}
+		if(e.getSource()== this.bestel_knop)
+		{
+			programmaC.actieBestel();
+		}
 	}
 }

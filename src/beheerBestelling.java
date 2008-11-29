@@ -156,8 +156,8 @@ public class beheerBestelling
 	public void voegBestellingToe(Bestelling bestelling)
 	{
 		queryInsert query1 = new queryInsert("bestelling");
-		query1.stelNieuwIn("bestelling_id",bestelling.getBestelling_id());
 		query1.stelNieuwIn("aantal",bestelling.getAantal());
+		query1.stelNieuwIn("baksel_id",bestelling.getBaksel().getBaksel_id());
 		query1.stelNieuwIn("lid_id",bestelling.getLid_besteller().getLid_id());
 		datab.insert(query1);
 	}
