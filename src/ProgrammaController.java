@@ -54,10 +54,43 @@ public class ProgrammaController
 	public void openWedstrijd()
 	{
 		this.actiefScherm.dispose();
-		this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd);
 		
-		ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
-		((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
+		//update de inschrijvingOpen en beoordelingOpen van deze wedstrijd
+		Date nu=new java.util.Date();
+		if(this.actieveWedstrijd.getDatum().after(nu))//wedstrijd is nog niet begonnen 
+		{
+			if(!this.actieveWedstrijd.isInschrijvingOpen() || this.actieveWedstrijd.isBeoordelingOpen())
+			{
+				//wedstrijd is fout ingesteld
+				this.actieveWedstrijd.setInschrijvingOpen(true);
+				this.actieveWedstrijd.setBeoordelingOpen(false);
+				this.bWedstrijd.updateWedstrijd(this.actieveWedstrijd);
+			}
+		}
+		else
+		{
+			if(this.actieveWedstrijd.isInschrijvingOpen())//verander de wedstrijd status als nodig
+			{
+				this.actieveWedstrijd.setInschrijvingOpen(false);
+				this.actieveWedstrijd.setBeoordelingOpen(true);
+				this.bWedstrijd.updateWedstrijd(this.actieveWedstrijd);
+			}
+		}
+		
+		if(this.actieveWedstrijd.isInschrijvingOpen() || this.actieveWedstrijd.isBeoordelingOpen())
+		{
+			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd);
+			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+			((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
+		}
+		else
+		{
+			this.actiefScherm=new Scherm_WedstrijdKlaar(this,this.actieveWedstrijd);
+			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+			((Scherm_WedstrijdKlaar)this.actiefScherm).setDeelnemers(deelnemers);
+		}
+		
+		
 		
 		//stel wat dingen in
 	}
