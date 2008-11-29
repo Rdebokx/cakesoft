@@ -41,22 +41,18 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
 	private JButton terug_knop = new JButton("Terug");
-	
 	private JButton bestel_knop = new JButton("Bestel dit");
 	private JLabel bestellen = new JLabel("Aantal gebak bestellen:");
 	private JTextField bestellen_veld = new JTextField();
+	private JPanel baksel_paneel = new JPanel(null);
 		
 	public Scherm_WedstrijdKlaar(ProgrammaController programmaC, Wedstrijd wedstrijd)
 	{
 		this.programmaC=programmaC;
 		this.wedstrijd=wedstrijd;
 		
-		this.deelnemers_items=new String[3];
-		this.deelnemers_items[0]="deelnemer1";
-		this.deelnemers_items[1]="deelnemer2";
-		this.deelnemers_items[2]="deelnemer3";
-		this.deelnemers_lijst.setListData(this.deelnemers_items);
-		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);
+		this.datum.setText("Datum: "+this.wedstrijd.getDatumString());
+		this.locatie.setText("Locatie: "+this.wedstrijd.getLocatie());
 		
 		ingredienten_tekst.setEditable(false);
 		ingredienten_tekst.setText("Slagroom\n Chocolade\n Stukjes pinda's");
@@ -91,22 +87,23 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		deelnemers_scroll.setBounds(30,140,200,120);
 		bekijkDeelnemer_knop.setBounds(30,260,200,20);
 		
-		baksel.setBounds(275,120,250,20);
-		naam.setBounds(275,150,250,20);
-		categorie.setBounds(275,170,250,20);
-		prijs.setBounds(275,190,250,20);
-		ingredienten.setBounds(275,260,200,20);
-		ingredienten_scroll.setBounds(275,280,200,100);
-		recept.setBounds(485,260,200,20);
-		recept_scroll.setBounds(485,280,200,100);
+		baksel_paneel.setBounds(275,120,this.getWidth()-275,this.getHeight()-120);
+		baksel.setBounds(0,0,250,20);
+		naam.setBounds(0,30,250,20);
+		categorie.setBounds(0,50,250,20);
+		prijs.setBounds(0,70,250,20);
+		ingredienten.setBounds(0,140,200,20);
+		ingredienten_scroll.setBounds(0,160,200,100);
+		recept.setBounds(210,140,200,20);
+		recept_scroll.setBounds(210,160,200,100);
+		beoordeling.setBounds(210,0,175,20);
+		kwaliteit.setBounds(210,30,175,20);
+		kosten.setBounds(210,170,55,20);
+		calorieen.setBounds(210,70,175,20);
+		smaak.setBounds(210,90,175,20);
+		commentaar_scroll.setBounds(210,120,175,50);
+		baksel_paneel.setVisible(false);
 		
-		beoordeling.setBounds(485,120,175,20);
-		kwaliteit.setBounds(485,150,175,20);
-		kosten.setBounds(485,170,175,20);
-		calorieen.setBounds(485,190,175,20);
-		smaak.setBounds(485,210,175,20);
-		commentaar_scroll.setBounds(485,240,175,50);
-						
 		terug_knop.setBounds(30,380,75,25);
 		
 		//aan het frame toevoegen
@@ -122,19 +119,20 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		add(locatie);
 		add(winnaar);
 		
-		add(baksel);
-		add(naam);
-		add(categorie);
-		add(prijs);
-		add(beoordeling);
-		add(ingredienten);
-		add(ingredienten_scroll);
-		add(recept);
-		add(recept_scroll);
-		add(kwaliteit);
-		add(kosten);
-		add(calorieen);
-		add(smaak);
+		baksel_paneel.add(baksel);
+		baksel_paneel.add(naam);
+		baksel_paneel.add(categorie);
+		baksel_paneel.add(prijs);
+		baksel_paneel.add(beoordeling);
+		baksel_paneel.add(ingredienten);
+		baksel_paneel.add(ingredienten_scroll);
+		baksel_paneel.add(recept);
+		baksel_paneel.add(recept_scroll);
+		baksel_paneel.add(kwaliteit);
+		baksel_paneel.add(kosten);
+		baksel_paneel.add(calorieen);
+		baksel_paneel.add(smaak);
+		add(baksel_paneel);
 //		add(commentaar_scroll);
 				
 		add(terug_knop);
@@ -142,8 +140,18 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		//scherm-object luistert naar de events
 		bekijkDeelnemer_knop.addActionListener(this);
 		terug_knop.addActionListener(this);
+		bestel_knop.addActionListener(this);
 		
 		setVisible(true);
+	}
+	
+	public Deelnemer getGeselecteerdeDeelnemer()
+	{
+		int geselecteerd=this.deelnemers_lijst.getSelectedIndex();
+		if(geselecteerd<0)
+			return null;
+		else
+			return this.deelnemerLijst.get(geselecteerd);
 	}
 	
 	public void setDeelnemers(ArrayList<Deelnemer> deelnemerLijst)
@@ -157,6 +165,16 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		}
 		this.deelnemers_lijst.setListData(this.deelnemers_items);
 		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);	
+	}
+	
+	public void toonDeelnemer(Deelnemer deelnemer)
+	{
+		this.naam.setText("Naam: "+deelnemer.getBaksel().getNaam());
+		this.categorie.setText("Categorie: "+deelnemer.getBaksel().getCategorie());
+		this.prijs.setText("Prijs: "+deelnemer.getBaksel().getPrijs());
+		this.ingredienten_tekst.setText(deelnemer.getBaksel().getIngredienten());
+		this.recept_tekst.setText(deelnemer.getBaksel().getRecept());
+		this.baksel_paneel.setVisible(true);
 	}
 		
 	public void actionPerformed(ActionEvent e)

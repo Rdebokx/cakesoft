@@ -48,7 +48,6 @@ public class ProgrammaController
 		((Scherm_Hoofdscherm)this.actiefScherm).setBestellingInkomend(bestellingen_binnenkomend);
 		((Scherm_Hoofdscherm)this.actiefScherm).setBestellingUitgaand(bestellingen_uitgaand);
 		
-		//set gegevens als wedstrijden, bestellingen
 	}
 	
 	public void openWedstrijd()
@@ -77,22 +76,22 @@ public class ProgrammaController
 			}
 		}
 		
+		//open wedstrijd voordat hij is gesloten
 		if(this.actieveWedstrijd.isInschrijvingOpen() || this.actieveWedstrijd.isBeoordelingOpen())
 		{
 			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd);
 			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+			
 			((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
 		}
-		else
+		else//open wedstrijd nadat hij is gesloten
 		{
 			this.actiefScherm=new Scherm_WedstrijdKlaar(this,this.actieveWedstrijd);
 			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+			
 			((Scherm_WedstrijdKlaar)this.actiefScherm).setDeelnemers(deelnemers);
 		}
 		
-		
-		
-		//stel wat dingen in
 	}
 
 //
@@ -167,7 +166,26 @@ public class ProgrammaController
 	
 	public void actieBekijkDeelnemer()
 	{
-		
+		if(this.actiefScherm instanceof Scherm_Wedstrijd)
+		{
+			Deelnemer deelnemer=((Scherm_Wedstrijd)this.actiefScherm).getGeselecteerdeDeelnemer();
+			if(deelnemer==null)
+				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
+			else
+			{
+				((Scherm_Wedstrijd)this.actiefScherm).toonDeelnemer(deelnemer);
+			}
+		}
+		if(this.actiefScherm instanceof Scherm_WedstrijdKlaar)
+		{
+			Deelnemer deelnemer=((Scherm_WedstrijdKlaar)this.actiefScherm).getGeselecteerdeDeelnemer();
+			if(deelnemer==null)
+				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
+			else
+			{
+				((Scherm_WedstrijdKlaar)this.actiefScherm).toonDeelnemer(deelnemer);
+			}
+		}
 	}
 	
 	public void actieInschrijven()
