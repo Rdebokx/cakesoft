@@ -248,7 +248,8 @@ public class ProgrammaController
 	
 	public void actieInschrijven()
 	{
-		
+		this.actiefScherm.dispose();
+		this.actiefScherm=new Scherm_Inschrijven(this,this.actieveWedstrijd);
 	}
 	
 //
@@ -266,7 +267,19 @@ public class ProgrammaController
 	
 	public void actieInschrijvingVerzenden()
 	{
-		
+		if(!(this.actiefScherm instanceof Scherm_Inschrijven))
+			return;
+		Baksel baksel=((Scherm_Inschrijven)this.actiefScherm).getBaksel();
+		if(baksel!=null)
+		{
+			this.bBaksel.voegBakselToe(baksel);
+			
+			Deelnemer deelnemer=new Deelnemer(this.ingelogdLid);
+			deelnemer.setBaksel(baksel);
+			this.bDeelnemer.voegDeelnemerToe(deelnemer, this.actieveWedstrijd);
+			this.openWedstrijd();
+			new Scherm_foutmelding("U bent nu ingeschreven voor deze wedstrijd.","Inschrijven");
+		}
 	}
 
 	
@@ -281,6 +294,6 @@ public class ProgrammaController
 	
 	public void actieTerugNaarWedstrijd()
 	{
-		//
+		this.openWedstrijd();
 	}
 }
