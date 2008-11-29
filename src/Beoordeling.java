@@ -7,7 +7,7 @@ public class Beoordeling {
 	private int beoordeling_id;
 	private String commentaar;
 	private int kwaliteit;
-	private double prijs;
+	private int prijs;
 	private int calo;
 	private int smaak;
 	private Jury jury;
@@ -36,7 +36,7 @@ public class Beoordeling {
 	 * @param calo
 	 * @param smaak
 	 */
-	public Beoordeling(int beoordeling_id, String commentaar, int kwaliteit, double prijs, int calo, int smaak)
+	public Beoordeling(int beoordeling_id, String commentaar, int kwaliteit, int prijs, int calo, int smaak)
 	{
 		this.beoordeling_id = beoordeling_id;
 		this.calo = calo;
@@ -54,7 +54,7 @@ public class Beoordeling {
 	 * @param calo
 	 * @param smaak
 	 */
-	public Beoordeling(String commentaar, int kwaliteit, double prijs, int calo, int smaak)
+	public Beoordeling(String commentaar, int kwaliteit, int prijs, int calo, int smaak)
 	{
 		this.calo = calo;
 		this.commentaar = commentaar;
@@ -82,7 +82,7 @@ public class Beoordeling {
 		this.kwaliteit = kwaliteit;
 	}
 	
-	public void setPrijs(double prijs)
+	public void setPrijs(int prijs)
 	{
 		this.prijs = prijs;
 	}
@@ -112,7 +112,7 @@ public class Beoordeling {
 		return kwaliteit;
 	}
 	
-	public double getPrijs()
+	public int getPrijs()
 	{
 		return prijs;
 	}

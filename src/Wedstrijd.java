@@ -13,6 +13,7 @@ public class Wedstrijd {
 	private boolean inschrijvingOpen;
 	private boolean beoordelingOpen;
 	private int winnaar_lid_id;
+	private Lid winnaar;
 	
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan
@@ -102,6 +103,11 @@ public class Wedstrijd {
 		this.winnaar_lid_id=winnaar_lid_id;
 	}
 	
+	public void setWinnaar(Lid winnaar)
+	{
+		this.winnaar=winnaar;
+	}
+	
 	/**
 	 * Methode getWedstrijd_id, geeft wedstrijd_id terug.
 	 * @return					Integer wedstrijd_id
@@ -160,6 +166,11 @@ public class Wedstrijd {
 	public int getWinnaar_lid_id()
 	{
 		return this.winnaar_lid_id;
+	}
+	
+	public Lid getWinnaar()
+	{
+		return this.winnaar;
 	}
 	
 	/**

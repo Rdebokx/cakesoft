@@ -89,10 +89,14 @@ public class ProgrammaController
 		}
 		else//open wedstrijd nadat hij is gesloten
 		{
-			this.actiefScherm=new Scherm_WedstrijdKlaar(this,this.actieveWedstrijd);
 			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+			this.actieveWedstrijd.setWinnaar(null);
+			if(this.actieveWedstrijd.getWinnaar_lid_id()>0)
+				this.actieveWedstrijd.setWinnaar(this.bLid.getLidVanId(this.actieveWedstrijd.getWinnaar_lid_id()));
 			
+			this.actiefScherm=new Scherm_WedstrijdKlaar(this,this.actieveWedstrijd);
 			((Scherm_WedstrijdKlaar)this.actiefScherm).setDeelnemers(deelnemers);
+			
 		}
 		
 	}
@@ -200,7 +204,7 @@ public class ProgrammaController
 			else
 			{
 				ArrayList<Beoordeling> beoordelingen=this.bBeoordeling.getBeoordelingenVanBaksel(deelnemer.getBaksel());
-				Beoordeling gemiddelde=new Beoordeling();
+				Beoordeling gemiddelde=new Beoordeling(0,"",0,0,0,0);
 				for(Beoordeling beoordeling:beoordelingen)
 				{
 					gemiddelde.setCalo(gemiddelde.getCalo()+beoordeling.getCalo());
@@ -208,11 +212,13 @@ public class ProgrammaController
 					gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()+beoordeling.getKwaliteit());
 					gemiddelde.setSmaak(gemiddelde.getSmaak()+beoordeling.getSmaak());
 				}
-				gemiddelde.setCalo(gemiddelde.getCalo()/beoordelingen.size());
-				gemiddelde.setPrijs(gemiddelde.getPrijs()/beoordelingen.size());
-				gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()/beoordelingen.size());
-				gemiddelde.setSmaak(gemiddelde.getSmaak()/beoordelingen.size());
-				
+				if(beoordelingen.size()>0)
+				{
+					gemiddelde.setCalo(gemiddelde.getCalo()/beoordelingen.size());
+					gemiddelde.setPrijs(gemiddelde.getPrijs()/beoordelingen.size());
+					gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()/beoordelingen.size());
+					gemiddelde.setSmaak(gemiddelde.getSmaak()/beoordelingen.size());
+				}
 				
 				((Scherm_WedstrijdKlaar)this.actiefScherm).toonDeelnemer(deelnemer);
 				((Scherm_WedstrijdKlaar)this.actiefScherm).setBeoordelingen(beoordelingen,gemiddelde);
