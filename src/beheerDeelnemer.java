@@ -99,7 +99,8 @@ public class beheerDeelnemer {
 			//Maak een nieuwe query aan waarbij het wedstrijd_id van de gegeven wedstrijd is en het lid_id ook overeenkomt.
 			querySelect selecteerDeelnemer = new querySelect("deelnemer, lid");
 			selecteerDeelnemer.stelVoorwaardeIn("deelnemer.wedstrijd_id", query.GELIJK, wedstrijd.getWedstrijd_id());
-			selecteerDeelnemer.stelLinkVoorwaardeIn("deelnemer.lid_id", query.GELIJK, lid.getLid_id());
+			selecteerDeelnemer.stelVoorwaardeIn("deelnemer.lid_id", query.GELIJK, lid.getLid_id());
+			selecteerDeelnemer.stelLinkVoorwaardeIn("deelnemer.lid_id",query.GELIJK,"lid.lid_id");
 			//Voer query uit
 			ResultSet res = database.select(selecteerDeelnemer);
 			

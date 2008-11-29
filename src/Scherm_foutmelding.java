@@ -10,7 +10,23 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 	
 	public Scherm_foutmelding(String foutBericht)
 	{
-		
+		this.init();
+		this.foutTekst.setText(foutBericht);
+		Dimension tekstSize =this.foutTekst.getMinimumSize();
+		this.foutTekst.setBounds((400-tekstSize.width)/2,5,380,20);
+	}
+	
+	public Scherm_foutmelding(String foutBericht, String titel)
+	{
+		this.init();
+		this.foutTekst.setText(foutBericht);
+		Dimension tekstSize =this.foutTekst.getMinimumSize();
+		this.foutTekst.setBounds((400-tekstSize.width)/2,5,380,20);
+		this.setTitle(titel);
+	}
+	
+	public void init()
+	{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(new Rectangle(100,100,400,100));
 		this.setSize(400,110);
@@ -21,16 +37,10 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		this.setTitle("Cakesoft - Fout");
 		this.setLayout(null);
 		
-		
-		this.foutTekst.setText(foutBericht);
-		
-		Dimension tekstSize =this.foutTekst.getMinimumSize();
-		
-		this.foutTekst.setBounds((400-tekstSize.width)/2,5,380,20);
 		this.okKnop.setBounds(150,40,100,25);
 		
-		add(this.foutTekst);
-		add(this.okKnop);
+		this.add(this.foutTekst);
+		this.add(this.okKnop);
 		
 		
 		

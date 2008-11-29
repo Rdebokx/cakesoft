@@ -11,6 +11,8 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private ProgrammaController programmaC;
 	private Wedstrijd wedstrijd;
 	private ArrayList<Deelnemer> deelnemerLijst;
+	private boolean isJury;
+	private boolean isDeelnemer;
 	
 	//Inhoud van het Inlogscherm
 	private JLabel deelnemers = new JLabel("Deelnemers");
@@ -39,10 +41,12 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private JPanel baksel_paneel = new JPanel(null);
 	
 		
-	public Scherm_Wedstrijd(ProgrammaController programmaC, Wedstrijd wedstrijd)
+	public Scherm_Wedstrijd(ProgrammaController programmaC, Wedstrijd wedstrijd, boolean isJury, boolean isDeelnemer)
 	{
 		this.programmaC=programmaC;
 		this.wedstrijd=wedstrijd;
+		this.isJury=isJury;
+		this.isDeelnemer=isDeelnemer;
 		
 		this.datum.setText("Datum: "+this.wedstrijd.getDatumString());
 		this.locatie.setText("Locatie: "+this.wedstrijd.getLocatie());
@@ -71,7 +75,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		deelnemers_scroll.setBounds(30,140,200,120);
 		bekijkDeelnemer_knop.setBounds(30,260,200,20);
 
-		if(this.wedstrijd.isInschrijvingOpen())
+		if(this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 			inschrijven_knop.setBounds(500,30,200,50);
 		
 		baksel_paneel.setBounds(275,120,this.getWidth()-275,this.getHeight()-120);
@@ -115,7 +119,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		add(bestellen_veld);
 		add(bestel_knop);*/
 		
-		if(this.wedstrijd.isInschrijvingOpen())
+		if(this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 			add(inschrijven_knop);
 		
 		add(terug_knop);
@@ -123,7 +127,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		//scherm-object luistert naar de events
 		bekijkDeelnemer_knop.addActionListener(this);
 		
-		if(this.wedstrijd.isInschrijvingOpen())
+		if(this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 			inschrijven_knop.addActionListener(this);
 		
 		terug_knop.addActionListener(this);
@@ -165,7 +169,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		{
 			programmaC.actieBekijkDeelnemer();
 		}
-		else if(e.getSource() == this.inschrijven_knop && this.wedstrijd.isInschrijvingOpen())
+		else if(e.getSource() == this.inschrijven_knop && this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 		{
 			programmaC.actieInschrijven();
 		}

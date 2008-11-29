@@ -45,7 +45,8 @@ public class beheerJury {
 			//Maak een nieuwe query aan waarbij het wedstrijd_id van de gegeven wedstrijd is en het lid_id ook overeenkomt.
 			querySelect selecteerJury = new querySelect("jury, lid");
 			selecteerJury.stelVoorwaardeIn("jury.wedstrijd_id", query.GELIJK, wedstrijd.getWedstrijd_id());
-			selecteerJury.stelLinkVoorwaardeIn("jury.lid_id", query.GELIJK, lid.getLid_id());
+			selecteerJury.stelVoorwaardeIn("jury.lid_id", query.GELIJK, lid.getLid_id());
+			selecteerJury.stelLinkVoorwaardeIn("jury.lid_id",query.GELIJK,"lid.lid_id");
 			
 			//Voer query uit
 			ResultSet res = database.select(selecteerJury);
