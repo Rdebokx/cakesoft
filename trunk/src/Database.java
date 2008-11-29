@@ -151,7 +151,8 @@ public class Database {
             try
             {
                     Statement statement = connection.createStatement();
-                    statement.executeQuery(queryStr);
+                    statement.execute(queryStr);
+                    
                     ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID as new_id");
                     id = Integer.parseInt(res.toString());
             }
@@ -174,10 +175,12 @@ public class Database {
         {
         	String queryStr=query.getQuery();
             //String query = "UPDATE " + tabel + " SET " + veranderingen + " WHERE " + voorwaarde;
-            try
+            
+        	System.out.println(queryStr);
+        	try
             {
                 Statement statement = connection.createStatement();
-                statement.executeQuery(queryStr);
+                statement.execute(queryStr);
             }
             catch (Exception e)
             {
@@ -194,11 +197,12 @@ public class Database {
         public void delete(queryDelete query)
         {
         	String queryStr=query.getQuery();
-            //String query = "DELETE FROM " + tabel + " WHERE " + voorwaarde;
+        	System.out.println(queryStr);
+        	//String query = "DELETE FROM " + tabel + " WHERE " + voorwaarde;
             try
             {
                     Statement statement = connection.createStatement();
-                    statement.executeQuery(queryStr);
+                    statement.execute(queryStr);
             }
             catch (Exception e)
             {

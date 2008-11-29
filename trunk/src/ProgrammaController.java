@@ -21,8 +21,8 @@ public class ProgrammaController
 	
 	public ProgrammaController()
 	{
-		
-		this.db=new Database("jdbc:mysql://130.161.47.78/cakesoft","cakesoft_team","hjka7812");
+		String hulpvar=Integer.toString(7812);
+		this.db=new Database("jdbc:mysql://130.161.47.78/cakesoft","cakesoft_team","hjka"+hulpvar);
 		this.bBaksel=new beheerBaksel(this.db);
 		this.bBeoordeling=new beheerBeoordeling(this.db);
 		this.bBestelling=new beheerBestelling(this.db);
@@ -76,10 +76,13 @@ public class ProgrammaController
 			}
 		}
 		
+		boolean isJury=(this.bJury.getJuryVanWedstrijd(this.actieveWedstrijd,this.ingelogdLid)!=null);
+		boolean isDeelnemer=(this.bDeelnemer.getDeelnemerVanWedstrijd(this.ingelogdLid,this.actieveWedstrijd)!=null);
+		
 		//open wedstrijd voordat hij is gesloten
 		if(this.actieveWedstrijd.isInschrijvingOpen() || this.actieveWedstrijd.isBeoordelingOpen())
 		{
-			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd);
+			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd,isJury,isDeelnemer);
 			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
 			
 			((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
@@ -149,7 +152,20 @@ public class ProgrammaController
 	
 	public void actieVerwijderBestelling()
 	{
-		
+		if(!(this.actiefScherm instanceof Scherm_Hoofdscherm))
+			return;
+		Bestelling bestelling=((Scherm_Hoofdscherm)this.actiefScherm).getGeselecteerdeInBestelling();
+		if(bestelling==null)
+			new Scherm_foutmelding("U moet eerst een bestelling uit de lijst selecteren.");
+		else
+		{
+			this.bBestelling.verwijderBestelling(bestelling);
+			
+			ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
+			((Scherm_Hoofdscherm)this.actiefScherm).setBestellingInkomend(bestellingen_binnenkomend);
+			
+			new Scherm_foutmelding("Deze ontvangen bestelling is nu verwijderd.","Bestelling verwijderen");
+		}
 	}
 
 	public void actieLoguit()

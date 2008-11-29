@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
@@ -45,6 +46,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private JLabel bestellen = new JLabel("Aantal gebak bestellen:");
 	private JTextField bestellen_veld = new JTextField();
 	private JPanel baksel_paneel = new JPanel(null);
+	private JPanel bestel_paneel = new JPanel(null);
 		
 	public Scherm_WedstrijdKlaar(ProgrammaController programmaC, Wedstrijd wedstrijd)
 	{
@@ -78,10 +80,12 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		datum.setBounds(30,30,300,20);
 		locatie.setBounds(30,60,300,20);
 		winnaar.setBounds(275,30,200,20);
-
-		bestellen.setBounds(485,30,200,20);
-		bestellen_veld.setBounds(485,60,100,25);
-		bestel_knop.setBounds(590,60,100,25);
+		
+		bestel_paneel.setBounds(485,30,205,55);
+		bestellen.setBounds(0,0,200,20);
+		bestellen_veld.setBounds(0,30,100,25);
+		bestel_knop.setBounds(105,30,100,25);
+		bestel_paneel.setVisible(false);
 		
 		deelnemers.setBounds(30,120,200,20);
 		deelnemers_scroll.setBounds(30,140,200,120);
@@ -111,9 +115,10 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		add(deelnemers);
 		add(bekijkDeelnemer_knop);
 		
-		add(bestellen);
-		add(bestellen_veld);
-		add(bestel_knop);
+		bestel_paneel.add(bestellen);
+		bestel_paneel.add(bestellen_veld);
+		bestel_paneel.add(bestel_knop);
+		add(bestel_paneel);
 
 		add(datum);		
 		add(locatie);
@@ -169,12 +174,14 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	
 	public void toonDeelnemer(Deelnemer deelnemer)
 	{
+		this.baksel.setText("Baksel van "+deelnemer.getNaam()+":");
 		this.naam.setText("Naam: "+deelnemer.getBaksel().getNaam());
 		this.categorie.setText("Categorie: "+deelnemer.getBaksel().getCategorie());
-		this.prijs.setText("Prijs: "+deelnemer.getBaksel().getPrijs());
+		this.prijs.setText("Prijs: "+NumberFormat.getCurrencyInstance().format(deelnemer.getBaksel().getPrijs()));
 		this.ingredienten_tekst.setText(deelnemer.getBaksel().getIngredienten());
 		this.recept_tekst.setText(deelnemer.getBaksel().getRecept());
 		this.baksel_paneel.setVisible(true);
+		this.bestel_paneel.setVisible(true);
 	}
 		
 	public void actionPerformed(ActionEvent e)

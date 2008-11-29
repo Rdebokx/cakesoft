@@ -98,6 +98,16 @@ public class Scherm_Hoofdscherm extends JFrame implements ActionListener
 		else
 			return this.WedstrijdLijst.get(geselecteerd);
 	}
+	
+	public Bestelling getGeselecteerdeInBestelling()
+	{
+		int geselecteerd=this.ontvangen_lijst.getSelectedIndex();
+		
+		if(geselecteerd<0)
+			return null;
+		else
+			return this.InBestellingLijst.get(geselecteerd);
+	}
 		
 	public void actionPerformed(ActionEvent e)
 	{
