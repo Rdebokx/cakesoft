@@ -13,6 +13,9 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private Wedstrijd wedstrijd;
 	private ArrayList<Deelnemer> deelnemerLijst;
 	private Deelnemer deelnemer;
+	private Beoordeling gemiddelde;
+	private ArrayList<Beoordeling> beoordelingenLijst;
+	private int getoondeBeoordeling=-1;
 	
 	private ProgrammaController programmaC;
 	
@@ -70,9 +73,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 			this.winnaar.setText("Winnaar onbekend");
 		
 		jurylid_drop.addItem("Gemiddeld");
-		jurylid_drop.addItem("Jury1");
-		jurylid_drop.addItem("Jury2");
-		jurylid_drop.addItem("Jury3");		
+			
 		
 		commentaar_tekst.setEditable(false);
 		commentaar_tekst.setText("Smaakt goed. Ik ben alleen allergisch voor meuk. Jeuk, bulten, jeweetwel.");
@@ -172,6 +173,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		bekijkDeelnemer_knop.addActionListener(this);
 		terug_knop.addActionListener(this);
 		bestel_knop.addActionListener(this);
+		jurylid_drop.addActionListener(this);
 		
 		setVisible(true);
 	}
@@ -222,7 +224,14 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	
 	public void setBeoordelingen(ArrayList<Beoordeling> beoordelingen, Beoordeling gemiddelde)
 	{
-		//
+		this.gemiddelde=gemiddelde;
+		this.beoordelingenLijst=beoordelingen;
+		
+		this.jurylid_drop.removeAllItems();
+		this.jurylid_drop.addItem("Gemiddeld");
+		for(Beoordeling beoordeling:beoordelingen)
+			this.jurylid_drop.addItem(beoordeling.getJury().getNaam());
+		this.updateBeoordeling();
 	}
 	
 	public void toonDeelnemer(Deelnemer deelnemer)
@@ -243,7 +252,35 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 
 		this.baksel_paneel.setVisible(true);
 	}
-		
+	
+	public void updateBeoordeling()
+	{
+		int index=this.jurylid_drop.getSelectedIndex();
+		if(index<0)
+			return;
+		if(index==0)
+		{
+			this.kwaliteit_punt.setText(this.gemiddelde.getKwaliteit()+"/10");
+			this.kosten_punt.setText(this.gemiddelde.getPrijs()+"/10");
+			this.calorieen_punt.setText(this.gemiddelde.getCalo()+"/10");
+			this.smaak_punt.setText(this.gemiddelde.getSmaak()+"/10");
+			this.commentaar_tekst.setText("");
+		}
+		else
+		{
+			if(this.beoordelingenLijst.size()<index)
+			{
+				System.out.println("Error - @"+index);
+				return;
+			}
+			this.kwaliteit_punt.setText(this.beoordelingenLijst.get(index-1).getKwaliteit()+"/10");
+			this.kosten_punt.setText(this.beoordelingenLijst.get(index-1).getPrijs()+"/10");
+			this.calorieen_punt.setText(this.beoordelingenLijst.get(index-1).getCalo()+"/10");
+			this.smaak_punt.setText(this.beoordelingenLijst.get(index-1).getSmaak()+"/10");
+			this.commentaar_tekst.setText(this.beoordelingenLijst.get(index-1).getCommentaar());
+		}
+	}
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.bekijkDeelnemer_knop)
@@ -257,6 +294,10 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		if(e.getSource()== this.bestel_knop)
 		{
 			programmaC.actieBestel();
+		}
+		if(e.getSource()==this.jurylid_drop)
+		{
+			this.updateBeoordeling();
 		}
 	}
 }
