@@ -70,42 +70,5 @@ public class beheerBaksel
 		}
 		return bakselList;
 	}
-	
-	/**
-	 * getDeelnemersVanWedstrijd, geeft een lijst die alle deelnemers van een wedstrijd bevat.
-	 * @param wedstrijd	Bevat de wedstrijd waarvan men de deelnemers wilt weten
-	 * @return			Geeft een ArrayList terug met alle Deelnemers van de wedstrijd
-	 */
-	public ArrayList<Deelnemer> getDeelnemersVanWedstrijd(Wedstrijd wedstrijd)
-	{
-		ArrayList<Deelnemer> deelList = new ArrayList<Deelnemer>();
-		
-		querySelect query3=new querySelect("deelnemer, lid");
-		query3.stelVoorwaardeIn("deelnemer.lid_id",query.LIKE,"%lid.lid_id%");
-		query3.stelVoorwaardeIn("deelnemer.wedstrijd_id",query.LIKE,wedstrijd.getWedstrijd_id());
-		
-		ResultSet res = datab.select(query3);
-        int deelnemer_id;
-        int lid_id;
-        String naam;
-        String wachtwoord;
-        boolean hoofdbeheer;
-		try
-		{
-			while (res.next())
-			{
-				deelnemer_id = res.getInt("deelnemer_id");
-				lid_id = res.getInt("lid_id");
-				naam = res.getString("naam");
-				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheer = res.getBoolean("hoofdbeheer");
-				deelList.add(new Deelnemer(deelnemer_id, naam, lid_id, wachtwoord, hoofdbeheer));
-			}
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return deelList;
-	}
+
 }
