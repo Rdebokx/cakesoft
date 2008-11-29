@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 {
@@ -8,7 +9,11 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	//
 	
+	private Wedstrijd wedstrijd;
+	private ArrayList<Deelnemer> deelnemerLijst;
+	
 	private ProgrammaController programmaC;
+	
 	//Inhoud van het Inlogscherm
 	private JLabel deelnemers = new JLabel("Deelnemers");
 	private JLabel locatie = new JLabel("Locatie");
@@ -41,9 +46,10 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private JLabel bestellen = new JLabel("Aantal gebak bestellen:");
 	private JTextField bestellen_veld = new JTextField();
 		
-	public Scherm_WedstrijdKlaar(ProgrammaController programmaC)
+	public Scherm_WedstrijdKlaar(ProgrammaController programmaC, Wedstrijd wedstrijd)
 	{
 		this.programmaC=programmaC;
+		this.wedstrijd=wedstrijd;
 		
 		this.deelnemers_items=new String[3];
 		this.deelnemers_items[0]="deelnemer1";
@@ -138,6 +144,19 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		terug_knop.addActionListener(this);
 		
 		setVisible(true);
+	}
+	
+	public void setDeelnemers(ArrayList<Deelnemer> deelnemerLijst)
+	{
+		this.deelnemerLijst=deelnemerLijst;
+		
+		this.deelnemers_items=new String[this.deelnemerLijst.size()];
+		for(int i=0;i < this.deelnemerLijst.size();i++)
+		{
+			this.deelnemers_items[i]= this.deelnemerLijst.get(i).toString();
+		}
+		this.deelnemers_lijst.setListData(this.deelnemers_items);
+		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);	
 	}
 		
 	public void actionPerformed(ActionEvent e)
