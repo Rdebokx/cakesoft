@@ -95,5 +95,10 @@ public class Deelnemer extends Lid {
 	public void setPlaats(int plaats) {
 		this.plaats = plaats;
 	}
+	
+	public String toString()
+	{
+		return this.getNaam();
+	}
 }
 

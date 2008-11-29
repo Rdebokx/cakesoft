@@ -10,6 +10,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	
 	private ProgrammaController programmaC;
 	private Wedstrijd wedstrijd;
+	private ArrayList<Deelnemer> deelnemerLijst;
 	
 	//Inhoud van het Inlogscherm
 	private JLabel deelnemers = new JLabel("Deelnemers");
@@ -123,7 +124,20 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		
 		setVisible(true);
 	}
+	
+	public void setDeelnemers(ArrayList<Deelnemer> deelnemerLijst)
+	{
+		this.deelnemerLijst=deelnemerLijst;
 		
+		this.deelnemers_items=new String[this.deelnemerLijst.size()];
+		for(int i=0;i < this.deelnemerLijst.size();i++)
+		{
+			this.deelnemers_items[i]= this.deelnemerLijst.get(i).toString();
+		}
+		this.deelnemers_lijst.setListData(this.deelnemers_items);
+		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);	
+	}
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.bekijkDeelnemer_knop)

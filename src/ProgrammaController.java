@@ -55,6 +55,10 @@ public class ProgrammaController
 	{
 		this.actiefScherm.dispose();
 		this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd);
+		
+		ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+		((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
+		
 		//stel wat dingen in
 	}
 
