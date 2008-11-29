@@ -204,6 +204,26 @@ public class ProgrammaController
 		}
 	}
 	
+	public void actieBestel()
+	{
+		if(!(this.actiefScherm instanceof Scherm_WedstrijdKlaar))
+			return;
+		Bestelling bestelling=((Scherm_WedstrijdKlaar)this.actiefScherm).getBestelling();
+		if(bestelling==null)
+			new Scherm_foutmelding("U hebt geen geldig aantal ingevuld om te bestellen.");
+		else
+		{
+			if(bestelling.getAantal()<1)
+				new Scherm_foutmelding("U kunt niet minder dan 1 stuk van dit baksel bestellen.");
+			else
+			{
+				bestelling.setLid_besteller(this.ingelogdLid);
+				this.bBestelling.voegBestellingToe(bestelling);
+				new Scherm_foutmelding("Uw bestelling voor "+bestelling.getAantal()+" stuk"+(bestelling.getAantal()==1?"":"s")+" van dit baksel is geplaatst.","Nieuwe bestelling");
+			}
+		}
+	}
+	
 	public void actieInschrijven()
 	{
 		

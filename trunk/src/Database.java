@@ -153,8 +153,9 @@ public class Database {
                     Statement statement = connection.createStatement();
                     statement.execute(queryStr);
                     
-                    ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID as new_id");
-                    id = Integer.parseInt(res.toString());
+                    ResultSet res = statement.executeQuery("SELECT LAST_INSERT_ID() as new_id");
+                    res.next();
+                    id = res.getInt("new_id");
             }
             catch (Exception e)
             {
