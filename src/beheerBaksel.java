@@ -28,7 +28,8 @@ public class beheerBaksel
 		query1.stelNieuwIn("recept",baksel.getRecept());
 		
 
-		datab.insert(query1);
+		int baksel_id=datab.insert(query1);
+		baksel.setBaksel_id(baksel_id);
 	}
 
     /**

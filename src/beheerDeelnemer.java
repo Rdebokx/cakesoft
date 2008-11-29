@@ -42,6 +42,11 @@ public class beheerDeelnemer {
 		
 	}
 	
+	public void voegDeelnemerToe(Deelnemer deelnemer, Wedstrijd wedstrijd)
+	{
+		this.voegDeelnemerToe(deelnemer,deelnemer.getBaksel(), wedstrijd);
+	}
+	
 	/**
 	 * getDeelnemers geeft alle deelnemers terug van de gegeven wedstrijd.
 	 * @param wedstrijd	De te doorzoeken Wedstrijd

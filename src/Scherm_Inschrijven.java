@@ -9,6 +9,7 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	
 	private ProgrammaController programmaC;
+	private Wedstrijd wedstrijd;
 	
 	//Inhoud van het Inschrijfscherm
 	private JLabel datum = new JLabel("Datum:");
@@ -22,7 +23,7 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 	private JTextPane recept_tekst = new JTextPane();
 	private JScrollPane recept_scroll = new JScrollPane();
 	
-	private JLabel ingredienten = new JLabel("Ingredienten:");
+	private JLabel ingredienten = new JLabel("Ingrediënten:");
 	
 	private JScrollPane ingredienten_scroll = new JScrollPane();
 	private JTextPane ingredienten_tekst = new JTextPane();
@@ -35,17 +36,20 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 	private JButton inschrijf_knop = new JButton("Inschrijven");
 		
 	
-	public Scherm_Inschrijven(ProgrammaController programmaC)
+	public Scherm_Inschrijven(ProgrammaController programmaC, Wedstrijd wedstrijd)
 	{
 		this.programmaC=programmaC;
+		this.wedstrijd=wedstrijd;
 		
+		this.datum.setText("Datum: "+this.wedstrijd.getDatumString());
+		this.locatie.setText("Locatie: "+this.wedstrijd.getLocatie());
 		
 		recept_tekst.setEditable(true);
-		recept_tekst.setText("Type hier uw recept");
+		recept_tekst.setText("");
 		recept_scroll.setViewportView(recept_tekst);
 		
 		ingredienten_tekst.setEditable(true);
-		ingredienten_tekst.setText("Voer hier uw ingredienten in");
+		ingredienten_tekst.setText("");
 		ingredienten_scroll.setViewportView(ingredienten_tekst);
 		
 		//basis-instellingen scherm
@@ -103,16 +107,66 @@ public class Scherm_Inschrijven extends JFrame implements ActionListener
 		
 	}
 
-
+	public Baksel getBaksel()
+	{
+		Baksel baksel=null;
+		double prijs;
+		
+		if(this.bakselnaam_veld.getText().equals(""))
+		{
+			new Scherm_foutmelding("U hebt geen naam voor uw baksel ingevuld.");
+			return null;
+		}
+		
+		if(this.catogorie_veld.getText().equals(""))
+		{
+			new Scherm_foutmelding("U hebt geen categorie ingevuld.");
+			return null;
+		}
+		
+		try
+		{
+			String prijsStr=this.prijs_veld.getText();
+			prijsStr=prijsStr.replace(',','.');
+			prijs=Double.valueOf(prijsStr);
+		}
+		catch(Exception e)
+		{
+			new Scherm_foutmelding("U hebt geen geldige prijs ingevoerd.");
+			return null;
+		}
+		
+		if(this.ingredienten_tekst.getText().equals(""))
+		{
+			new Scherm_foutmelding("U hebt geen ingrediënten ingevuld.");
+			return null;
+		}
+		
+		if(this.recept_tekst.getText().equals(""))
+		{
+			new Scherm_foutmelding("U hebt geen recept ingevuld.");
+			return null;
+		}
+		
+		
+		baksel=new Baksel();
+		baksel.setCategorie(this.catogorie_veld.getText());
+		baksel.setIngredienten(this.ingredienten_tekst.getText());
+		baksel.setNaam(this.bakselnaam_veld.getText());
+		baksel.setRecept(this.recept_tekst.getText());
+		baksel.setPrijs(prijs);
+		
+		return baksel;
+	}
 
 	
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource() == this.inschrijf_knop)
 		{
-			programmaC.actieInschrijven();
+			programmaC.actieInschrijvingVerzenden();
 		}
-		else if(e.getSource() == this.terug_knop)
+		if(e.getSource() == this.terug_knop)
 		{
 			programmaC.actieTerugNaarWedstrijd();
 		}		
