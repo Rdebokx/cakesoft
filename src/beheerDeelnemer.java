@@ -51,27 +51,26 @@ public class beheerDeelnemer {
 	{
 		try
 		{
-			querySelect q = new querySelect("deelnemer, lid");
+			querySelect q= new querySelect("deelnemer, lid");
 			q.stelVoorwaardeIn("deelnemer.wedstrijd_id",query.GELIJK,wedstrijd.getWedstrijd_id());
 			q.stelLinkVoorwaardeIn("deelnemer.lid_id",query.GELIJK,"lid.lid_id");
-			ResultSet res = database.select(q);
+			ResultSet res=database.select(q);
 			ArrayList<Deelnemer> deelnemers=new ArrayList<Deelnemer>();
-			/*querySelect q2;
+			querySelect q2;
 			ResultSet res2;
-			Baksel baksel;*/
+			Baksel baksel;
 			
 			
 			while(res.next())
 			{
-				Deelnemer deelnemer=new Deelnemer(res.getInt("deelnemer_id"),res.getString("naam"),res.getInt("lid_id"),
-						res.getString("wachtwoord"),res.getInt("hoofdbeheer")==1);
+				Deelnemer deelnemer=new Deelnemer(res.getInt("deelnemer_id"),res.getString("naam"),res.getInt("lid_id"),res.getString("wachtwoord"),res.getInt("hoofdbeheer")==1);
 				
-				/*q2 = new querySelect("baksel");
+				q2 = new querySelect("baksel");
 				q2.stelVoorwaardeIn("baksel_id",query.GELIJK,Integer.toString(res.getInt("baksel_id")));
 				res2=database.select(q2);
 				res2.next();
 				baksel = new Baksel(res2.getInt("baksel_id"),res2.getString("ingredienten"),res2.getString("recept"),res2.getString("naam"),res2.getString("categorie"),res2.getDouble("prijs"));
-				deelnemer.setBaksel(baksel);*/
+				deelnemer.setBaksel(baksel);
 				
 				deelnemers.add(deelnemer);
 			}
