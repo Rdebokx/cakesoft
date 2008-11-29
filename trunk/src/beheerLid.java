@@ -70,15 +70,47 @@ public class beheerLid {
 		
 		try {
 			//Maak query en stel 'em in.
-			querySelect selecteerQuery = new querySelect("reactie");
-			selecteerQuery.stelVoorwaardeIn("reactie_id", query.GELIJK, String.valueOf(reactie_id));
+			querySelect selecteerQuery = new querySelect("reactie, lid");
+			selecteerQuery.stelVoorwaardeIn("reactie_id", query.GELIJK, reactie_id);
+			selecteerQuery.stelLinkVoorwaardeIn("reactie.lid_id",query.GELIJK,"lid.lid_id");
 			
 			ResultSet res = db.select(selecteerQuery);
+			res.next();
 			
 			lid_id = res.getInt("lid_id");
 			naam = res.getString("naam");
 			wachtwoord = res.getString("wachtwoord");
-			hoofdbeheer = res.getInt("hoofdbeheer")==1;
+			hoofdbeheer = res.getBoolean("hoofdbeheer");
+			
+			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheer);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return uitvoer;
+	}
+	
+	
+	public Lid getLidVanId(int lid_id)
+	{
+		String naam = null;
+		String wachtwoord = null;
+		boolean hoofdbeheer = false;
+		Lid uitvoer = null;
+		
+		try {
+			//Maak query en stel 'em in.
+			querySelect selecteerQuery = new querySelect("lid");
+			selecteerQuery.stelVoorwaardeIn("lid_id", query.GELIJK, lid_id);
+			
+			ResultSet res = db.select(selecteerQuery);
+			res.next();
+			
+			lid_id = res.getInt("lid_id");
+			naam = res.getString("naam");
+			wachtwoord = res.getString("wachtwoord");
+			hoofdbeheer = res.getBoolean("hoofdbeheer");
 			
 			uitvoer = new Lid(naam, lid_id, wachtwoord, hoofdbeheer);
 		}

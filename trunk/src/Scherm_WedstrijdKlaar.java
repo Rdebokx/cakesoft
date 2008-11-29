@@ -44,7 +44,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
 	private JButton terug_knop = new JButton("Terug");
 	private JButton bestel_knop = new JButton("Bestel dit");
-	private JLabel bestellen = new JLabel("Aantal gebak bestellen:");
+	private JLabel bestellen = new JLabel("Aantal baksels bestellen:");
 	private JTextField bestellen_veld = new JTextField();
 	private JPanel baksel_paneel = new JPanel(null);
 	private JPanel bestel_paneel = new JPanel(null);
@@ -56,6 +56,11 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		
 		this.datum.setText("Datum: "+this.wedstrijd.getDatumString());
 		this.locatie.setText("Locatie: "+this.wedstrijd.getLocatie());
+		
+		if(this.wedstrijd.getWinnaar()!=null)
+			this.winnaar.setText("Winnaar: "+this.wedstrijd.getWinnaar().getNaam());
+		else
+			this.winnaar.setText("Winnaar onbekend");
 		
 		ingredienten_tekst.setEditable(false);
 		ingredienten_tekst.setText("Slagroom\n Chocolade\n Stukjes pinda's");
