@@ -64,6 +64,10 @@ public class beheerBeoordeling {
 		//de queyr uit laten voeren
 		ResultSet data = database.select(q);
 		
+		querySelect q2;
+		ResultSet res2;
+		Jury jury;
+		
 		try
 		{
 			while(data.next())
@@ -76,8 +80,18 @@ public class beheerBeoordeling {
 				int smaak = data.getInt("smaak");
 				
 				//met deze gegevens een nieuwe beoordeling aanmaken en in de arraylist stoppen
-				Beoordeling bdeling = new Beoordeling(beoordeling_id, commentaar, kwaliteit, prijs, calo, smaak);
-				res.add(bdeling);
+				Beoordeling beoordeling = new Beoordeling(beoordeling_id, commentaar, kwaliteit, prijs, calo, smaak);
+				
+				q2 = new querySelect("jury, lid");
+				q2.stelVoorwaardeIn("jury.jury_id", query.GELIJK, data.getInt("jury_id"));
+				q2.stelLinkVoorwaardeIn("jury.lid_id",query.GELIJK,"lid.lid_id");
+				res2 = database.select(q2);
+				res2.next();
+				
+				jury = new Jury(res2.getInt("jury_id"), res2.getString("naam"), res2.getInt("lid_id"), res2.getString("wachtwoord"),res2.getBoolean("hoofdbeheer"));
+				beoordeling.setJury(jury);
+				
+				res.add(beoordeling);
 			}
 		}
 		catch(Exception e)

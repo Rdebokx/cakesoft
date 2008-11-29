@@ -31,6 +31,7 @@ public class beheerWedstrijd {
 		String locatie = null;
 		boolean inschrijvingOpen = false;
 		boolean beoordelingOpen = false;
+		int winnaar_lid_id;
 		
 		querySelect selecteerQuery = new querySelect("wedstrijd");
 		selecteerQuery.stelSorteringIn("datum",false);
@@ -47,9 +48,9 @@ public class beheerWedstrijd {
 				locatie = res.getString("locatie");
 				inschrijvingOpen = res.getBoolean("inschrijvingOpen");
 				beoordelingOpen = res.getBoolean("beoordelingOpen");
-				
+				winnaar_lid_id = res.getInt("winnaar_lid_id");
 				//Voeg toe aan de arrayList
-				uitvoerLijst.add(new Wedstrijd(wedstrijdid, datum, locatie, inschrijvingOpen, beoordelingOpen));				
+				uitvoerLijst.add(new Wedstrijd(wedstrijdid, datum, locatie, inschrijvingOpen, beoordelingOpen, winnaar_lid_id));				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,6 +72,7 @@ public class beheerWedstrijd {
 		insertQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
 		insertQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
 		insertQuery.stelNieuwIn("beoordelingOpen", String.valueOf(wedstrijd.isBeoordelingOpen()));
+		insertQuery.stelNieuwIn("winnaar_lid_id",0);
 		
 		//Voer de query uit.
 		db.insert(insertQuery);
@@ -90,8 +92,9 @@ public class beheerWedstrijd {
 		updateQuery.stelVoorwaardeIn("wedstrijd_id", query.GELIJK, wedstrijd_id);
 		updateQuery.stelNieuwIn("datum", wedstrijd.getDatumString());
 		updateQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
-		updateQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
-		updateQuery.stelNieuwIn("beoordelingOpen", String.valueOf(wedstrijd.isBeoordelingOpen()));
+		updateQuery.stelNieuwIn("inschrijvingOpen", wedstrijd.isInschrijvingOpen());
+		updateQuery.stelNieuwIn("beoordelingOpen", wedstrijd.isBeoordelingOpen());
+		updateQuery.stelNieuwIn("winnaar_lid_id",wedstrijd.getWinnaar_lid_id());
 		
 		//Voer de query aan.
 		db.update(updateQuery);

@@ -34,7 +34,7 @@ public class beheerDeelnemer {
 		queryInsert q = new queryInsert("deelnemer");
 		q.stelNieuwIn("lid_id", deelnemer.getLid_id());
 		q.stelNieuwIn("wedstrijd_id", wedstrijd.getWedstrijd_id());
-		q.stelNieuwIn("baksel", baksel.getBaksel_id());
+		q.stelNieuwIn("baksel_id", baksel.getBaksel_id());
 		
 		//de gegevens in de database invoeren
 		int deelnemer_id = database.insert(q);

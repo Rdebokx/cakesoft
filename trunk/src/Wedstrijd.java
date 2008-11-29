@@ -12,6 +12,7 @@ public class Wedstrijd {
 	private String locatie;
 	private boolean inschrijvingOpen;
 	private boolean beoordelingOpen;
+	private int winnaar_lid_id;
 	
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan
@@ -25,13 +26,14 @@ public class Wedstrijd {
 	/**
 	 * Constructor voor Wedstrijd, maakt een nieuwe Wedstrijd aan met gegeven id, datum, locatie, inschrijvingOpen en beoordelingOpen
 	 */
-	public Wedstrijd(int wedstrijd_id, Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(int wedstrijd_id, Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen, int winnaar_lid_id)
 	{
 		this.wedstrijd_id = wedstrijd_id;
 		this.datum = datum;
 		this.locatie = locatie;
 		this.inschrijvingOpen = inschrijvingOpen;
 		this.beoordelingOpen = beoordelingOpen;
+		this.winnaar_lid_id=winnaar_lid_id;
 	}
 
 	/**
@@ -41,13 +43,14 @@ public class Wedstrijd {
 	 * @param inschrijvingOpen	boolean
 	 * @param beoordelingOpen	boolean		
 	 */
-	public Wedstrijd(Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen)
+	public Wedstrijd(Date datum, String locatie, boolean inschrijvingOpen, boolean beoordelingOpen, int winnaar_lid_id)
 	{
 		this.wedstrijd_id = -1;
 		this.datum = datum;
 		this.locatie = locatie;
 		this.inschrijvingOpen = inschrijvingOpen;
 		this.beoordelingOpen = beoordelingOpen;
+		this.winnaar_lid_id=winnaar_lid_id;
 	}
 
 	/**
@@ -92,6 +95,11 @@ public class Wedstrijd {
 	public void setBeoordelingOpen(boolean beoordelingOpen)
 	{
 		this.beoordelingOpen = beoordelingOpen;
+	}
+	
+	public void setWinnaar_lid_id(int winnaar_lid_id)
+	{
+		this.winnaar_lid_id=winnaar_lid_id;
 	}
 	
 	/**
@@ -148,6 +156,11 @@ public class Wedstrijd {
 	{
 		return beoordelingOpen;
 	} 
+	
+	public int getWinnaar_lid_id()
+	{
+		return this.winnaar_lid_id;
+	}
 	
 	/**
 	 * Methode toString, geeft String-representatie terug. 

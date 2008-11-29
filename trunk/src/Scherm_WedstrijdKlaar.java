@@ -195,6 +195,11 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);	
 	}
 	
+	public void setBeoordelingen(ArrayList<Beoordeling> beoordelingen, Beoordeling gemiddelde)
+	{
+		//
+	}
+	
 	public void toonDeelnemer(Deelnemer deelnemer)
 	{
 		this.deelnemer=deelnemer;

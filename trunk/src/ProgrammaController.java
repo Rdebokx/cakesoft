@@ -112,7 +112,7 @@ public class ProgrammaController
 		{
 			//foutieve login
 			
-			new Scherm_foutmelding("U hebt een verkeerd lid id of wachtwoord ingevoerd.");
+			new Scherm_foutmelding("U hebt een verkeerd lidnummer of wachtwoord ingevoerd.");
 		}
 		else
 		{
@@ -199,7 +199,23 @@ public class ProgrammaController
 				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
 			else
 			{
+				ArrayList<Beoordeling> beoordelingen=this.bBeoordeling.getBeoordelingenVanBaksel(deelnemer.getBaksel());
+				Beoordeling gemiddelde=new Beoordeling();
+				for(Beoordeling beoordeling:beoordelingen)
+				{
+					gemiddelde.setCalo(gemiddelde.getCalo()+beoordeling.getCalo());
+					gemiddelde.setPrijs(gemiddelde.getPrijs()+beoordeling.getPrijs());
+					gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()+beoordeling.getKwaliteit());
+					gemiddelde.setSmaak(gemiddelde.getSmaak()+beoordeling.getSmaak());
+				}
+				gemiddelde.setCalo(gemiddelde.getCalo()/beoordelingen.size());
+				gemiddelde.setPrijs(gemiddelde.getPrijs()/beoordelingen.size());
+				gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()/beoordelingen.size());
+				gemiddelde.setSmaak(gemiddelde.getSmaak()/beoordelingen.size());
+				
+				
 				((Scherm_WedstrijdKlaar)this.actiefScherm).toonDeelnemer(deelnemer);
+				((Scherm_WedstrijdKlaar)this.actiefScherm).setBeoordelingen(beoordelingen,gemiddelde);
 			}
 		}
 	}
