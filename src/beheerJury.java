@@ -1,4 +1,5 @@
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 /**
@@ -62,6 +63,30 @@ public class beheerJury {
 		catch(Exception e)
 		{
 			return null;
+		}
+		
+		return jury;
+	}
+	
+	public Jury getJuryVanJuryId(int jury_id)
+	{
+		Jury jury=null;
+		querySelect selecteerJury = new querySelect("jury, lid");
+		selecteerJury.stelVoorwaardeIn("jury.jury_id", query.GELIJK, jury_id);
+		selecteerJury.stelLinkVoorwaardeIn("jury.lid_id",query.GELIJK,"lid.lid_id");
+		
+		//Voer query uit
+		ResultSet res = database.select(selecteerJury);
+		
+		try
+		{
+			res.next();
+			jury = new Jury(res.getInt("jury_id"), res.getString("naam"), res.getInt("lid_id"), res.getString("wachtwoord"),
+					res.getBoolean("hoofdbeheer"));
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
 		}
 		
 		return jury;

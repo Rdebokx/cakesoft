@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.text.NumberFormat;
 import java.util.*;
 
 public class Scherm_Wedstrijd extends JFrame implements ActionListener
@@ -13,6 +14,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private ArrayList<Deelnemer> deelnemerLijst;
 	private boolean isJury;
 	private boolean isDeelnemer;
+	private Deelnemer deelnemer;
 	
 	//Inhoud van het Inlogscherm
 	private JLabel deelnemers = new JLabel("Deelnemers");
@@ -159,7 +161,13 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	
 	public void toonDeelnemer(Deelnemer deelnemer)
 	{
-		
+		this.deelnemer=deelnemer;
+		this.baksel.setText("Baksel van "+deelnemer.getNaam()+":");
+		this.naam.setText("Naam: "+deelnemer.getBaksel().getNaam());
+		this.categorie.setText("Categorie: "+deelnemer.getBaksel().getCategorie());
+		this.prijs.setText("Prijs: "+NumberFormat.getCurrencyInstance().format(deelnemer.getBaksel().getPrijs()));
+		this.ingredienten_tekst.setText(deelnemer.getBaksel().getIngredienten());
+		this.recept_tekst.setText(deelnemer.getBaksel().getRecept());
 		this.baksel_paneel.setVisible(true);
 	}
 	
