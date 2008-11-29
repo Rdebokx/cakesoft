@@ -214,10 +214,10 @@ public class ProgrammaController
 				}
 				if(beoordelingen.size()>0)
 				{
-					gemiddelde.setCalo(gemiddelde.getCalo()/beoordelingen.size());
-					gemiddelde.setPrijs(gemiddelde.getPrijs()/beoordelingen.size());
-					gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()/beoordelingen.size());
-					gemiddelde.setSmaak(gemiddelde.getSmaak()/beoordelingen.size());
+					gemiddelde.setCalo((int)Math.round(((double)gemiddelde.getCalo())/((double)beoordelingen.size())));
+					gemiddelde.setPrijs((int)Math.round(((double)gemiddelde.getPrijs())/((double)beoordelingen.size())));
+					gemiddelde.setKwaliteit((int)Math.round(((double)gemiddelde.getKwaliteit())/((double)beoordelingen.size())));
+					gemiddelde.setSmaak((int)Math.round(((double)gemiddelde.getSmaak())/((double)beoordelingen.size())));
 				}
 				
 				((Scherm_WedstrijdKlaar)this.actiefScherm).toonDeelnemer(deelnemer);
