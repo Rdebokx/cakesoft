@@ -44,6 +44,8 @@ public class Scherm_Login extends JFrame implements ActionListener
 		add(paneel2);
 		
 		//scherm-object luistert naar de events
+		lidnr_veld.addActionListener(this);
+		pass_veld.addActionListener(this);
 		loginknop.addActionListener(this);
 		
 		setVisible(true);
@@ -71,7 +73,7 @@ public class Scherm_Login extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource()==this.loginknop)
+		if(e.getSource()==this.loginknop || e.getSource()==this.lidnr_veld || e.getSource()==this.pass_veld)
 			this.programmaC.actieLogin();
 	}
 }
