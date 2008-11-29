@@ -41,8 +41,8 @@ public class beheerBaksel
 		ArrayList<Baksel> bakselList = new ArrayList<Baksel>();
 
 		querySelect query3=new querySelect("baksel");
-		query3.stelVoorwaardeIn("baksel.baksel_id",query.LIKE,"%deelnemer.baksel_id%");
-		query3.stelVoorwaardeIn("deelnemer.wedstrijd_id",query.LIKE,wedstrijd.getWedstrijd_id());
+		query3.stelVoorwaardeIn("baksel.baksel_id", query.GELIJK, "deelnemer.baksel_id");
+		query3.stelVoorwaardeIn("deelnemer.wedstrijd_id", query.LIKE, wedstrijd.getWedstrijd_id());
 
 		ResultSet res = datab.select(query3);
 		int baksel_id;
