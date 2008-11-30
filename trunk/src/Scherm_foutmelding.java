@@ -1,28 +1,34 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
 public class Scherm_foutmelding extends JFrame implements ActionListener
 {
-	private JLabel foutTekst=new JLabel();
-	private JButton okKnop=new JButton("ok");
+	private JTextArea foutTekst=new JTextArea();
+	private JButton okKnop=new JButton("Sluit");
 	
 	public Scherm_foutmelding(String foutBericht)
 	{
 		this.init();
-		this.foutTekst.setText(foutBericht);
-		Dimension tekstSize =this.foutTekst.getMinimumSize();
-		this.foutTekst.setBounds((400-tekstSize.width)/2,5,380,20);
+		this.setTekst(foutBericht);
 	}
 	
 	public Scherm_foutmelding(String foutBericht, String titel)
 	{
 		this.init();
-		this.foutTekst.setText(foutBericht);
-		Dimension tekstSize =this.foutTekst.getMinimumSize();
-		this.foutTekst.setBounds((400-tekstSize.width)/2,5,380,20);
+		this.setTekst(foutBericht);
 		this.setTitle(titel);
+	}
+	
+	public void setTekst(String tekst)
+	{
+		this.foutTekst.setText(tekst);
+		
+		Dimension tekstSize =this.foutTekst.getMinimumSize();
+		this.foutTekst.setBounds((400-tekstSize.width)/2,5,tekstSize.width,tekstSize.height);
+		this.okKnop.setBounds(150,20+tekstSize.height,100,25);
+		
+		this.setSize(400,90+tekstSize.height);		
 	}
 	
 	public void init()
@@ -30,6 +36,7 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(new Rectangle(100,100,400,100));
 		this.setSize(400,110);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		//Point oude_locatie=this.getLocation();
 		//oude_locatie.y+=100;
@@ -37,6 +44,9 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		this.setTitle("Cakesoft - Fout");
 		this.setLayout(null);
 		
+		this.foutTekst.setBackground(this.getBackground());
+		this.foutTekst.setEditable(false);
+		this.foutTekst.setBorder(null);
 		this.okKnop.setBounds(150,40,100,25);
 		
 		this.add(this.foutTekst);

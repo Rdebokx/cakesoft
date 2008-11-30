@@ -32,7 +32,7 @@ public class beheerLid {
 		boolean hoofdbeheer = false;
 		
 		querySelect selecteerQuery = new querySelect("lid");
-		selecteerQuery.stelVoorwaardeIn("lid_id", query.LIKE, "%" + naam_deel + "%");
+		selecteerQuery.stelVoorwaardeIn("naam", query.LIKE, "%" + naam_deel + "%");
 		
 		ResultSet res = db.select(selecteerQuery);
 				
@@ -42,7 +42,7 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheer = res.getInt("hoofdbeheer")==1;
+				hoofdbeheer = res.getBoolean("hoofdbeheer");
 				
 				uitvoerLid.add(new Lid(naam, lid_id, wachtwoord, hoofdbeheer));
 			}
@@ -147,7 +147,7 @@ public class beheerLid {
 				lid_id = res.getInt("lid_id");
 				naam = res.getString("naam");
 				wachtwoord = res.getString("wachtwoord");
-				hoofdbeheer = res.getInt("hoofdbeheer")==1;
+				hoofdbeheer = res.getBoolean("hoofdbeheer");
 				
 				if (lid_id == lid.getLid_id())
 				{
