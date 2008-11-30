@@ -79,15 +79,20 @@ public class ProgrammaController
 		boolean isJury=(this.bJury.getJuryVanWedstrijd(this.actieveWedstrijd,this.ingelogdLid)!=null);
 		boolean isDeelnemer=(this.bDeelnemer.getDeelnemerVanWedstrijd(this.ingelogdLid,this.actieveWedstrijd)!=null);
 		
-		//open wedstrijd voordat hij is gesloten
+		//toon wedstrijd voordat hij is gesloten
 		if(this.actieveWedstrijd.isInschrijvingOpen() || this.actieveWedstrijd.isBeoordelingOpen())
 		{
-			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd,isJury,isDeelnemer);
 			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+			if(deelnemers.size()>=12)
+				isDeelnemer=true;//maakt het onmogelijk nog in te schrijven
 			
+			boolean toonSluitKnop=(this.ingelogdLid.isHoofdbeheer() && this.actieveWedstrijd.isBeoordelingOpen());
+			
+			
+			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd,isJury,isDeelnemer,toonSluitKnop);
 			((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
 		}
-		else//open wedstrijd nadat hij is gesloten
+		else//toon wedstrijd nadat hij is gesloten
 		{
 			ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
 			this.actieveWedstrijd.setWinnaar(null);
@@ -250,6 +255,84 @@ public class ProgrammaController
 	{
 		this.actiefScherm.dispose();
 		this.actiefScherm=new Scherm_Inschrijven(this,this.actieveWedstrijd);
+	}
+	
+	public void actieSluitWedstrijd()
+	{
+		if(!(this.actiefScherm instanceof Scherm_Wedstrijd))
+			return;
+		
+		this.actieveWedstrijd.setBeoordelingOpen(false);
+		int winnaar_lid_id=0;
+		
+		double smaak,prijs,kwaliteit,calo,teller;
+		ArrayList<Beoordeling> beoordelingen;
+		
+		//bereken winnaar
+		ArrayList<Deelnemer> deelnemers=this.bDeelnemer.getDeelnemers(this.actieveWedstrijd);
+		for(Deelnemer deelnemer:deelnemers)
+		{
+			beoordelingen=this.bBeoordeling.getBeoordelingenVanBaksel(deelnemer.getBaksel());
+			teller=0;
+			smaak=0;
+			prijs=0;
+			kwaliteit=0;
+			calo=0;
+			for(Beoordeling beoordeling:beoordelingen)
+			{
+				teller+=1;
+				smaak+=beoordeling.getSmaak();
+				prijs+=beoordeling.getPrijs();
+				kwaliteit+=beoordeling.getKwaliteit();
+				calo+=beoordeling.getCalo();
+			}
+			if(teller>0)
+			{
+				smaak=smaak/teller;
+				prijs=prijs/teller;
+				kwaliteit=kwaliteit/teller;
+				calo=calo/teller;
+			}
+			deelnemer.setPunten(smaak+prijs+kwaliteit+calo);
+		}
+		
+		//sorteer nu en geef plaatsen
+		int i,j;
+		Deelnemer temp_deelnemer;
+		//zet om in een normaal array
+		Deelnemer[] temp_deelnemers = new Deelnemer[deelnemers.size()];
+		for(i=0;i<deelnemers.size();i++)
+			temp_deelnemers[i]=deelnemers.get(i);
+		
+		//bubble sorten
+		boolean actie=true;
+		for(i=0;i<temp_deelnemers.length;i++)
+		{
+			for(j=0;(j<temp_deelnemers.length-1 && actie);j++)
+			{
+				actie=false;
+				if(temp_deelnemers[j+1].getPunten()>temp_deelnemers[j].getPunten())
+				{
+					temp_deelnemer=temp_deelnemers[j];
+					temp_deelnemers[j]=temp_deelnemers[j+1];
+					temp_deelnemers[j+1]=temp_deelnemer;
+					actie=true;
+				}
+			}
+		}
+		
+		for(i=0;i<temp_deelnemers.length;i++)
+		{
+			temp_deelnemers[i].setPlaats(i+1);
+			this.bDeelnemer.updateDeelnemer(temp_deelnemers[i]);
+		}
+		
+		this.actieveWedstrijd.setWinnaar_lid_id(temp_deelnemers[0].getLid_id());
+		this.bWedstrijd.updateWedstrijd(this.actieveWedstrijd);
+		
+		this.openWedstrijd();
+		
+		new Scherm_foutmelding("U hebt deze wedstrijd nu gesloten.","Wedstrijd sluiten");
 	}
 	
 //

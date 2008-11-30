@@ -94,9 +94,9 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 				
 		deelnemers.setBounds(30,140,200,20);
 		deelnemers_scroll.setBounds(30,160,200,120);
-		bekijkDeelnemer_knop.setBounds(30,280,200,20);
+		bekijkDeelnemer_knop.setBounds(30,280,200,25);
 
-	//Baksel-paneel		
+		//Baksel-paneel		
 		baksel_paneel.setBounds(275,30,this.getWidth()-275,this.getHeight()-30);
 		baksel.setBounds(0,0,250,20);
 		naam.setBounds(0,30,250,20);

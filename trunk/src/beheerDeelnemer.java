@@ -35,6 +35,7 @@ public class beheerDeelnemer {
 		q.stelNieuwIn("lid_id", deelnemer.getLid_id());
 		q.stelNieuwIn("wedstrijd_id", wedstrijd.getWedstrijd_id());
 		q.stelNieuwIn("baksel_id", baksel.getBaksel_id());
+		q.stelNieuwIn("plaats", deelnemer.getPlaats());
 		
 		//de gegevens in de database invoeren
 		int deelnemer_id = database.insert(q);
@@ -68,7 +69,7 @@ public class beheerDeelnemer {
 			
 			while(res.next())
 			{
-				Deelnemer deelnemer=new Deelnemer(res.getInt("deelnemer_id"),res.getString("naam"),res.getInt("lid_id"),res.getString("wachtwoord"),res.getInt("hoofdbeheer")==1);
+				Deelnemer deelnemer=new Deelnemer(res.getInt("deelnemer_id"),res.getString("naam"),res.getInt("lid_id"),res.getString("wachtwoord"),res.getBoolean("hoofdbeheer"),res.getInt("plaats"));
 				
 				q2 = new querySelect("baksel");
 				q2.stelVoorwaardeIn("baksel_id",query.GELIJK,Integer.toString(res.getInt("baksel_id")));
@@ -113,7 +114,7 @@ public class beheerDeelnemer {
 			if(res.next())
 			{
 				deelnemer = new Deelnemer(res.getInt("deelnemer_id"), res.getString("naam"), res.getInt("lid_id"), res.getString("wachtwoord"),
-						res.getInt("hoofdbeheer")==1);
+						res.getBoolean("hoofdbeheer"),res.getInt("plaats"));
 				
 				bakselID = res.getInt("baksel_id");
 				
@@ -147,6 +148,16 @@ public class beheerDeelnemer {
 		
 		return deelnemer;
 		
+	}
+	
+	public void updateDeelnemer(Deelnemer deelnemer)
+	{
+		queryUpdate updateQuery = new queryUpdate("deelnemer");
+		updateQuery.stelVoorwaardeIn("deelnemer_id", query.GELIJK, deelnemer.getDeelnemer_id());
+		updateQuery.stelNieuwIn("plaats",deelnemer.getPlaats());
+		
+		//Voer de query aan.
+		database.update(updateQuery);
 	}
 	
 

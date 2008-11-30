@@ -6,6 +6,7 @@ public class Deelnemer extends Lid {
 	private int deelnemer_id;
 	private Baksel baksel;
 	private int plaats;
+	private double punten;
 	
 	
 	/**
@@ -21,12 +22,12 @@ public class Deelnemer extends Lid {
 	/**
 	 * Constructor voor Deelnemer, maakt een nieuw Deelnemer object aan, met alle parameters.
 	 */
-	public Deelnemer(int deelnemer_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheer)
+	public Deelnemer(int deelnemer_id, String naam, int lid_id, String wachtwoord, boolean hoofdbeheer, int plaats)
 	{
 		super(naam, lid_id, wachtwoord, hoofdbeheer);
 		this.deelnemer_id = deelnemer_id;
 		this.baksel = null;
-		this.plaats = -1;
+		this.plaats = plaats;
 	} 
 		
 	/**
@@ -88,12 +89,22 @@ public class Deelnemer extends Lid {
 	public int getPlaats() {
 		return plaats;
 	}
+	
+	public double getPunten()
+	{
+		return this.punten;
+	}
 
 	/**
 	 * @param plaats Om in te stellen
 	 */
 	public void setPlaats(int plaats) {
 		this.plaats = plaats;
+	}
+	
+	public void setPunten(double punten)
+	{
+		this.punten=punten;
 	}
 	
 	public String toString()
