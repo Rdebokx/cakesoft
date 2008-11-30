@@ -174,6 +174,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		terug_knop.addActionListener(this);
 		bestel_knop.addActionListener(this);
 		jurylid_drop.addActionListener(this);
+		bestellen_veld.addActionListener(this);
 		
 		setVisible(true);
 	}
@@ -291,7 +292,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 		{
 			programmaC.actieTerugNaarHoofdscherm();
 		}
-		if(e.getSource()== this.bestel_knop)
+		if(e.getSource()== this.bestel_knop || e.getSource()== this.bestellen_veld)
 		{
 			programmaC.actieBestel();
 		}
