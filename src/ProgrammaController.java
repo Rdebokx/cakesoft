@@ -327,7 +327,10 @@ public class ProgrammaController
 			this.bDeelnemer.updateDeelnemer(temp_deelnemers[i]);
 		}
 		
-		this.actieveWedstrijd.setWinnaar_lid_id(temp_deelnemers[0].getLid_id());
+		if(temp_deelnemers.length>0)
+			this.actieveWedstrijd.setWinnaar_lid_id(temp_deelnemers[0].getLid_id());
+		else
+			this.actieveWedstrijd.setWinnaar_lid_id(0);
 		this.bWedstrijd.updateWedstrijd(this.actieveWedstrijd);
 		
 		this.openWedstrijd();
@@ -339,9 +342,62 @@ public class ProgrammaController
 //	Acties voor Scherm_WedstrijdNieuw
 //
 	
-	public void actieMaak()
+	public void actieMaakWedstrijd()
 	{
+		if(!(this.actiefScherm instanceof Scherm_WedstrijdNieuw))
+			return;
+		Wedstrijd wedstrijd=((Scherm_WedstrijdNieuw)this.actiefScherm).getWedstrijd();
+		if(wedstrijd==null)
+			return;//geen geldige invoer
+		String jury_naam,namen;
+		ArrayList<Lid> mogelijkheden;
+		ArrayList<Jury> juryleden=new ArrayList<Jury>();
+		int i,j;
 		
+		//loop door juryleden heen
+		for(i=1;i<=3;i++)
+		{
+			//vraag naam op van het scherm
+			jury_naam=((Scherm_WedstrijdNieuw)this.actiefScherm).getJuryNaam(i);
+			
+			if(jury_naam.equals("") || jury_naam==null)
+			{
+				new Scherm_foutmelding("U hebt geen naam ingevuld voor jurylid "+i+".");
+				return;
+			}
+			
+			//kijk wie allemaal bedoeld zou kunnen zijn
+			mogelijkheden=this.bLid.zoekOpNaam(jury_naam);
+			if(mogelijkheden.size()==0)//lid niet gevonden
+			{
+				new Scherm_foutmelding("U hebt geen geldige naam opgegeven voor jurylid "+i+".");
+				return;
+			}
+			//niet exact de goede naam ingevuld.
+			if(!mogelijkheden.get(0).getNaam().toLowerCase().equals(jury_naam.toLowerCase()))
+			{
+				namen="";
+				for(j=0;j<Math.min(5,mogelijkheden.size());j++)//toon hooguit 5 opties
+					namen+="\n"+mogelijkheden.get(j).getNaam();
+				
+				new Scherm_foutmelding("U hebt geen geldige naam opgegeven voor jurylid "+i+".\n"+(mogelijkheden.size()==1?"Een naam:":"Namen")+" die veel op '"+jury_naam+"' lijk"+(mogelijkheden.size()==1?"t is:":"en zijn:")+namen);
+				return;
+			}
+			//hier is er maar 1 mogelijkheid, voeg dus toe als jurylid
+			juryleden.add(new Jury(mogelijkheden.get(0)));
+		}
+		
+		wedstrijd.setBeoordelingOpen(false);
+		wedstrijd.setInschrijvingOpen(true);
+		wedstrijd.setWinnaar_lid_id(0);
+		
+		this.bWedstrijd.voegWedstrijdToe(wedstrijd);
+		
+		for(Jury jury:juryleden)
+			this.bJury.voegJuryToe(jury,wedstrijd);
+		
+		this.openOverzicht();
+		new Scherm_foutmelding("Deze nieuwe wedstrijd is toegevoegd.","Nieuwe Wedstrijd");
 	}
 	
 //

@@ -89,6 +89,11 @@ public class query
 	{
 		String strWaarde="";
 		
+		if(waarde instanceof Boolean)
+		{
+			strWaarde=((Boolean)waarde)?"true":"false";
+		}
+		
 		if(waarde instanceof Integer)
 			strWaarde=Integer.toString((Integer)waarde);
 		

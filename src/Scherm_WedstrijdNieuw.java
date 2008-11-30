@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 {
@@ -40,6 +42,9 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		
+		
+		datum_veld.setText((new SimpleDateFormat("yyyy-MM-dd")).format(new java.util.Date()));
+		
 		//alles aan panelen toevoegen
 		paneel.add(datum);
 		paneel.add(datum_veld);
@@ -77,11 +82,55 @@ public class Scherm_WedstrijdNieuw extends JFrame implements ActionListener
 		
 		setVisible(true);
 	}
+	
+	public Wedstrijd getWedstrijd()
+	{
+		Wedstrijd wedstrijd=null;
+		Date datum=null;
+		
+		try
+		{
+			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+			datum=format.parse(this.datum_veld.getText());
+		}
+		catch(Exception e)
+		{
+			//
+		}
+		if(datum==null)
+		{
+			new Scherm_foutmelding("U hebt geen geldige datum ingevuld.");
+			return null;
+		}
+		if(this.locatie_veld.getText().equals(""))
+		{
+			new Scherm_foutmelding("U hebt geen locatie ingevuld.");
+			return null;
+		}
+		
+		wedstrijd=new Wedstrijd();
+		wedstrijd.setLocatie(this.locatie_veld.getText());
+		wedstrijd.setDatum(datum);
+		
+		return wedstrijd;
+	}
+	
+	public String getJuryNaam(int nummer)
+	{
+		if(nummer==1)
+			return this.juryveld_1.getText();
+		if(nummer==2)
+			return this.juryveld_2.getText();
+		if(nummer==3)
+			return this.juryveld_3.getText();
+		
+		return null;
+	}
 		
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource()==this.maak_knop)
-			this.programmaC.actieMaak();
+			this.programmaC.actieMaakWedstrijd();
 		if(e.getSource()==this.terug_knop)
 			this.programmaC.actieTerugNaarHoofdscherm();
 	}

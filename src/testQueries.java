@@ -4,7 +4,7 @@ public class testQueries {
 	{
 		//inserten
 		queryInsert query1=new queryInsert("tabelnaam");
-		query1.stelNieuwIn("bericht","Da's de winnaar");
+		query1.stelNieuwIn("bericht",1==1);
 		query1.stelNieuwIn("bericht2","Da's de winnaar ook");
 		
 		System.out.println(query1.getQuery());

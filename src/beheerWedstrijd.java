@@ -67,15 +67,15 @@ public class beheerWedstrijd {
 	{
 		//Maak een queryInsert aan en vul deze in.		
 		queryInsert insertQuery = new queryInsert("wedstrijd");
-		insertQuery.stelNieuwIn("wedstrijd_id", String.valueOf(wedstrijd.getWedstrijd_id()));
 		insertQuery.stelNieuwIn("datum", wedstrijd.getDatumString());
 		insertQuery.stelNieuwIn("locatie", wedstrijd.getLocatie());
-		insertQuery.stelNieuwIn("inschrijvingOpen", String.valueOf(wedstrijd.isInschrijvingOpen()));
-		insertQuery.stelNieuwIn("beoordelingOpen", String.valueOf(wedstrijd.isBeoordelingOpen()));
+		insertQuery.stelNieuwIn("inschrijvingOpen", wedstrijd.isInschrijvingOpen());
+		insertQuery.stelNieuwIn("beoordelingOpen", wedstrijd.isBeoordelingOpen());
 		insertQuery.stelNieuwIn("winnaar_lid_id",0);
 		
 		//Voer de query uit.
-		db.insert(insertQuery);
+		int wedstrijd_id=db.insert(insertQuery);
+		wedstrijd.setWedstrijd_id(wedstrijd_id);
 	}
 
 	
