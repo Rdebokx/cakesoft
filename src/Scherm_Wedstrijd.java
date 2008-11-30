@@ -35,7 +35,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private JList deelnemers_lijst = new JList();
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
-	private JButton nieuwWedstrijd_knop = new JButton("Nieuwe wedstrijd");
+	private JButton sluitWedstrijd_knop = new JButton("Sluit Wedstrijd");
 	private JButton inschrijven_knop = new JButton("Schrijf in");
 	private JButton terug_knop = new JButton("Terug");
 	//private JButton bestel_knop = new JButton("Bestel dit");
@@ -43,7 +43,7 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	private JPanel baksel_paneel = new JPanel(null);
 	
 		
-	public Scherm_Wedstrijd(ProgrammaController programmaC, Wedstrijd wedstrijd, boolean isJury, boolean isDeelnemer)
+	public Scherm_Wedstrijd(ProgrammaController programmaC, Wedstrijd wedstrijd, boolean isJury, boolean isDeelnemer, boolean toonSluitKnop)
 	{
 		this.programmaC=programmaC;
 		this.wedstrijd=wedstrijd;
@@ -75,7 +75,9 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 
 		deelnemers.setBounds(30,120,200,20);
 		deelnemers_scroll.setBounds(30,140,200,120);
-		bekijkDeelnemer_knop.setBounds(30,260,200,20);
+		bekijkDeelnemer_knop.setBounds(30,260,200,25);
+		if(toonSluitKnop)
+			sluitWedstrijd_knop.setBounds(30,290,200,25);
 
 		if(this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 			inschrijven_knop.setBounds(500,30,200,50);
@@ -102,7 +104,8 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 		add(deelnemers_scroll);
 		add(deelnemers);
 		add(bekijkDeelnemer_knop);
-		add(nieuwWedstrijd_knop);
+		if(toonSluitKnop)
+			add(sluitWedstrijd_knop);
 
 		add(datum);		
 		add(locatie);
@@ -133,6 +136,8 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 			inschrijven_knop.addActionListener(this);
 		
 		terug_knop.addActionListener(this);
+		if(toonSluitKnop)
+			sluitWedstrijd_knop.addActionListener(this);
 		
 		setVisible(true);
 	}
@@ -174,17 +179,17 @@ public class Scherm_Wedstrijd extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.bekijkDeelnemer_knop)
-		{
 			programmaC.actieBekijkDeelnemer();
-		}
-		else if(e.getSource() == this.inschrijven_knop && this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
-		{
+		
+		if(e.getSource() == this.inschrijven_knop && this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 			programmaC.actieInschrijven();
-		}
-		else if(e.getSource() == this.terug_knop)
-		{
+		
+		if(e.getSource() == this.terug_knop)
 			programmaC.actieTerugNaarHoofdscherm();
-		}		
+		
+		if(e.getSource()==this.sluitWedstrijd_knop)
+			programmaC.actieSluitWedstrijd();
+		
 	}
 	
 }
