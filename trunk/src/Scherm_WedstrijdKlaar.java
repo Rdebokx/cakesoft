@@ -265,7 +265,7 @@ public class Scherm_WedstrijdKlaar extends JFrame implements ActionListener
 			this.kosten_punt.setText(this.gemiddelde.getPrijs()+"/10");
 			this.calorieen_punt.setText(this.gemiddelde.getCalo()+"/10");
 			this.smaak_punt.setText(this.gemiddelde.getSmaak()+"/10");
-			this.commentaar_tekst.setText("");
+			this.commentaar_tekst.setText("Dit is het gemiddelde van alle beoordelingen.");
 		}
 		else
 		{
