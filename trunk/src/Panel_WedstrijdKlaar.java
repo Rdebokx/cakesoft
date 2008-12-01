@@ -95,7 +95,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		bekijkDeelnemer_knop.setBounds(30,280,200,25);
 
 		//Baksel-paneel		
-		baksel_paneel.setBounds(275,30,this.getWidth()-275,this.getHeight()-30);
+		baksel_paneel.setBounds(275,30,1000,700);
 		baksel.setBounds(0,0,250,20);
 		naam.setBounds(0,30,250,20);
 		categorie.setBounds(0,50,250,20);
@@ -125,8 +125,6 @@ public class Panel_WedstrijdKlaar extends JPanel
 		reactie_knop.setBounds(255,385,150,40);
 		
 		baksel_paneel.setVisible(false);
-	//
-		
 		terug_knop.setBounds(30,430,75,25);
 		
 		
@@ -164,6 +162,8 @@ public class Panel_WedstrijdKlaar extends JPanel
 		baksel_paneel.add(commentaar_scroll);
 		baksel_paneel.add(reactie_knop);
 		add(baksel_paneel);
+		
+		
 		
 		add(terug_knop);
 		

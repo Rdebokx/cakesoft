@@ -80,7 +80,7 @@ public class Panel_Wedstrijd extends JPanel
 		if(this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
 			inschrijven_knop.setBounds(500,30,200,50);
 		
-		baksel_paneel.setBounds(275,120,this.getWidth()-275,this.getHeight()-120);
+		baksel_paneel.setBounds(275,120,1000,700);
 		baksel.setBounds(0,0,300,20);
 		naam.setBounds(0,30,300,20);
 		categorie.setBounds(0,50,300,20);
