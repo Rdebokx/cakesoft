@@ -4,21 +4,26 @@ import java.awt.event.*;
 
 public class Panel_Login extends JPanel
 {
-	//Eclipse-fix
-	private static final long serialVersionUID = 1L;
-	//
 	
 	//Inhoud van het Inlogscherm
-	private JPanel paneel = new JPanel(new GridLayout(2,2));
-	private JPanel paneel2 = new JPanel(new GridLayout(1,1));
-	private JLabel lidnr = new JLabel("Lidnummer");
-	private JLabel pass = new JLabel("Wachtwoord");
-	private JTextField lidnr_veld = new JTextField();
-	private JTextField pass_veld = new JTextField();
-	private JButton loginknop = new JButton("Login");
+	private JPanel paneel;
+	private JPanel paneel2;
+	private JLabel lidnr;
+	private JLabel pass;
+	private JTextField lidnr_veld;
+	private JTextField pass_veld;
+	private JButton loginknop;
 	
 	public Panel_Login()
 	{
+		//System.out.println("Making panel...");
+		paneel=new JPanel(new GridLayout(2,2));
+		paneel2= new JPanel(new GridLayout(1,1));
+		lidnr = new JLabel("Lidnummer");
+		pass = new JLabel("Wachtwoord");
+		lidnr_veld = new JTextField();
+		pass_veld = new JTextField();
+		loginknop = new JButton("Login");
 		
   		//basis-instellingen scherm
 		/*setTitle("CakeSoft");
@@ -47,6 +52,7 @@ public class Panel_Login extends JPanel
 		pass_veld.addActionListener(this);
 		loginknop.addActionListener(this);
 		*/
+		
 		
 		setVisible(true);
 	}

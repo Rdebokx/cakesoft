@@ -118,6 +118,8 @@ public class ProgrammaController extends JFrame implements ActionListener
 		if(this.actiefPanel==null)
 			return;
 		this.remove(this.actiefPanel);
+		this.actiefPanel.removeAll();
+		
 		this.actiefPanel=null;
 	}
 	
@@ -133,6 +135,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 		
 		this.actiefPanel=panel;
 		this.add(panel);
+		this.actiefPanel.revalidate();
 		repaint();
 	}
 	
@@ -160,6 +163,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 		
 		this.actiefPanel=panel;
 		this.add(panel);
+		this.actiefPanel.revalidate();
 		repaint();
 	}
 	
@@ -215,6 +219,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 			
 			this.actiefPanel=panel;
 			this.add(panel);
+			this.actiefPanel.revalidate();
 			repaint();
 		}
 		else//toon wedstrijd nadat hij is gesloten
@@ -237,6 +242,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 			
 			this.actiefPanel=panel;
 			this.add(panel);
+			this.actiefPanel.revalidate();
 			repaint();
 		}
 		
@@ -256,6 +262,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 		
 		this.actiefPanel=panel;
 		this.add(panel);
+		this.actiefPanel.revalidate();
 		repaint();
 	}
 	
@@ -271,6 +278,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 		
 		this.actiefPanel=panel;
 		this.add(panel);
+		this.actiefPanel.revalidate();
 		repaint();
 		
 	}
