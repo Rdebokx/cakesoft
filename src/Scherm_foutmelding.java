@@ -33,7 +33,7 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 	
 	public void init()
 	{
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(new Rectangle(100,100,400,100));
 		this.setSize(400,110);
 		this.setResizable(false);
