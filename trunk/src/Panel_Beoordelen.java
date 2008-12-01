@@ -5,8 +5,7 @@ import java.util.*;
 
 public class Panel_Beoordelen extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-	//
+	
 	private ProgrammaController programmaC;
 	
 	private JLabel locatie = new JLabel("Locatie");
@@ -121,20 +120,6 @@ public class Panel_Beoordelen extends JPanel {
 			return this.DeelnemerLijst.get(geselecteerd);
 	}
 	
-	
-	@Override
-	/*public void actionPerformed(ActionEvent e) 
-	{
-		if(e.getSource() == this.beoordeel_knop)
-		{
-			programmaC.actieInschrijvingVerzenden();
-		}
-		if(e.getSource() == this.terug_knop)
-		{
-			programmaC.actieTerugNaarWedstrijd();
-		}		
-		
-	}*/
 	
 	public JButton getBeoordeel_knop()
 	{
