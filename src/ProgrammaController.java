@@ -410,6 +410,8 @@ public class ProgrammaController extends JFrame implements ActionListener
 				
 				panel.toonDeelnemer(deelnemer);
 				panel.setBeoordelingen(beoordelingen,gemiddelde);
+				this.repaint();
+				this.actiefPanel.revalidate();
 			}
 		}
 	}
