@@ -1,12 +1,14 @@
 import java.util.*;
 import javax.swing.*;
+import java.awt.event.*;
 
-public class ProgrammaController
+public class ProgrammaController extends JFrame implements ActionListener
 {
 	private Lid ingelogdLid=null;
 	private Wedstrijd actieveWedstrijd=null;
 	
-	private JFrame actiefScherm;
+	private JPanel actiefPanel=null;
+	//private JFrame actiefScherm;
 	
 	private beheerLid bLid;
 	private beheerWedstrijd bWedstrijd;
@@ -21,6 +23,13 @@ public class ProgrammaController
 	
 	public ProgrammaController()
 	{
+		setTitle("CakeSoft");
+		setSize(750,500);
+		setResizable(false);
+		setLocationRelativeTo(null); //centrering
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		
 		String hulpvar=Integer.toString(7812);
 		this.db=new Database("jdbc:mysql://130.161.47.78/cakesoft","cakesoft_team","hjka"+hulpvar);
 		this.bBaksel=new beheerBaksel(this.db);
@@ -32,27 +41,132 @@ public class ProgrammaController
 		this.bReactie=new beheerReactie(this.db);
 		this.bWedstrijd=new beheerWedstrijd(this.db);
 		
+		//this.actiefScherm=new Scherm_Login(this);
+		this.openLogin();
 		
-		this.actiefScherm=new Scherm_Login(this);
+		setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		if(this.actiefPanel instanceof Panel_Login)
+		{
+			Panel_Login panel=(Panel_Login)this.actiefPanel;
+			if(e.getSource()==panel.getLoginKnop() || e.getSource()==panel.getLidnr_veld() || e.getSource()==panel.getPass_veld())
+				this.actieLogin();
+		}
+		if(this.actiefPanel instanceof Panel_Hoofdscherm)
+		{
+			Panel_Hoofdscherm panel=(Panel_Hoofdscherm)this.actiefPanel;
+			if(e.getSource() == panel.getBekijkWedstrijd_knop())
+				this.actieBekijkWedstrijd();
+			else if(e.getSource() == panel.getNieuwWedstrijd_knop() && this.ingelogdLid.isHoofdbeheer())
+				this.openWedstrijdNieuw();
+			else if(e.getSource() == panel.getVerwijderBestelling_knop())
+				this.actieVerwijderBestelling();
+			else if(e.getSource() == panel.getLoguit_knop())
+				this.actieLoguit();
+		}
+		if(this.actiefPanel instanceof Panel_Wedstrijd)
+		{
+			Panel_Wedstrijd panel=(Panel_Wedstrijd)this.actiefPanel;
+			
+			if(e.getSource() == panel.getBekijkDeelnemer_knop())
+				this.actieBekijkDeelnemer();
+			if(e.getSource() == panel.getInschrijven_knop() && this.actieveWedstrijd.isInschrijvingOpen())
+				this.openInschrijven();
+			if(e.getSource() == panel.getTerug_knop())
+				this.actieTerugNaarHoofdscherm();
+			if(e.getSource()== panel.getSluitWedstrijd_knop())
+				this.actieSluitWedstrijd();
+		}
+		if(this.actiefPanel instanceof Panel_Inschrijven)
+		{
+			Panel_Inschrijven panel=(Panel_Inschrijven)this.actiefPanel;
+			
+			if(e.getSource() == panel.getInschrijf_knop())
+				this.actieInschrijvingVerzenden();
+			if(e.getSource() == panel.getTerug_knop())
+				this.actieTerugNaarWedstrijd();	
+		}
+		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
+		{
+			Panel_WedstrijdKlaar panel=(Panel_WedstrijdKlaar)this.actiefPanel;
+			
+			if(e.getSource() == panel.getBekijkDeelnemer_knop())
+				this.actieBekijkDeelnemer();
+			if(e.getSource() == panel.getTerug_knop())
+				this.actieTerugNaarHoofdscherm();
+			if(e.getSource()== panel.getBestel_knop() || e.getSource()== panel.getBestellen_veld())
+				this.actieBestel();
+			if(e.getSource()== panel.getJurylid_drop())
+				panel.updateBeoordeling();
+		}
+		if(this.actiefPanel instanceof Panel_WedstrijdNieuw)
+		{
+			Panel_WedstrijdNieuw panel=(Panel_WedstrijdNieuw)this.actiefPanel;
+			
+			if(e.getSource()==panel.getMaak_knop())
+				this.actieMaakWedstrijd();
+			if(e.getSource()==panel.getTerug_knop())
+				this.actieTerugNaarHoofdscherm();
+		}
+	}
+	
+	public void sluitActiefPanel()
+	{
+		if(this.actiefPanel==null)
+			return;
+		this.remove(this.actiefPanel);
+		this.actiefPanel=null;
+	}
+	
+	public void openLogin()
+	{
+		this.sluitActiefPanel();
+		
+		Panel_Login panel=new Panel_Login();
+		panel.setBounds(75,50,600,600);
+		panel.getLoginKnop().addActionListener(this);
+		panel.getLidnr_veld().addActionListener(this);
+		panel.getPass_veld().addActionListener(this);
+		
+		this.actiefPanel=panel;
+		this.add(panel);
+		repaint();
 	}
 	
 	public void openOverzicht()
 	{
-		this.actiefScherm.dispose();
-		this.actiefScherm=new Scherm_Hoofdscherm(this,this.ingelogdLid.isHoofdbeheer());
+		this.sluitActiefPanel();
+		
+		Panel_Hoofdscherm panel=new Panel_Hoofdscherm(this.ingelogdLid.isHoofdbeheer());
+		panel.setBounds(0,0,1000,1000);
+		
 		ArrayList<Wedstrijd> wedstrijden=this.bWedstrijd.getAlleWedstrijden();
 		ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
 		ArrayList<Bestelling> bestellingen_uitgaand=this.bBestelling.getBestellingenUitgaand(this.ingelogdLid);
 		
-		((Scherm_Hoofdscherm)this.actiefScherm).setWedstrijden(wedstrijden);
-		((Scherm_Hoofdscherm)this.actiefScherm).setBestellingInkomend(bestellingen_binnenkomend);
-		((Scherm_Hoofdscherm)this.actiefScherm).setBestellingUitgaand(bestellingen_uitgaand);
 		
+		panel.setWedstrijden(wedstrijden);
+		panel.setBestellingInkomend(bestellingen_binnenkomend);
+		panel.setBestellingUitgaand(bestellingen_uitgaand);
+		
+		
+		panel.getBekijkWedstrijd_knop().addActionListener(this);
+		panel.getNieuwWedstrijd_knop().addActionListener(this);
+		panel.getVerwijderBestelling_knop().addActionListener(this);
+		panel.getLoguit_knop().addActionListener(this);
+		
+		this.actiefPanel=panel;
+		this.add(panel);
+		repaint();
 	}
 	
 	public void openWedstrijd()
 	{
-		this.actiefScherm.dispose();
+		this.sluitActiefPanel();
+		
 		
 		//update de inschrijvingOpen en beoordelingOpen van deze wedstrijd
 		Date nu=new java.util.Date();
@@ -88,9 +202,20 @@ public class ProgrammaController
 			
 			boolean toonSluitKnop=(this.ingelogdLid.isHoofdbeheer() && this.actieveWedstrijd.isBeoordelingOpen());
 			
+			Panel_Wedstrijd panel=new Panel_Wedstrijd(this.actieveWedstrijd,isJury,isDeelnemer,toonSluitKnop);
+			panel.setBounds(0,0,1000,1000);
+			panel.setDeelnemers(deelnemers);
 			
-			this.actiefScherm=new Scherm_Wedstrijd(this,this.actieveWedstrijd,isJury,isDeelnemer,toonSluitKnop);
-			((Scherm_Wedstrijd)this.actiefScherm).setDeelnemers(deelnemers);
+			panel.getBekijkDeelnemer_knop().addActionListener(this);
+			if(this.actieveWedstrijd.isInschrijvingOpen() && !isJury && !isDeelnemer)
+				panel.getInschrijven_knop().addActionListener(this);
+			panel.getTerug_knop().addActionListener(this);
+			if(toonSluitKnop)
+				panel.getSluitWedstrijd_knop().addActionListener(this);
+			
+			this.actiefPanel=panel;
+			this.add(panel);
+			repaint();
 		}
 		else//toon wedstrijd nadat hij is gesloten
 		{
@@ -99,22 +224,66 @@ public class ProgrammaController
 			if(this.actieveWedstrijd.getWinnaar_lid_id()>0)
 				this.actieveWedstrijd.setWinnaar(this.bLid.getLidVanId(this.actieveWedstrijd.getWinnaar_lid_id()));
 			
-			this.actiefScherm=new Scherm_WedstrijdKlaar(this,this.actieveWedstrijd);
-			((Scherm_WedstrijdKlaar)this.actiefScherm).setDeelnemers(deelnemers);
+			Panel_WedstrijdKlaar panel=new Panel_WedstrijdKlaar(this.actieveWedstrijd);
+			panel.setBounds(0,0,1000,1000);
 			
+			panel.setDeelnemers(deelnemers);
+			
+			panel.getBekijkDeelnemer_knop().addActionListener(this);
+			panel.getTerug_knop().addActionListener(this);
+			panel.getBestel_knop().addActionListener(this);
+			panel.getJurylid_drop().addActionListener(this);
+			panel.getBestellen_veld().addActionListener(this);
+			
+			this.actiefPanel=panel;
+			this.add(panel);
+			repaint();
 		}
 		
+		
+		
 	}
-
+	
+	public void openWedstrijdNieuw()
+	{
+		this.sluitActiefPanel();
+		
+		Panel_WedstrijdNieuw panel=new Panel_WedstrijdNieuw();
+		panel.setBounds(0,0,1000,1000);
+		
+		panel.getMaak_knop().addActionListener(this);
+		panel.getTerug_knop().addActionListener(this);
+		
+		this.actiefPanel=panel;
+		this.add(panel);
+		repaint();
+	}
+	
+	public void openInschrijven()
+	{
+		this.sluitActiefPanel();
+		
+		Panel_Inschrijven panel=new Panel_Inschrijven(this.actieveWedstrijd);
+		panel.setBounds(0,0,1000,1000);
+		
+		panel.getInschrijf_knop().addActionListener(this);
+		panel.getTerug_knop().addActionListener(this);
+		
+		this.actiefPanel=panel;
+		this.add(panel);
+		repaint();
+		
+	}
 //
 // Acties voor Scherm_login
 //	
 	
 	public void actieLogin()
 	{
-		if(!(this.actiefScherm instanceof Scherm_Login))
+		if(!(this.actiefPanel instanceof Panel_Login))
 			return;//zou niet moeten kunnen
-		Lid ingevuldLid=((Scherm_Login)this.actiefScherm).getLid();
+		
+		Lid ingevuldLid=((Panel_Login)this.actiefPanel).getLid();
 		
 		Lid ingelogdLid=this.bLid.getLidDoorLogin(ingevuldLid);
 		if(ingelogdLid==null)
@@ -140,9 +309,12 @@ public class ProgrammaController
 	
 	public void actieBekijkWedstrijd()
 	{
-		if(!(this.actiefScherm instanceof Scherm_Hoofdscherm))
+		if(!(this.actiefPanel instanceof Panel_Hoofdscherm))
 			return;
-		Wedstrijd wedstrijd=((Scherm_Hoofdscherm)this.actiefScherm).getGeselecteerdeWedstrijd();
+		Panel_Hoofdscherm panel=(Panel_Hoofdscherm)this.actiefPanel;
+		
+		Wedstrijd wedstrijd=panel.getGeselecteerdeWedstrijd();
+		
 		if(wedstrijd==null)
 			new Scherm_foutmelding("U moet eerst een wedstrijd uit de lijst selecteren.");
 		else
@@ -152,18 +324,15 @@ public class ProgrammaController
 		}
 		
 	}
-
-	public void actieNieuwWedstrijd()
-	{
-		this.actiefScherm.dispose();
-		this.actiefScherm=new Scherm_WedstrijdNieuw(this);
-	}
 	
 	public void actieVerwijderBestelling()
 	{
-		if(!(this.actiefScherm instanceof Scherm_Hoofdscherm))
+		if(!(this.actiefPanel instanceof Panel_Hoofdscherm))
 			return;
-		Bestelling bestelling=((Scherm_Hoofdscherm)this.actiefScherm).getGeselecteerdeInBestelling();
+		
+		Panel_Hoofdscherm panel=(Panel_Hoofdscherm)this.actiefPanel;
+		
+		Bestelling bestelling=panel.getGeselecteerdeInBestelling();
 		if(bestelling==null)
 			new Scherm_foutmelding("U moet eerst een bestelling uit de lijst selecteren.");
 		else
@@ -171,7 +340,7 @@ public class ProgrammaController
 			this.bBestelling.verwijderBestelling(bestelling);
 			
 			ArrayList<Bestelling> bestellingen_binnenkomend=this.bBestelling.getBestellingenInkomend(this.ingelogdLid);
-			((Scherm_Hoofdscherm)this.actiefScherm).setBestellingInkomend(bestellingen_binnenkomend);
+			panel.setBestellingInkomend(bestellingen_binnenkomend);
 			
 			new Scherm_foutmelding("Deze ontvangen bestelling is nu verwijderd.","Bestelling verwijderen");
 		}
@@ -180,9 +349,7 @@ public class ProgrammaController
 	public void actieLoguit()
 	{
 		this.ingelogdLid=null;
-		
-		this.actiefScherm.dispose();
-		this.actiefScherm=new Scherm_Login(this);
+		this.openLogin();
 	}
 
 //
@@ -191,21 +358,29 @@ public class ProgrammaController
 	
 	public void actieBekijkDeelnemer()
 	{
-		if(this.actiefScherm instanceof Scherm_Wedstrijd)
+		if(this.actiefPanel instanceof Panel_Wedstrijd)
 		{
-			Deelnemer deelnemer=((Scherm_Wedstrijd)this.actiefScherm).getGeselecteerdeDeelnemer();
+			Panel_Wedstrijd panel=(Panel_Wedstrijd)this.actiefPanel;
+			
+			Deelnemer deelnemer=panel.getGeselecteerdeDeelnemer();
 			if(deelnemer==null)
+			{
 				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
+			}
 			else
 			{
-				((Scherm_Wedstrijd)this.actiefScherm).toonDeelnemer(deelnemer);
+				panel.toonDeelnemer(deelnemer);
 			}
 		}
-		if(this.actiefScherm instanceof Scherm_WedstrijdKlaar)
+		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
 		{
-			Deelnemer deelnemer=((Scherm_WedstrijdKlaar)this.actiefScherm).getGeselecteerdeDeelnemer();
+			Panel_WedstrijdKlaar panel=(Panel_WedstrijdKlaar)this.actiefPanel;
+			
+			Deelnemer deelnemer=panel.getGeselecteerdeDeelnemer();
 			if(deelnemer==null)
+			{
 				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
+			}
 			else
 			{
 				ArrayList<Beoordeling> beoordelingen=this.bBeoordeling.getBeoordelingenVanBaksel(deelnemer.getBaksel());
@@ -225,19 +400,24 @@ public class ProgrammaController
 					gemiddelde.setSmaak((int)Math.round(((double)gemiddelde.getSmaak())/((double)beoordelingen.size())));
 				}
 				
-				((Scherm_WedstrijdKlaar)this.actiefScherm).toonDeelnemer(deelnemer);
-				((Scherm_WedstrijdKlaar)this.actiefScherm).setBeoordelingen(beoordelingen,gemiddelde);
+				panel.toonDeelnemer(deelnemer);
+				panel.setBeoordelingen(beoordelingen,gemiddelde);
 			}
 		}
 	}
 	
 	public void actieBestel()
 	{
-		if(!(this.actiefScherm instanceof Scherm_WedstrijdKlaar))
+		if(!(this.actiefPanel instanceof Panel_WedstrijdKlaar))
 			return;
-		Bestelling bestelling=((Scherm_WedstrijdKlaar)this.actiefScherm).getBestelling();
+		
+		Panel_WedstrijdKlaar panel=(Panel_WedstrijdKlaar)this.actiefPanel;
+		
+		Bestelling bestelling=panel.getBestelling();
 		if(bestelling==null)
+		{
 			new Scherm_foutmelding("U hebt geen geldig aantal ingevuld om te bestellen.");
+		}
 		else
 		{
 			if(bestelling.getAantal()<1)
@@ -246,24 +426,20 @@ public class ProgrammaController
 			{
 				bestelling.setLid_besteller(this.ingelogdLid);
 				this.bBestelling.voegBestellingToe(bestelling);
+				
 				new Scherm_foutmelding("Uw bestelling voor "+bestelling.getAantal()+" stuk"+(bestelling.getAantal()==1?"":"s")+" van dit baksel is geplaatst.","Nieuwe bestelling");
 			}
 		}
 	}
 	
-	public void actieInschrijven()
-	{
-		this.actiefScherm.dispose();
-		this.actiefScherm=new Scherm_Inschrijven(this,this.actieveWedstrijd);
-	}
-	
 	public void actieSluitWedstrijd()
 	{
-		if(!(this.actiefScherm instanceof Scherm_Wedstrijd))
+		if(!(this.actiefPanel instanceof Panel_Wedstrijd))
 			return;
 		
+		//Panel_Wedstrijd panel=(Panel_Wedstrijd)this.actiefPanel;
+		
 		this.actieveWedstrijd.setBeoordelingOpen(false);
-		int winnaar_lid_id=0;
 		
 		double smaak,prijs,kwaliteit,calo,teller;
 		ArrayList<Beoordeling> beoordelingen;
@@ -344,11 +520,15 @@ public class ProgrammaController
 	
 	public void actieMaakWedstrijd()
 	{
-		if(!(this.actiefScherm instanceof Scherm_WedstrijdNieuw))
+		if(!(this.actiefPanel instanceof Panel_WedstrijdNieuw))
 			return;
-		Wedstrijd wedstrijd=((Scherm_WedstrijdNieuw)this.actiefScherm).getWedstrijd();
+		
+		Panel_WedstrijdNieuw panel=(Panel_WedstrijdNieuw)this.actiefPanel;
+		
+		Wedstrijd wedstrijd=panel.getWedstrijd();
 		if(wedstrijd==null)
 			return;//geen geldige invoer
+		
 		String jury_naam,namen;
 		ArrayList<Lid> mogelijkheden;
 		ArrayList<Jury> juryleden=new ArrayList<Jury>();
@@ -358,7 +538,7 @@ public class ProgrammaController
 		for(i=1;i<=3;i++)
 		{
 			//vraag naam op van het scherm
-			jury_naam=((Scherm_WedstrijdNieuw)this.actiefScherm).getJuryNaam(i);
+			jury_naam=panel.getJuryNaam(i);
 			
 			if(jury_naam.equals("") || jury_naam==null)
 			{
@@ -406,9 +586,12 @@ public class ProgrammaController
 	
 	public void actieInschrijvingVerzenden()
 	{
-		if(!(this.actiefScherm instanceof Scherm_Inschrijven))
+		if(!(this.actiefPanel instanceof Panel_Inschrijven))
 			return;
-		Baksel baksel=((Scherm_Inschrijven)this.actiefScherm).getBaksel();
+		
+		Panel_Inschrijven panel=(Panel_Inschrijven)this.actiefPanel;
+		
+		Baksel baksel=panel.getBaksel();
 		if(baksel!=null)
 		{
 			this.bBaksel.voegBakselToe(baksel);
