@@ -98,6 +98,10 @@ public class ProgrammaController extends JFrame implements ActionListener
 			
 			if(e.getSource() == panel.getBekijkDeelnemer_knop())
 				this.actieBekijkDeelnemer();
+			if(e.getSource()== panel.getBekijkReactie_knop())
+				this.actieBekijkReacties();
+			if(e.getSource() == panel.getBekijkReactieInvert_knop())
+				this.actieBekijkDeelnemer();
 			if(e.getSource() == panel.getTerug_knop())
 				this.actieTerugNaarHoofdscherm();
 			if(e.getSource()== panel.getBestel_knop() || e.getSource()== panel.getBestellen_veld())
@@ -250,6 +254,8 @@ public class ProgrammaController extends JFrame implements ActionListener
 			panel.setDeelnemers(deelnemers);
 			
 			panel.getBekijkDeelnemer_knop().addActionListener(this);
+			panel.getBekijkReactie_knop().addActionListener(this);
+			panel.getBekijkReactieInvert_knop().addActionListener(this);
 			panel.getTerug_knop().addActionListener(this);
 			panel.getBestel_knop().addActionListener(this);
 			panel.getJurylid_drop().addActionListener(this);
@@ -454,7 +460,31 @@ public class ProgrammaController extends JFrame implements ActionListener
 			}
 		}
 	}
-	
+
+	public void actieBekijkReacties()
+	{
+		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
+		{
+			Panel_WedstrijdKlaar panel=(Panel_WedstrijdKlaar)this.actiefPanel;
+			
+			Deelnemer deelnemer=panel.getGeselecteerdeDeelnemer();
+			if(deelnemer==null)
+			{
+				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
+			}
+			else
+			{
+				this.actieveDeelnemer=deelnemer;
+				ArrayList<Reactie> reacties=this.bReactie.getReactiesOpBaksel(deelnemer.getBaksel());
+				
+				
+				panel.toonReacties(deelnemer);
+				this.repaint();
+				this.actiefPanel.revalidate();
+			}
+		}
+	}
+
 	public void actieBestel()
 	{
 		if(!(this.actiefPanel instanceof Panel_WedstrijdKlaar))
