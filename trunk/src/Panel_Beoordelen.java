@@ -6,14 +6,8 @@ import java.util.*;
 public class Panel_Beoordelen extends JPanel {
 
 	
-	private ProgrammaController programmaC;
-	
-	private JLabel locatie = new JLabel("Locatie");
-	private JLabel datum = new JLabel("Datum");
-	
-	private JLabel deelnemers = new JLabel("Deelnemers:");
 	private JLabel naam = new JLabel("Naam:");
-	private JTextPane naampane = new JTextPane();
+	private JLabel naam_waarde = new JLabel();
 	
 	private JLabel prijs = new JLabel("Prijshoogte:");
 	private JLabel kwaliteit = new JLabel("Kwaliteit:");
@@ -25,9 +19,9 @@ public class Panel_Beoordelen extends JPanel {
 	private JTextField calorie_veld = new JTextField();
 	private JTextField smaak_veld = new JTextField();
 	
-	private JList deelnemers_lijst = new JList();
-	private JScrollPane deelnemers_scroll = new JScrollPane();
-	private JButton deelnemer_knop = new JButton("Bekijk deelnemer");
+	private JLabel commentaar = new JLabel("Commentaar:");
+	private JTextArea commentaar_veld = new JTextArea();
+	
 	private JButton beoordeel_knop = new JButton("Beoordeel");
 	private JButton terug_knop = new JButton("Terug");
 	
@@ -35,7 +29,6 @@ public class Panel_Beoordelen extends JPanel {
 	
 	public Panel_Beoordelen()
 	{
-		this.programmaC=programmaC;
 		
   		/*basis-instellingen scherm
 		setTitle("CakeSoft - Beoordelen");
@@ -48,29 +41,25 @@ public class Panel_Beoordelen extends JPanel {
 		
 		//alles aan container positioneren
 		
-		datum.setBounds(30,30,300,20);
-		locatie.setBounds(30,60,300,20);
+		naam.setBounds(10,10,200,20);
+		naam_waarde.setBounds(100,10,150,25);
 		
-		deelnemers.setBounds(30,140,200,20);
-		deelnemers_scroll.setBounds(30,160,200,150);
-		deelnemer_knop.setBounds(30,310,200,25);
+		kwaliteit.setBounds(10,50,200,20);
+		kwaliteit_veld.setBounds(100,50,150,20);
 		
-		naam.setBounds(520,140,200,20);
-		naampane.setBounds(570,140,150,25);
+		prijs.setBounds(10,90,200,20);
+		prijs_veld.setBounds(100,90,150,25);
 		
-		kwaliteit.setBounds(520,180,200,20);
-		kwaliteit_veld.setBounds(570,180,150,20);
+		calorie.setBounds(10,130,200,20);
+		calorie_veld.setBounds(100,130,150,25);
 		
-		prijs.setBounds(520,210,200,20);
-		prijs_veld.setBounds(570,210,150,25);
+		smaak.setBounds(10,170,200,20);
+		smaak_veld.setBounds(100,170,150,25);
 		
-		calorie.setBounds(520,240,200,20);
-		calorie_veld.setBounds(570,240,150,25);
+		commentaar.setBounds(10,210,50,20);
+		commentaar_veld.setBounds(100,210,150,100);
 		
-		smaak.setBounds(520,270,200,20);
-		smaak_veld.setBounds(570,270,150,25);
-		
-		beoordeel_knop.setBounds(520,310,200,25);
+		beoordeel_knop.setBounds(10,325,200,25);
 		
 		terug_knop.setBounds(30,380,75,25);
 		
@@ -80,14 +69,9 @@ public class Panel_Beoordelen extends JPanel {
 		
 		//aan het Frame toevoegen
 		
-		add(datum);
-		add(locatie);
-		
-		add(deelnemers);
-		add(deelnemers_scroll);
 		
 		add(naam);
-		add(naampane);
+		add(naam_waarde);
 		
 		add(kwaliteit);
 		add(kwaliteit_veld);
@@ -95,8 +79,14 @@ public class Panel_Beoordelen extends JPanel {
 		add(prijs);
 		add(prijs_veld);
 		
+		add(calorie);
+		add(calorie_veld);
+		
 		add(smaak);
 		add(smaak_veld);
+		
+		add(commentaar);
+		add(commentaar_veld);
 		
 		add(beoordeel_knop);
 		add(terug_knop);	
@@ -109,15 +99,57 @@ public class Panel_Beoordelen extends JPanel {
 		setVisible(true);
 		
 	}
-	// TODO Hier moet nog even naar gekeken worden
-	public Deelnemer getGeselecteerdeDeelnemer()
+	
+	public Beoordeling getBeoordeling()
 	{
-		int geselecteerd=this.deelnemers_lijst.getSelectedIndex();
+		Beoordeling beoordeling=null;
 		
-		if(geselecteerd<0)
+		int calo=0,kwaliteit=0,prijs=0,smaak=0;
+		
+		try
+		{
+			calo=Integer.valueOf(this.calorie_veld.getText());
+			kwaliteit=Integer.valueOf(this.kwaliteit_veld.getText());
+			prijs=Integer.valueOf(this.prijs_veld.getText());
+			smaak=Integer.valueOf(this.smaak_veld.getText());
+		}
+		catch(Exception e)
+		{
+			//
+		}
+		
+		if(calo<1 || calo>10)
+		{
+			new Scherm_foutmelding("U hebt geen geldige waardering voor het caloriegehalte ingevuld.");
 			return null;
-		else
-			return this.DeelnemerLijst.get(geselecteerd);
+		}
+		if(kwaliteit<1 || kwaliteit>10)
+		{
+			new Scherm_foutmelding("U hebt geen geldige waardering voor de kwaliteit ingevuld.");
+			return null;
+		}
+		if(prijs<1 || prijs>10)
+		{
+			new Scherm_foutmelding("U hebt geen geldige waardering voor de prijshoogte ingevuld.");
+			return null;
+		}
+		if(smaak<1 || smaak>10)
+		{
+			new Scherm_foutmelding("U hebt geen geldige waardering voor de smaak ingevuld.");
+			return null;
+		}
+		
+		beoordeling=new Beoordeling();
+		
+		beoordeling.setCalo(calo);
+		beoordeling.setKwaliteit(kwaliteit);
+		beoordeling.setPrijs(prijs);
+		beoordeling.setSmaak(smaak);
+		
+		beoordeling.setCommentaar(this.commentaar_veld.getText());
+		
+		
+		return beoordeling;
 	}
 	
 	

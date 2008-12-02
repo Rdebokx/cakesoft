@@ -35,11 +35,14 @@ public class Panel_Wedstrijd extends JPanel
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
 	private JButton sluitWedstrijd_knop = new JButton("Sluit Wedstrijd");
+	private JButton beoordeel_knop = new JButton("Beoordeel");
 	private JButton inschrijven_knop = new JButton("Schrijf in");
 	private JButton terug_knop = new JButton("Terug");
 	//private JButton bestel_knop = new JButton("Bestel dit");
 	//private JTextField bestellen_veld = new JTextField();
 	private JPanel baksel_paneel = new JPanel(null);
+	private JLabel kan_niet_beoordelen = new JLabel("U hebt dit baksel al beoordeeld");
+	
 	
 		
 	public Panel_Wedstrijd( Wedstrijd wedstrijd, boolean isJury, boolean isDeelnemer, boolean toonSluitKnop)
@@ -70,6 +73,7 @@ public class Panel_Wedstrijd extends JPanel
 		//alles aan container positioneren		
 		datum.setBounds(30,30,300,20);
 		locatie.setBounds(30,60,300,20);
+		
 
 		deelnemers.setBounds(30,120,200,20);
 		deelnemers_scroll.setBounds(30,140,200,120);
@@ -89,6 +93,10 @@ public class Panel_Wedstrijd extends JPanel
 		ingredienten_scroll.setBounds(0,160,200,100);
 		recept.setBounds(210,140,200,20);
 		recept_scroll.setBounds(210,160,200,100);
+		//TODO goede locatie bedenken voor deze knop
+		beoordeel_knop.setBounds(30,100,300,20);
+		kan_niet_beoordelen.setBounds(30,100,300,20);//zelfde plek als button, als het kan
+		
 		baksel_paneel.setVisible(false);
 		
 		
@@ -116,7 +124,15 @@ public class Panel_Wedstrijd extends JPanel
 		baksel_paneel.add(ingredienten_scroll);
 		baksel_paneel.add(recept);
 		baksel_paneel.add(recept_scroll);
+		if(this.isJury && this.wedstrijd.isBeoordelingOpen())
+		{
+			baksel_paneel.add(kan_niet_beoordelen);
+			baksel_paneel.add(beoordeel_knop);
+		}
 		add(baksel_paneel);
+		
+		kan_niet_beoordelen.setVisible(false);
+		beoordeel_knop.setVisible(false);
 		
 		/*add(bestellen);
 		add(bestellen_veld);
@@ -162,7 +178,7 @@ public class Panel_Wedstrijd extends JPanel
 		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);	
 	}
 	
-	public void toonDeelnemer(Deelnemer deelnemer)
+	public void toonDeelnemer(Deelnemer deelnemer, boolean heeftBeoordeeld)
 	{
 		this.deelnemer=deelnemer;
 		this.baksel.setText("Baksel van "+deelnemer.getNaam()+":");
@@ -171,6 +187,10 @@ public class Panel_Wedstrijd extends JPanel
 		this.prijs.setText("Prijs: "+NumberFormat.getCurrencyInstance().format(deelnemer.getBaksel().getPrijs()));
 		this.ingredienten_tekst.setText(deelnemer.getBaksel().getIngredienten());
 		this.recept_tekst.setText(deelnemer.getBaksel().getRecept());
+		
+		this.beoordeel_knop.setVisible(this.isJury && !heeftBeoordeeld);
+		this.kan_niet_beoordelen.setVisible(this.isJury && heeftBeoordeeld);
+		
 		this.baksel_paneel.setVisible(true);
 	}
 	
@@ -210,5 +230,10 @@ public class Panel_Wedstrijd extends JPanel
 	public JButton getTerug_knop()
 	{
 		return this.terug_knop;
+	}
+	
+	public JButton getBeoordeel_knop()
+	{
+		return this.beoordeel_knop;
 	}
 }
