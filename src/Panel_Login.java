@@ -24,8 +24,8 @@ public class Panel_Login extends JPanel
 		pass = new JLabel("Wachtwoord");
 		lidnr_veld = new JTextField();
 		pass_veld = new JTextField();
-		loginknop = new IconButton("icoon_test.jpg", "Login").show();
-						
+		loginknop = new IconButton("icon_test.png", "Login").show();
+
   		//basis-instellingen scherm
 		/*setTitle("CakeSoft");
 		setSize(600,400);
