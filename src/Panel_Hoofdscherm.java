@@ -21,10 +21,10 @@ public class Panel_Hoofdscherm extends JPanel
 	private String[] wedstrijd_items;
 	private String[] ontvangen_items;
 	private String[] besteld_items;	
-	private JButton bekijkWedstrijd_knop = new JButton("Bekijk wedstrijd");
-	private JButton nieuwWedstrijd_knop = new JButton("Nieuwe wedstrijd");
-	private JButton verwijderBestelling_knop = new JButton("Verwijder bestelling");
-	private JButton loguit_knop = new JButton("Loguit");
+	private JButton bekijkWedstrijd_knop = new IconButton("icoon_test.jpg", "Bekijk wedstrijd").show();
+	private JButton nieuwWedstrijd_knop = new IconButton("icoon_test.jpg", "Nieuwe wedstrijd").show();
+	private JButton verwijderBestelling_knop = new IconButton("icoon_test.jpg", "Verwijder bestelling").show();
+	private JButton loguit_knop = new IconButton("icoon_test.jpg", "Loguit").show();
 	
 	private ArrayList<Wedstrijd> WedstrijdLijst;
 	private ArrayList<Bestelling> InBestellingLijst;
@@ -48,19 +48,19 @@ public class Panel_Hoofdscherm extends JPanel
 		
 		//alles aan container positioneren
 		wedstrijd.setBounds(30,30,300,20);
-		wedstrijd_scroll.setBounds(30,50,300,175);
-		bekijkWedstrijd_knop.setBounds(30,225,150,20);
+		wedstrijd_scroll.setBounds(30,50,300,220);
+		bekijkWedstrijd_knop.setBounds(30,270,150,20);
 		if(this.hoofdbeheer)
-			nieuwWedstrijd_knop.setBounds(180,225,150,20);
+			nieuwWedstrijd_knop.setBounds(180,270,150,20);
 		
 		ontvangen.setBounds(400,30,300,20);
-		ontvangen_scroll.setBounds(400,50,300,120);
-		verwijderBestelling_knop.setBounds(400,170,300,20);
+		ontvangen_scroll.setBounds(400,50,300,150);
+		verwijderBestelling_knop.setBounds(400,200,300,20);
 		
-		besteld.setBounds(400,220,300,20);
-		besteld_scroll.setBounds(400,240,300,120);
+		besteld.setBounds(400,250,300,20);
+		besteld_scroll.setBounds(400,270,300,150);
 		
-		loguit_knop.setBounds(30,380,75,25);
+		loguit_knop.setBounds(30,430,75,25);
 		
 		//aan het frame toevoegen
 		add(wedstrijd_scroll);
