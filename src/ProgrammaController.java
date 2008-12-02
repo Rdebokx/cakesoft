@@ -6,6 +6,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 {
 	private Lid ingelogdLid=null;
 	private Wedstrijd actieveWedstrijd=null;
+	private Deelnemer actieveDeelnemer=null;
 	
 	private JPanel actiefPanel=null;
 	//private JFrame actiefScherm;
@@ -79,6 +80,8 @@ public class ProgrammaController extends JFrame implements ActionListener
 				this.actieTerugNaarHoofdscherm();
 			if(e.getSource()== panel.getSluitWedstrijd_knop())
 				this.actieSluitWedstrijd();
+			if(e.getSource()==panel.getBeoordeel_knop() && this.actieveWedstrijd.isBeoordelingOpen() && this.actieveDeelnemer!=null)
+				this.openBeoordelen();
 		}
 		if(this.actiefPanel instanceof Panel_Inschrijven)
 		{
@@ -110,6 +113,15 @@ public class ProgrammaController extends JFrame implements ActionListener
 				this.actieMaakWedstrijd();
 			if(e.getSource()==panel.getTerug_knop())
 				this.actieTerugNaarHoofdscherm();
+		}
+		if(this.actiefPanel instanceof Panel_Beoordelen)
+		{
+			Panel_Beoordelen panel=(Panel_Beoordelen)this.actiefPanel;
+			
+			if(e.getSource()==panel.getBeoordeel_knop())
+				this.actieBeoordeel();
+			if(e.getSource()==panel.getTerug_knop())
+				this.openWedstrijd();
 		}
 	}
 	
@@ -206,6 +218,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 			
 			boolean toonSluitKnop=(this.ingelogdLid.isHoofdbeheer() && this.actieveWedstrijd.isBeoordelingOpen());
 			
+			
 			Panel_Wedstrijd panel=new Panel_Wedstrijd(this.actieveWedstrijd,isJury,isDeelnemer,toonSluitKnop);
 			panel.setBounds(0,0,1000,1000);
 			panel.setDeelnemers(deelnemers);
@@ -216,6 +229,8 @@ public class ProgrammaController extends JFrame implements ActionListener
 			panel.getTerug_knop().addActionListener(this);
 			if(toonSluitKnop)
 				panel.getSluitWedstrijd_knop().addActionListener(this);
+			if(isJury && this.actieveWedstrijd.isBeoordelingOpen())
+				panel.getBeoordeel_knop().addActionListener(this);
 			
 			this.actiefPanel=panel;
 			this.add(panel);
@@ -281,6 +296,22 @@ public class ProgrammaController extends JFrame implements ActionListener
 		this.actiefPanel.revalidate();
 		repaint();
 		
+	}
+	
+	public void openBeoordelen()
+	{
+		this.sluitActiefPanel();
+		
+		Panel_Beoordelen panel=new Panel_Beoordelen();
+		panel.setBounds(0,0,1000,1000);
+		
+		panel.getBeoordeel_knop().addActionListener(this);
+		panel.getTerug_knop().addActionListener(this);
+		
+		this.actiefPanel=panel;
+		this.add(panel);
+		this.actiefPanel.revalidate();
+		repaint();
 	}
 //
 // Acties voor Scherm_login
@@ -377,7 +408,14 @@ public class ProgrammaController extends JFrame implements ActionListener
 			}
 			else
 			{
-				panel.toonDeelnemer(deelnemer);
+				this.actieveDeelnemer=deelnemer;
+				Jury actiefJuryLid=this.bJury.getJuryVanWedstrijd(this.actieveWedstrijd,this.ingelogdLid);
+				Boolean heeftBeoordeeld=false;
+				if(actiefJuryLid!=null)
+				{
+					heeftBeoordeeld=(this.bBeoordeling.getBeoordelingVanJuryVoorBaksel(actiefJuryLid, deelnemer.getBaksel())!=null);
+				}
+				panel.toonDeelnemer(deelnemer,heeftBeoordeeld);
 			}
 		}
 		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
@@ -391,6 +429,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 			}
 			else
 			{
+				this.actieveDeelnemer=deelnemer;
 				ArrayList<Beoordeling> beoordelingen=this.bBeoordeling.getBeoordelingenVanBaksel(deelnemer.getBaksel());
 				Beoordeling gemiddelde=new Beoordeling(0,"",0,0,0,0);
 				for(Beoordeling beoordeling:beoordelingen)
@@ -492,11 +531,10 @@ public class ProgrammaController extends JFrame implements ActionListener
 		
 		//bubble sorten
 		boolean actie=true;
-		for(i=0;i<temp_deelnemers.length;i++)
+		for(i=0;(i<temp_deelnemers.length && actie);i++)
 		{
-			for(j=0;(j<temp_deelnemers.length-1 && actie);j++)
+			for(j=0;j<temp_deelnemers.length-1;j++)
 			{
-				actie=false;
 				if(temp_deelnemers[j+1].getPunten()>temp_deelnemers[j].getPunten())
 				{
 					temp_deelnemer=temp_deelnemers[j];
@@ -612,6 +650,33 @@ public class ProgrammaController extends JFrame implements ActionListener
 			this.openWedstrijd();
 			new Scherm_foutmelding("U bent nu ingeschreven voor deze wedstrijd.","Inschrijven");
 		}
+	}
+	
+	
+	
+	
+	public void actieBeoordeel()
+	{
+		if(!(this.actiefPanel instanceof Panel_Beoordelen))
+			return;
+		
+		Panel_Beoordelen panel=(Panel_Beoordelen)this.actiefPanel;
+		
+		Beoordeling beoordeling=panel.getBeoordeling();
+		if(beoordeling==null)
+			return;//fout bij het invullen
+		
+		Jury actiefJuryLid=this.bJury.getJuryVanWedstrijd(this.actieveWedstrijd,this.ingelogdLid);
+		Baksel actiefBaksel=this.actieveDeelnemer.getBaksel();
+		
+		beoordeling.setJury(actiefJuryLid);
+		
+		this.bBeoordeling.voegBeoordelingToe(beoordeling, actiefJuryLid, actiefBaksel);
+		
+		this.openWedstrijd();
+		
+		new Scherm_foutmelding("Uw beoordeling is toegevoegd.","Baksel beoordelen");
+		
 	}
 
 	

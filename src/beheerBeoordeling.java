@@ -115,17 +115,20 @@ public class beheerBeoordeling {
 		q.stelVoorwaardeIn("baksel_id", query.GELIJK, baksel.getBaksel_id());
 		
 		ResultSet data = database.select(q);
-		Beoordeling res = new Beoordeling();
+		Beoordeling res=null;
 		
 		try
 		{
-			res.setBeoordeling_id(data.getInt("beoordeling_id"));
-			res.setCommentaar(data.getString("commentaar"));
-			res.setKwaliteit(data.getInt("kwaliteit"));
-			res.setPrijs(data.getInt("prijs"));
-			res.setCalo(data.getInt("calo"));
-			res.setSmaak(data.getInt("smaak"));
-			
+			if(data.next())
+			{
+				res = new Beoordeling();
+				res.setBeoordeling_id(data.getInt("beoordeling_id"));
+				res.setCommentaar(data.getString("commentaar"));
+				res.setKwaliteit(data.getInt("kwaliteit"));
+				res.setPrijs(data.getInt("prijs"));
+				res.setCalo(data.getInt("calo"));
+				res.setSmaak(data.getInt("smaak"));
+			}
 		}
 		catch(Exception e)
 		{
