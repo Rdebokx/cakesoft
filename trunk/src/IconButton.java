@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-//Deze klasse helpt mee bij het creeren van plaatjes in knoppen mbv Icon-klasse
+//De Klasse IconButton voegt een icoon aan een knop toe
 public class IconButton
 {
 	private JButton button = new JButton();
@@ -9,8 +9,7 @@ public class IconButton
 	
 	public IconButton(String iconPath, String textIn)
 	{
-		icon = new ImageIcon(iconPath);
-		
+		icon = new ImageIcon(getClass().getResource(iconPath));
 		button.setMargin(new Insets(0,0,0,0));
 		button.setIcon(icon);
 		button.setText(textIn);		
