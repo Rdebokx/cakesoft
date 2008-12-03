@@ -9,10 +9,17 @@ public class IconButton
 	
 	public IconButton(String iconPath, String textIn)
 	{
-		icon = new ImageIcon(getClass().getResource(iconPath));
-		button.setMargin(new Insets(0,0,0,0));
-		button.setIcon(icon);
-		button.setText(textIn);		
+		try
+		{
+			icon = new ImageIcon(getClass().getResource(iconPath));
+			button.setMargin(new Insets(0,0,0,0));
+			button.setIcon(icon);
+			button.setText(textIn);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Bestandsfout: "+iconPath);
+		}
 	}
 	
 	public JButton show()
