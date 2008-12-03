@@ -107,7 +107,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 				
 		deelnemers.setBounds(30,140,200,20);
 		deelnemers_scroll.setBounds(30,160,200,120);
-		bekijkDeelnemer_knop.setBounds(30,280,200,35);
+		bekijkDeelnemer_knop.setBounds(30,285,200,35);
 
 		//Baksel-paneel		
 		baksel_paneel.setBounds(275,30,1000,700);
@@ -137,16 +137,16 @@ public class Panel_WedstrijdKlaar extends JPanel
 		//recept.setBounds(210,245,200,20);
 		recept_scroll.setBounds(210,265,200,100);
 
-		reactie_knop.setBounds(255,385,150,40);
+		reactie_knop.setBounds(305,395,150,40);
 		
 		//Reactie-paneel
-		reactie_paneel.setBounds(275,15,1000,700);
+		reactie_paneel.setBounds(275,30,1000,700);
 		reacties.setBounds(0,0,300,20);
 		reacties_scroll.setBounds(0,25,455,240);
 		plaats_reactie.setBounds(0,275,200,20);
 		reactie_veld_scroll.setBounds(0,300,455,90);
-		plaats_reactie_knop.setBounds(0,405,150,40);
-		reactieInvert_knop.setBounds(305,405,150,40);
+		plaats_reactie_knop.setBounds(0,395,150,40);
+		reactieInvert_knop.setBounds(305,395,150,40);
 		
 		baksel_paneel.setVisible(false);
 		reactie_paneel.setVisible(false);

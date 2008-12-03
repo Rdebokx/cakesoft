@@ -72,13 +72,13 @@ public class Panel_Inschrijven extends JPanel
 		catogorie_veld.setBounds(120,145,120,20);
 		prijs.setBounds(30,165,300,20);
 		prijs_veld.setBounds(120,170,120,20);
-		ingredienten.setBounds(30,190,250,20);
-		ingredienten_scroll.setBounds(30,210,250,120);
-		recept.setBounds(350,190,250,20);
-		recept_scroll.setBounds(350,210,360,120);
+		ingredienten.setBounds(30,200,250,20);
+		ingredienten_scroll.setBounds(30,220,250,120);
+		recept.setBounds(350,200,250,20);
+		recept_scroll.setBounds(350,220,360,120);
 		
-		inschrijf_knop.setBounds(520,30,200,50);		
-		terug_knop.setBounds(30,380,75,35);
+		inschrijf_knop.setBounds(520,415,200,50);		
+		terug_knop.setBounds(30,430,75,35);
 		
 		//aan het frame toevoegen
 		add(datum);		
