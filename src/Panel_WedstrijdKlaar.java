@@ -115,9 +115,9 @@ public class Panel_WedstrijdKlaar extends JPanel
 		naam.setBounds(0,30,250,20);
 		categorie.setBounds(0,50,250,20);
 		prijs.setBounds(0,70,250,20);
-		bestellen.setBounds(210,30,200,20);
-		bestellen_veld.setBounds(210,60,100,25);
-		bestel_knop.setBounds(315,60,75,35);
+		bestellen.setBounds(210,10,200,20);
+		bestellen_veld.setBounds(210,30,70,35);
+		bestel_knop.setBounds(290,30,100,35);
 		
 		beoordeling.setBounds(0,110,80,20);
 		jurylid_drop.setBounds(80,110,100,20);
