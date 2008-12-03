@@ -9,7 +9,6 @@ public class ProgrammaController implements ActionListener
 	private Deelnemer actieveDeelnemer=null;
 	
 	private JPanel actiefPanel=null;
-	//private JFrame actiefScherm;
 	
 	private beheerLid bLid;
 	private beheerWedstrijd bWedstrijd;
@@ -39,7 +38,6 @@ public class ProgrammaController implements ActionListener
 		this.bReactie=new beheerReactie(this.db);
 		this.bWedstrijd=new beheerWedstrijd(this.db);
 		
-		//this.actiefScherm=new Scherm_Login(this);
 		this.openLogin();
 		
 	}
@@ -488,7 +486,7 @@ public class ProgrammaController implements ActionListener
 		this.bReactie.voegReactie(reactie,this.actieveDeelnemer.getBaksel());
 		
 		
-		new Scherm_foutmelding("Uw reactie is geplaatst.");
+		new Scherm_foutmelding("Uw reactie is geplaatst.","Reactie plaatsen");
 		this.actieBekijkReacties();
 		
 		//panel.resetReactie();
