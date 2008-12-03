@@ -57,12 +57,12 @@ public class Panel_WedstrijdKlaar extends JPanel
 	private JTextPane reactie_veld = new JTextPane();
 	private JScrollPane reactie_veld_scroll = new JScrollPane();
 	private String[] deelnemers_items;
-	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
-	private JButton terug_knop = new JButton("Terug");
-	private JButton reactie_knop = new JButton("Bekijk Reacties");
-	private JButton reactieInvert_knop = new JButton("Bekijk Deelnemer");
-	private JButton bestel_knop = new JButton("Bestel");
-	private JButton plaats_reactie_knop = new JButton("Plaats Reactie");
+	private JButton bekijkDeelnemer_knop = new IconButton("_Icons/charts.png","Zie Deelnemer").show();
+	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
+	private JButton reactie_knop = new IconButton("_Icons/chat.png","Bekijk Reacties").show();
+	private JButton reactieInvert_knop = new IconButton("_Icons/charts.png","Bekijk Deelnemer").show();
+	private JButton bestel_knop = new IconButton("_Icons/shopping.png","Bestel").show();
+	private JButton plaats_reactie_knop = new IconButton("_Icons/ok.png","Plaats Reactie").show();
 	private JLabel bestellen = new JLabel("Bestel een aantal baksels:");
 	private JTextField bestellen_veld = new JTextField();
 	private JPanel baksel_paneel = new JPanel(null);
@@ -107,7 +107,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 				
 		deelnemers.setBounds(30,140,200,20);
 		deelnemers_scroll.setBounds(30,160,200,120);
-		bekijkDeelnemer_knop.setBounds(30,280,200,25);
+		bekijkDeelnemer_knop.setBounds(30,280,200,35);
 
 		//Baksel-paneel		
 		baksel_paneel.setBounds(275,30,1000,700);
@@ -117,7 +117,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		prijs.setBounds(0,70,250,20);
 		bestellen.setBounds(210,30,200,20);
 		bestellen_veld.setBounds(210,60,100,25);
-		bestel_knop.setBounds(315,60,75,25);
+		bestel_knop.setBounds(315,60,75,35);
 		
 		beoordeling.setBounds(0,110,80,20);
 		jurylid_drop.setBounds(80,110,100,20);
@@ -150,7 +150,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		
 		baksel_paneel.setVisible(false);
 		reactie_paneel.setVisible(false);
-		terug_knop.setBounds(30,430,75,25);
+		terug_knop.setBounds(30,430,75,35);
 		
 		
 		//aan het frame toevoegen

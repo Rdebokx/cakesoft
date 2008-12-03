@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.event.*;
 
 public class Panel_Inschrijven extends JPanel
@@ -31,7 +32,7 @@ public class Panel_Inschrijven extends JPanel
 	private JTextField prijs_veld = new JTextField();
 	private JTextField bakselnaam_veld = new JTextField();
 		
-	private JButton terug_knop = new JButton("Terug");
+	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
 	private JButton inschrijf_knop = new JButton("Inschrijven");
 		
 	
@@ -77,7 +78,7 @@ public class Panel_Inschrijven extends JPanel
 		recept_scroll.setBounds(350,210,360,120);
 		
 		inschrijf_knop.setBounds(520,30,200,50);		
-		terug_knop.setBounds(30,380,75,25);
+		terug_knop.setBounds(30,380,75,35);
 		
 		//aan het frame toevoegen
 		add(datum);		
