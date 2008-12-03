@@ -6,7 +6,8 @@ public class Reactie {
 	private int reactie_id;
 	private int lid_id;
 	private String bericht;
-
+	private Lid schrijver;
+	
 	public Reactie()
 	{
 		this.reactie_id = -1;
@@ -57,6 +58,11 @@ public class Reactie {
 		return lid_id;
 	}
 	
+	public Lid getSchrijver()
+	{
+		return this.schrijver;
+	}
+	
 	/**
 	 * @param reactie_id the reactie_id to set
 	 */
@@ -77,5 +83,10 @@ public class Reactie {
 	 */
 	public void setLid_id(int lid_id){
 		this.lid_id = lid_id;
+	}
+	
+	public void setSchrijver(Lid schrijver)
+	{
+		this.schrijver=schrijver;
 	}
 }

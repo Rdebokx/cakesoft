@@ -60,6 +60,9 @@ public class beheerDeelnemer {
 			querySelect q= new querySelect("deelnemer, lid");
 			q.stelVoorwaardeIn("deelnemer.wedstrijd_id",query.GELIJK,wedstrijd.getWedstrijd_id());
 			q.stelLinkVoorwaardeIn("deelnemer.lid_id",query.GELIJK,"lid.lid_id");
+			q.stelSorteringIn("deelnemer.plaats",true);
+			q.stelSorteringIn("lid.naam",true);
+			
 			ResultSet res=database.select(q);
 			ArrayList<Deelnemer> deelnemers=new ArrayList<Deelnemer>();
 			querySelect q2;

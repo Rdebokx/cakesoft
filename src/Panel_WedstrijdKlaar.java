@@ -1,5 +1,5 @@
 import javax.swing.*;
-
+import java.awt.*;
 import java.awt.event.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -40,21 +40,26 @@ public class Panel_WedstrijdKlaar extends JPanel
 	private JLabel calorieen = new JLabel("Caloriegehalte");
 	private JLabel calorieen_punt = new JLabel(".../10");
 	private JLabel commentaar = new JLabel("Commentaar");	
-	private JLabel reacties = new JLabel("Reacties staan hier in een mooie tabelLayout");	
+	private JLabel reacties = new JLabel("Reacties:");
+	private JLabel plaats_reactie = new JLabel("Plaats reactie");
 	private JScrollPane ingredienten_scroll = new JScrollPane();
 	private JScrollPane recept_scroll = new JScrollPane();
 	private JScrollPane commentaar_scroll = new JScrollPane();
+	private JScrollPane reacties_scroll = new JScrollPane();
 	private JTextPane ingredienten_tekst = new JTextPane();
 	private JTextPane recept_tekst = new JTextPane();
 	private JTextPane commentaar_tekst = new JTextPane();
+	private JTextArea reacties_tekst = new JTextArea();
 	private JScrollPane deelnemers_scroll = new JScrollPane();
 	private JList deelnemers_lijst = new JList();
+	private JTextArea reactie_veld = new JTextArea();
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
 	private JButton terug_knop = new JButton("Terug");
 	private JButton reactie_knop = new JButton("Bekijk Reacties");
 	private JButton reactieInvert_knop = new JButton("Bekijk Deelnemer");
 	private JButton bestel_knop = new JButton("Bestel");
+	private JButton plaats_reactie_knop = new JButton("Plaats Reactie");
 	private JLabel bestellen = new JLabel("Bestel een aantal baksels:");
 	private JTextField bestellen_veld = new JTextField();
 	private JPanel baksel_paneel = new JPanel(null);
@@ -74,7 +79,10 @@ public class Panel_WedstrijdKlaar extends JPanel
 			this.winnaar.setText("Winnaar onbekend");
 		
 		jurylid_drop.addItem("Gemiddeld");
-			
+		
+		this.reacties_tekst.setEditable(false);
+		this.reacties_scroll.setViewportView(reacties_tekst);
+		
 		
 		commentaar_tekst.setEditable(false);
 		commentaar_tekst.setText("Smaakt goed. Ik ben alleen allergisch voor meuk. Jeuk, bulten, jeweetwel.");
@@ -122,16 +130,20 @@ public class Panel_WedstrijdKlaar extends JPanel
 		
 		ingredienten.setBounds(0,245,200,20);
 		ingredienten_scroll.setBounds(0,265,200,100);
-		recept.setBounds(210,245,200,20);
+		//recept.setBounds(210,245,200,20);
 		recept_scroll.setBounds(210,265,200,100);
 
 		reactie_knop.setBounds(255,385,150,40);
 		
 		//Reactie-paneel
-		reactie_paneel.setBounds(275,30,1000,700);
+		reactie_paneel.setBounds(275,15,1000,700);
 		reacties.setBounds(0,0,300,20);
-		reactieInvert_knop.setBounds(255,385,150,40);		
-
+		reacties_scroll.setBounds(0,25,455,240);
+		plaats_reactie.setBounds(0,275,200,20);
+		reactie_veld.setBounds(0,300,455,90);
+		plaats_reactie_knop.setBounds(0,405,150,40);
+		reactieInvert_knop.setBounds(305,405,150,40);
+		
 		baksel_paneel.setVisible(false);
 		reactie_paneel.setVisible(false);
 		terug_knop.setBounds(30,430,75,25);
@@ -173,6 +185,10 @@ public class Panel_WedstrijdKlaar extends JPanel
 		add(baksel_paneel);
 		
 		reactie_paneel.add(reacties);
+		reactie_paneel.add(reacties_scroll);
+		reactie_paneel.add(plaats_reactie);
+		reactie_paneel.add(reactie_veld);
+		reactie_paneel.add(plaats_reactie_knop);
 		reactie_paneel.add(reactieInvert_knop);
 		add(reactie_paneel);
 		
@@ -220,6 +236,21 @@ public class Panel_WedstrijdKlaar extends JPanel
 		return bestelling;
 	}
 	
+	public Reactie getReactie()
+	{
+		Reactie reactie=null;
+		if(this.reactie_veld.getText().equals(""))
+		{
+			new Scherm_foutmelding("U hebt geen bericht ingevuld in het reactieveld.");
+			return null;
+		}
+		
+		reactie=new Reactie();
+		reactie.setBericht(this.reactie_veld.getText());
+		
+		return reactie;
+	}
+	
 	public void setDeelnemers(ArrayList<Deelnemer> deelnemerLijst)
 	{
 		this.deelnemerLijst=deelnemerLijst;
@@ -227,7 +258,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		this.deelnemers_items=new String[this.deelnemerLijst.size()];
 		for(int i=0;i < this.deelnemerLijst.size();i++)
 		{
-			this.deelnemers_items[i]= this.deelnemerLijst.get(i).toString();
+			this.deelnemers_items[i]= this.deelnemerLijst.get(i).getPlaats()+". "+this.deelnemerLijst.get(i).toString();
 		}
 		this.deelnemers_lijst.setListData(this.deelnemers_items);
 		this.deelnemers_scroll.setViewportView(this.deelnemers_lijst);	
@@ -265,13 +296,34 @@ public class Panel_WedstrijdKlaar extends JPanel
 		this.baksel_paneel.setVisible(true);
 	}
 	
-	public void toonReacties(Deelnemer deelnemer)
+	public void toonReacties(ArrayList<Reactie> reacties)
 	{
-		this.deelnemer=deelnemer;
-
+		String reactieStr="";
+		for(Reactie reactie:reacties)
+			reactieStr+="Door: "+reactie.getSchrijver().getNaam()+"\n"+reactie.getBericht()+"\n\n";
+		
+		this.reacties_tekst.setText(reactieStr);
+		this.reacties_tekst.setCaretPosition(0);
+		this.reacties_tekst.setEditable(false);
+		this.reacties_scroll.setViewportView(reacties_tekst);
+		
+		
+		
+		//this.reacties_scroll.scrollRectToVisible(new Rectangle(0,0,1,1));
+		//this.reacties_scroll.getVerticalScrollBar().setValue(100);
+		//this.reacties_scroll.revalidate();
 		this.baksel_paneel.setVisible(false);
 		this.reactie_paneel.setVisible(true);		
 	}
+	
+	public void resetReactie()
+	{
+		this.reactie_veld.setText("");
+		
+		
+		//this.reacties_scroll.getVerticalScrollBar().setValue(0);
+	}
+	
 	public void updateBeoordeling()
 	{
 		int index=this.jurylid_drop.getSelectedIndex();
@@ -353,5 +405,9 @@ public class Panel_WedstrijdKlaar extends JPanel
 	public JComboBox getJurylid_drop()
 	{
 		return this.jurylid_drop;
+	}
+	public JButton getPlaats_reactie_knop()
+	{
+		return this.plaats_reactie_knop;
 	}
 }
