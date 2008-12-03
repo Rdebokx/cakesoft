@@ -126,18 +126,22 @@ public class beheerDeelnemer {
 				
 				//Voer query uit
 				ResultSet res2 = database.select(selecteerBaksel);
+				int baksel_id;
+				String ingredienten,recept,naam,categorie;
+				double prijs;
+				Baksel baksel;
 				
 				//Yay, het is raak, we zoeken door.
 				if(res2.next())
 				{
 					//Baksel gevonden, stel de boel in;
-					int baksel_id = res2.getInt("baksel_id");
-					String ingredienten = res2.getString("ingredienten");
-					String recept = res2.getString("recept");
-					String naam = res2.getString("naam");
-					String categorie = res2.getString("categorie");
-					double prijs = res2.getDouble("prijs");
-					Baksel baksel = new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs);
+					baksel_id = res2.getInt("baksel_id");
+					ingredienten = res2.getString("ingredienten");
+					recept = res2.getString("recept");
+					naam = res2.getString("naam");
+					categorie = res2.getString("categorie");
+					prijs = res2.getDouble("prijs");
+					baksel = new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs);
 					 
 					//Stel baksel in
 					deelnemer.setBaksel(baksel);
