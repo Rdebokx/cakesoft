@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.text.NumberFormat;
@@ -52,7 +54,8 @@ public class Panel_WedstrijdKlaar extends JPanel
 	private JTextArea reacties_tekst = new JTextArea();
 	private JScrollPane deelnemers_scroll = new JScrollPane();
 	private JList deelnemers_lijst = new JList();
-	private JTextArea reactie_veld = new JTextArea();
+	private JTextPane reactie_veld = new JTextPane();
+	private JScrollPane reactie_veld_scroll = new JScrollPane();
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new JButton("Bekijk Deelnemer");
 	private JButton terug_knop = new JButton("Terug");
@@ -81,19 +84,20 @@ public class Panel_WedstrijdKlaar extends JPanel
 		jurylid_drop.addItem("Gemiddeld");
 		
 		this.reacties_tekst.setEditable(false);
+		this.reacties_tekst.setMargin(new Insets(3,3,3,3));
 		this.reacties_scroll.setViewportView(reacties_tekst);
 		
+		
+		Insets insets=new Insets(3,3,3,3);
+		this.reactie_veld.setMargin(insets);
+		
+		this.reactie_veld_scroll.setViewportView(this.reactie_veld);
 		
 		commentaar_tekst.setEditable(false);
 		commentaar_tekst.setText("Smaakt goed. Ik ben alleen allergisch voor meuk. Jeuk, bulten, jeweetwel.");
 		commentaar_scroll.setViewportView(commentaar_tekst);
 		
-  		//basis-instellingen scherm
-		/*setTitle("CakeSoft - Wedstrijd");
-		setSize(750,500);
-		setResizable(false);
-		setLocationRelativeTo(null); //centrering
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+  		//basis-instelling
 		setLayout(null);
 		
 		//alles aan container positioneren
@@ -140,7 +144,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		reacties.setBounds(0,0,300,20);
 		reacties_scroll.setBounds(0,25,455,240);
 		plaats_reactie.setBounds(0,275,200,20);
-		reactie_veld.setBounds(0,300,455,90);
+		reactie_veld_scroll.setBounds(0,300,455,90);
 		plaats_reactie_knop.setBounds(0,405,150,40);
 		reactieInvert_knop.setBounds(305,405,150,40);
 		
@@ -187,20 +191,13 @@ public class Panel_WedstrijdKlaar extends JPanel
 		reactie_paneel.add(reacties);
 		reactie_paneel.add(reacties_scroll);
 		reactie_paneel.add(plaats_reactie);
-		reactie_paneel.add(reactie_veld);
+		reactie_paneel.add(reactie_veld_scroll);
 		reactie_paneel.add(plaats_reactie_knop);
 		reactie_paneel.add(reactieInvert_knop);
 		add(reactie_paneel);
 		
 		add(terug_knop);
 		
-		//scherm-object luistert naar de events
-		/*bekijkDeelnemer_knop.addActionListener(this);
-		terug_knop.addActionListener(this);
-		bestel_knop.addActionListener(this);
-		jurylid_drop.addActionListener(this);
-		bestellen_veld.addActionListener(this);
-		*/
 		
 		setVisible(true);
 	}
@@ -308,10 +305,6 @@ public class Panel_WedstrijdKlaar extends JPanel
 		this.reacties_scroll.setViewportView(reacties_tekst);
 		
 		
-		
-		//this.reacties_scroll.scrollRectToVisible(new Rectangle(0,0,1,1));
-		//this.reacties_scroll.getVerticalScrollBar().setValue(100);
-		//this.reacties_scroll.revalidate();
 		this.baksel_paneel.setVisible(false);
 		this.reactie_paneel.setVisible(true);		
 	}
@@ -320,8 +313,6 @@ public class Panel_WedstrijdKlaar extends JPanel
 	{
 		this.reactie_veld.setText("");
 		
-		
-		//this.reacties_scroll.getVerticalScrollBar().setValue(0);
 	}
 	
 	public void updateBeoordeling()
@@ -351,26 +342,6 @@ public class Panel_WedstrijdKlaar extends JPanel
 			this.commentaar_tekst.setText(this.beoordelingenLijst.get(index-1).getCommentaar());
 		}
 	}
-	
-	/*public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == this.bekijkDeelnemer_knop)
-		{
-			programmaC.actieBekijkDeelnemer();
-		}
-		if(e.getSource() == this.terug_knop)
-		{
-			programmaC.actieTerugNaarHoofdscherm();
-		}
-		if(e.getSource()== this.bestel_knop || e.getSource()== this.bestellen_veld)
-		{
-			programmaC.actieBestel();
-		}
-		if(e.getSource()==this.jurylid_drop)
-		{
-			this.updateBeoordeling();
-		}
-	}*/
 	
 	public JButton getBekijkDeelnemer_knop()
 	{
