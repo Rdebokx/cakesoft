@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Scherm_foutmelding extends JFrame implements ActionListener
 {
 	private JTextArea foutTekst=new JTextArea();
-	private JButton okKnop = new IconButton("_Icons/ok.png", "Sluit").show();
+	private JButton okKnop=new JButton("Sluit");
 	
 	public Scherm_foutmelding(String foutBericht)
 	{

@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.event.*;
 import java.util.*;
 
@@ -23,8 +22,8 @@ public class Panel_Beoordelen extends JPanel {
 	private JLabel commentaar = new JLabel("Commentaar:");
 	private JTextArea commentaar_veld = new JTextArea();
 	
-	private JButton beoordeel_knop = new IconButton("_Icons/star.png","Beoordeel").show();
-	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
+	private JButton beoordeel_knop = new JButton("Beoordeel");
+	private JButton terug_knop = new JButton("Terug");
 	
 	private ArrayList <Deelnemer> DeelnemerLijst;
 	
@@ -62,7 +61,7 @@ public class Panel_Beoordelen extends JPanel {
 		
 		beoordeel_knop.setBounds(10,325,200,25);
 		
-		terug_knop.setBounds(30,380,75,35);
+		terug_knop.setBounds(30,380,75,25);
 		
 		
 		//Moet dit hier?? en zo ja hoe?
