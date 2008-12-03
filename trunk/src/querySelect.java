@@ -29,8 +29,8 @@ public class querySelect extends query
 		for(i=0;i<this.voorwaarden.size();i++)
 			query+=this.voorwaarden.get(i)+(i<this.voorwaarden.size()-1?" AND ":"");
 		
-		if(!this.sorteerKolom.equals(""))
-			query+=" ORDER BY "+this.sorteerKolom+(this.sorteerAsc?"":" DESC");
+		if(!this.sorteerStr.equals(""))
+			query+=" ORDER BY "+this.sorteerStr;
 		
 		return query;
 	}

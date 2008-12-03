@@ -108,6 +108,8 @@ public class ProgrammaController extends JFrame implements ActionListener
 				this.actieBestel();
 			if(e.getSource()== panel.getJurylid_drop())
 				panel.updateBeoordeling();
+			if(e.getSource()== panel.getPlaats_reactie_knop())
+				this.actiePlaatsReactie();
 		}
 		if(this.actiefPanel instanceof Panel_WedstrijdNieuw)
 		{
@@ -260,6 +262,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 			panel.getBestel_knop().addActionListener(this);
 			panel.getJurylid_drop().addActionListener(this);
 			panel.getBestellen_veld().addActionListener(this);
+			panel.getPlaats_reactie_knop().addActionListener(this);
 			
 			this.actiefPanel=panel;
 			this.add(panel);
@@ -467,22 +470,32 @@ public class ProgrammaController extends JFrame implements ActionListener
 		{
 			Panel_WedstrijdKlaar panel=(Panel_WedstrijdKlaar)this.actiefPanel;
 			
-			Deelnemer deelnemer=panel.getGeselecteerdeDeelnemer();
-			if(deelnemer==null)
-			{
-				new Scherm_foutmelding("U moet eerst een deelnemer uit de lijst selecteren.");
-			}
-			else
-			{
-				this.actieveDeelnemer=deelnemer;
-				ArrayList<Reactie> reacties=this.bReactie.getReactiesOpBaksel(deelnemer.getBaksel());
-				
-				
-				panel.toonReacties(deelnemer);
-				this.repaint();
-				this.actiefPanel.revalidate();
-			}
+			ArrayList<Reactie> reacties=this.bReactie.getReactiesOpBaksel(this.actieveDeelnemer.getBaksel());
+			panel.toonReacties(reacties);
+			this.repaint();
+			this.actiefPanel.revalidate();
 		}
+	}
+	
+	public void actiePlaatsReactie()
+	{
+		if(!(this.actiefPanel instanceof Panel_WedstrijdKlaar))
+			return;
+		Panel_WedstrijdKlaar panel=(Panel_WedstrijdKlaar)this.actiefPanel;
+		
+		Reactie reactie = panel.getReactie();
+		if(reactie==null)
+			return;//ongeldige invoer
+		
+		reactie.setLid_id(this.ingelogdLid.getLid_id());
+		
+		this.bReactie.voegReactie(reactie,this.actieveDeelnemer.getBaksel());
+		
+		
+		new Scherm_foutmelding("Uw reactie is geplaatst.");
+		this.actieBekijkReacties();
+		
+		//panel.resetReactie();
 	}
 
 	public void actieBestel()

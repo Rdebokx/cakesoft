@@ -28,12 +28,18 @@ public class beheerReactie {
 		int bakselID = baksel.getBaksel_id();
 		
 		//Maak query aan en stel voorwaarde in.
-		querySelect selecteerQuery = new querySelect("reactie");
-		selecteerQuery.stelVoorwaardeIn("baksel_id", query.LIKE, bakselID);
+		querySelect selecteerQuery = new querySelect("reactie, lid");
+		selecteerQuery.stelVoorwaardeIn("reactie.baksel_id", query.GELIJK, bakselID);
+		selecteerQuery.stelLinkVoorwaardeIn("reactie.lid_id",query.GELIJK,"lid.lid_id");
+		selecteerQuery.stelSorteringIn("reactie.reactie_id",false);
 		
 		ResultSet result = database.select(selecteerQuery);
-		
+		Lid schrijver=null;
+		int lid_id;
+		String naam,wachtwoord;
+		boolean hoofdbeheer;
 		ArrayList<Reactie> reacties = new ArrayList<Reactie>();
+		Reactie reactie;
 		
 		//Nu omzetten naar een ArrayList van Reacties
 		try
@@ -41,8 +47,16 @@ public class beheerReactie {
 
 			while(result.next())
 			{
-				Reactie res = new Reactie(result.getInt("reactie_id"), result.getInt("lid_id"), result.getString("bericht"));
-				reacties.add(res);
+				reactie = new Reactie(result.getInt("reactie_id"), result.getInt("lid_id"), result.getString("bericht"));
+				
+				lid_id = result.getInt("lid_id");
+				naam = result.getString("naam");
+				wachtwoord = result.getString("wachtwoord");
+				hoofdbeheer = result.getBoolean("hoofdbeheer");
+				
+				schrijver=new Lid(naam, lid_id, wachtwoord, hoofdbeheer);
+				reactie.setSchrijver(schrijver);
+				reacties.add(reactie);
 			}
 			
 		}
@@ -59,7 +73,7 @@ public class beheerReactie {
 		//De gegevens in de database invoeren
 		queryInsert insertQuery=new queryInsert("reactie");
 		insertQuery.stelNieuwIn("bericht", reactie.getBericht());
-		insertQuery.stelNieuwIn("p_baksel_id", baksel.getBaksel_id());
+		insertQuery.stelNieuwIn("baksel_id", baksel.getBaksel_id());
 		insertQuery.stelNieuwIn("lid_id", reactie.getLid_id());
 		
 		int reactie_id = database.insert(insertQuery);

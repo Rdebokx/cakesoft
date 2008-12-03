@@ -20,8 +20,7 @@ public class query
 	protected ArrayList<queryVoorwaarde> voorwaarden=new ArrayList<queryVoorwaarde>();
 	protected ArrayList<String> nieuwKolommen=new ArrayList<String>();
 	protected ArrayList<String> nieuwWaardes=new ArrayList<String>();
-	protected String sorteerKolom="";
-	protected boolean sorteerAsc=true;
+	protected String sorteerStr="";
 	
 	/**
 	 * Constructor, stelt de tabel in
@@ -76,8 +75,7 @@ public class query
 	 */
 	public void stelSorteringIn(String kolom, boolean oplopend)
 	{
-		this.sorteerKolom=kolom;
-		this.sorteerAsc=oplopend;
+		this.sorteerStr+=(!this.sorteerStr.equals("")?", ":"")+kolom+" "+(oplopend?"":"DESC");
 	}
 	
 	/**
