@@ -33,7 +33,7 @@ public class Panel_Inschrijven extends JPanel
 	private JTextField bakselnaam_veld = new JTextField();
 		
 	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
-	private JButton inschrijf_knop = new JButton("Inschrijven");
+	private JButton inschrijf_knop = new IconButton("_Icons/ok.png","Inschrijven").show();
 		
 	
 	public Panel_Inschrijven(Wedstrijd wedstrijd)
