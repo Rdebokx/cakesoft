@@ -49,16 +49,16 @@ public class Panel_Hoofdscherm extends JPanel
 		//alles aan container positioneren
 		wedstrijd.setBounds(30,30,300,20);
 		wedstrijd_scroll.setBounds(30,50,300,220);
-		bekijkWedstrijd_knop.setBounds(30,270,150,35);
+		bekijkWedstrijd_knop.setBounds(30,275,145,35);
 		if(this.hoofdbeheer)
-			nieuwWedstrijd_knop.setBounds(180,270,150,35);
+			nieuwWedstrijd_knop.setBounds(185,275,145,35);
 		
 		ontvangen.setBounds(400,30,300,20);
 		ontvangen_scroll.setBounds(400,50,300,150);
-		verwijderBestelling_knop.setBounds(400,200,300,35);
+		verwijderBestelling_knop.setBounds(400,205,300,35);
 		
-		besteld.setBounds(400,250,300,20);
-		besteld_scroll.setBounds(400,270,300,150);
+		besteld.setBounds(400,260,300,20);
+		besteld_scroll.setBounds(400,280,300,150);
 		
 		loguit_knop.setBounds(30,430,75,35);
 		
