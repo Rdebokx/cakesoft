@@ -23,7 +23,7 @@ public class Panel_Beoordelen extends JPanel {
 	private JLabel commentaar = new JLabel("Commentaar:");
 	private JTextArea commentaar_veld = new JTextArea();
 	
-	private JButton beoordeel_knop = new JButton("Beoordeel");
+	private JButton beoordeel_knop = new IconButton("_Icons/star.png","Beoordeel").show();
 	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
 	
 	private ArrayList <Deelnemer> DeelnemerLijst;

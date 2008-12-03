@@ -36,8 +36,8 @@ public class Panel_Wedstrijd extends JPanel
 	private String[] deelnemers_items;
 	private JButton bekijkDeelnemer_knop = new IconButton("_Icons/charts.png","Zie Deelnemer").show();
 	private JButton sluitWedstrijd_knop = new IconButton("_Icons/close.png","Sluit Wedstrijd").show();
-	private JButton beoordeel_knop = new JButton("Beoordeel");
-	private JButton inschrijven_knop = new JButton("Schrijf in");
+	private JButton beoordeel_knop = new IconButton("_Icons/star.png","Beoordeel").show();
+	private JButton inschrijven_knop = new IconButton("_Icons/download.png","Schrijf in").show();
 	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
 	//private JButton bestel_knop = new JButton("Bestel dit");
 	//private JTextField bestellen_veld = new JTextField();
