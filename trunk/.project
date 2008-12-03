@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Icons</name>
+			<type>2</type>
+			<location>C:/Users/DusL/Documents/TU Delft/in1405-II ISO/CakeSoft/Icons</location>
+		</link>
+	</linkedResources>
 </projectDescription>
