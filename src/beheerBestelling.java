@@ -32,27 +32,19 @@ public class beheerBestelling
 		querySelect query4;
 		ResultSet res = datab.select(query3);
 		ResultSet res2;
-		int aantal;
-		int bestelling_id;
-		int baksel_id;
-		String ingredienten;
-		String recept;
-		String naam;
-		String categorie;
+		int aantal, bestelling_id, baksel_id;
+		String ingredienten,recept,naam,categorie;
 		double prijs;
 		Bestelling bestelling;
+		Lid lid_besteller;
+		
 		try
 		{
 			while (res.next())
 			{
 				aantal = res.getInt("aantal");
 				bestelling_id = res.getInt("bestelling_id");
-
-				//Geen while loop nodig voor zover ik weet, aangezien je nooit meer dan één baksel terug krijgt.
-				/*querySelect query4 = new querySelect("baksel, bestelling");
-				query4.stelVoorwaardeIn("baksel.baksel_id",query.GELIJK,"bestelling.baksel_id");
-				query4.stelVoorwaardeIn("bestelling.bestelling_id",query.GELIJK,bestelling_id);
-				res2 = datab.select(query4);*/
+				
 				baksel_id = res.getInt("baksel_id");
 				naam = res.getString("naam");
 				prijs = res.getDouble("prijs");
@@ -66,7 +58,7 @@ public class beheerBestelling
 				res2=datab.select(query4);
 				res2.next();
 				
-				Lid lid_besteller=new Lid(res2.getString("naam"),res2.getInt("lid_id"),res2.getString("wachtwoord"),res2.getInt("hoofdbeheer")==1);
+				lid_besteller=new Lid(res2.getString("naam"),res2.getInt("lid_id"),res2.getString("wachtwoord"),res2.getInt("hoofdbeheer")==1);
 				
 				bestelling=new Bestelling(aantal, bestelling_id, new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs));
 				bestelling.setLid_bakker(lid);
@@ -97,16 +89,12 @@ public class beheerBestelling
 		ResultSet res = datab.select(query3);
 		ResultSet res2;
 
-		int aantal;
-		int bestelling_id;
-		int baksel_id;
-		String ingredienten;
-		String recept;
-		String naam;
-		String categorie;
+		int aantal,bestelling_id,baksel_id;
+		String ingredienten,recept,naam,categorie;
 		double prijs;
 		Bestelling bestelling;
 		querySelect query4;
+		Lid lid_bakker;
 		
 		try
 		{
@@ -115,11 +103,6 @@ public class beheerBestelling
 				aantal = res.getInt("aantal");
 				bestelling_id = res.getInt("bestelling_id");
 
-				//Geen while loop nodig voor zover ik weet, aangezien je nooit meer dan één baksel terug krijgt.
-				//query4 = new querySelect("baksel");
-				//query4.stelVoorwaardeIn("baksel.baksel_id",query.GELIJK,bestelling_id);
-				
-				//res2 = datab.select(query4);
 				baksel_id = res.getInt("baksel_id");
 				naam = res.getString("naam");
 				prijs = res.getDouble("prijs");
@@ -133,7 +116,7 @@ public class beheerBestelling
 				res2=datab.select(query4);
 				res2.next();
 				
-				Lid lid_bakker=new Lid(res2.getString("naam"),res2.getInt("lid_id"),res2.getString("wachtwoord"),res2.getInt("hoofdbeheer")==1);
+				lid_bakker=new Lid(res2.getString("naam"),res2.getInt("lid_id"),res2.getString("wachtwoord"),res2.getInt("hoofdbeheer")==1);
 				
 				bestelling=new Bestelling(aantal, bestelling_id, new Baksel(baksel_id, ingredienten, recept, naam, categorie, prijs));
 				bestelling.setLid_besteller(lid);
@@ -170,8 +153,6 @@ public class beheerBestelling
 	{
 		queryDelete query3=new queryDelete("bestelling");
 		query3.stelVoorwaardeIn("bestelling_id",query.GELIJK,bestelling.getBestelling_id());
-		//query3.stelVoorwaardeIn("aantal",query.GELIJK,bestelling.getAantal());
-		//query3.stelVoorwaardeIn("lid_id",query.GELIJK,bestelling.getLid().getLid_id());
 		datab.delete(query3);
 	}
 }
