@@ -67,20 +67,22 @@ public class beheerBeoordeling {
 		querySelect q2;
 		ResultSet res2;
 		Jury jury;
+		int beoordeling_id, kwaliteit, prijs, calo, smaak;
+		Beoordeling beoordeling;
 		
 		try
 		{
 			while(data.next())
 			{
-				int beoordeling_id = data.getInt("beoordeling_id");
+				beoordeling_id = data.getInt("beoordeling_id");
 				String commentaar = data.getString("commentaar");
-				int kwaliteit = data.getInt("kwaliteit");
-				int prijs = data.getInt("prijs");
-				int calo = data.getInt("calo");
-				int smaak = data.getInt("smaak");
+				kwaliteit = data.getInt("kwaliteit");
+				prijs = data.getInt("prijs");
+				calo = data.getInt("calo");
+				smaak = data.getInt("smaak");
 				
 				//met deze gegevens een nieuwe beoordeling aanmaken en in de arraylist stoppen
-				Beoordeling beoordeling = new Beoordeling(beoordeling_id, commentaar, kwaliteit, prijs, calo, smaak);
+				beoordeling = new Beoordeling(beoordeling_id, commentaar, kwaliteit, prijs, calo, smaak);
 				
 				q2 = new querySelect("jury, lid");
 				q2.stelVoorwaardeIn("jury.jury_id", query.GELIJK, data.getInt("jury_id"));

@@ -2,7 +2,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ProgrammaController extends JFrame implements ActionListener
+public class ProgrammaController implements ActionListener
 {
 	private Lid ingelogdLid=null;
 	private Wedstrijd actieveWedstrijd=null;
@@ -20,16 +20,13 @@ public class ProgrammaController extends JFrame implements ActionListener
 	private beheerBeoordeling bBeoordeling;
 	private beheerJury bJury;
 	
+	private ProgrammaScherm scherm;
+	
 	private Database db;
 	
 	public ProgrammaController()
 	{
-		setTitle("CakeSoft");
-		setSize(750,500);
-		setResizable(false);
-		setLocationRelativeTo(null); //centrering
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(null);
+		this.scherm=new ProgrammaScherm();
 		
 		String hulpvar=Integer.toString(7812);
 		this.db=new Database("jdbc:mysql://130.161.47.78/cakesoft","cakesoft_team","hjka"+hulpvar);
@@ -45,7 +42,6 @@ public class ProgrammaController extends JFrame implements ActionListener
 		//this.actiefScherm=new Scherm_Login(this);
 		this.openLogin();
 		
-		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e)
@@ -135,7 +131,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 	{
 		if(this.actiefPanel==null)
 			return;
-		this.remove(this.actiefPanel);
+		this.scherm.remove(this.actiefPanel);
 		this.actiefPanel.removeAll();
 		
 		this.actiefPanel=null;
@@ -152,9 +148,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 		panel.getPass_veld().addActionListener(this);
 		
 		this.actiefPanel=panel;
-		this.add(panel);
+		this.scherm.add(panel);
 		this.actiefPanel.revalidate();
-		repaint();
+		this.scherm.repaint();
 	}
 	
 	public void openOverzicht()
@@ -180,9 +176,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 		panel.getLoguit_knop().addActionListener(this);
 		
 		this.actiefPanel=panel;
-		this.add(panel);
+		this.scherm.add(panel);
 		this.actiefPanel.revalidate();
-		repaint();
+		this.scherm.repaint();
 	}
 	
 	public void openWedstrijd()
@@ -239,9 +235,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 				panel.getBeoordeel_knop().addActionListener(this);
 			
 			this.actiefPanel=panel;
-			this.add(panel);
+			this.scherm.add(panel);
 			this.actiefPanel.revalidate();
-			repaint();
+			this.scherm.repaint();
 		}
 		else//toon wedstrijd nadat hij is gesloten
 		{
@@ -265,9 +261,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 			panel.getPlaats_reactie_knop().addActionListener(this);
 			
 			this.actiefPanel=panel;
-			this.add(panel);
+			this.scherm.add(panel);
 			this.actiefPanel.revalidate();
-			repaint();
+			this.scherm.repaint();
 		}
 		
 		
@@ -285,9 +281,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 		panel.getTerug_knop().addActionListener(this);
 		
 		this.actiefPanel=panel;
-		this.add(panel);
+		this.scherm.add(panel);
 		this.actiefPanel.revalidate();
-		repaint();
+		this.scherm.repaint();
 	}
 	
 	public void openInschrijven()
@@ -301,9 +297,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 		panel.getTerug_knop().addActionListener(this);
 		
 		this.actiefPanel=panel;
-		this.add(panel);
+		this.scherm.add(panel);
 		this.actiefPanel.revalidate();
-		repaint();
+		this.scherm.repaint();
 		
 	}
 	
@@ -318,9 +314,9 @@ public class ProgrammaController extends JFrame implements ActionListener
 		panel.getTerug_knop().addActionListener(this);
 		
 		this.actiefPanel=panel;
-		this.add(panel);
+		this.scherm.add(panel);
 		this.actiefPanel.revalidate();
-		repaint();
+		this.scherm.repaint();
 	}
 //
 // Acties voor Scherm_login
@@ -458,7 +454,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 				
 				panel.toonDeelnemer(deelnemer);
 				panel.setBeoordelingen(beoordelingen,gemiddelde);
-				this.repaint();
+				this.scherm.repaint();
 				this.actiefPanel.revalidate();
 			}
 		}
@@ -472,7 +468,7 @@ public class ProgrammaController extends JFrame implements ActionListener
 			
 			ArrayList<Reactie> reacties=this.bReactie.getReactiesOpBaksel(this.actieveDeelnemer.getBaksel());
 			panel.toonReacties(reacties);
-			this.repaint();
+			this.scherm.repaint();
 			this.actiefPanel.revalidate();
 		}
 	}
