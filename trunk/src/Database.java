@@ -78,7 +78,8 @@ public class Database {
 	{
 		String queryStr = query.getQuery();
 		int id = -1;
-
+		
+		//Geef de query weer in console voor debugging
 		System.out.println(queryStr);
 
 		try
@@ -103,10 +104,10 @@ public class Database {
 	 * Deze methode update de opgegeven tabel. Er kunnen geen meerdere veranderingen tegelijk worden doorgevoerd
 	 * @param query	De updatequery die uitgevoerd zal moeten worden, bevat de tabelnaam, kolommen, voorwaarden e.d.
 	 */
-	public void update(queryUpdate query) //aanpassingen moeten in sql geschreven worden
+	public void update(queryUpdate query)
 	{
 		String queryStr = query.getQuery();
-
+		//Geef de query weer in console voor debugging
 		System.out.println(queryStr);
 		try
 		{
@@ -128,6 +129,7 @@ public class Database {
 	public void delete(queryDelete query)
 	{
 		String queryStr = query.getQuery();
+		//Geef de query weer in console voor debugging
 		System.out.println(queryStr);
 
 		try
