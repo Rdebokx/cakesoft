@@ -472,8 +472,7 @@ public class ProgrammaController implements ActionListener
 		
 		this.bReactie.voegReactie(reactie,this.actieveDeelnemer.getBaksel());
 		
-		
-		new Scherm_foutmelding("Uw reactie is geplaatst.");
+		new Scherm_foutmelding("Uw reactie is geplaatst.","Reactie plaatsen.");
 		this.actieBekijkReacties();
 	}
 
