@@ -1,4 +1,6 @@
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.*;
 
@@ -48,7 +50,11 @@ public class Panel_Hoofdscherm extends JPanel
 		
 		//alles aan container positioneren
 		wedstrijd.setBounds(30,30,300,20);
+		
+		
+		
 		wedstrijd_scroll.setBounds(30,50,300,220);
+		
 		bekijkWedstrijd_knop.setBounds(30,275,145,35);
 		if(this.hoofdbeheer)
 			nieuwWedstrijd_knop.setBounds(185,275,145,35);

@@ -19,6 +19,7 @@ public class ProgrammaScherm extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		
+		
 		setVisible(true);
 	}
 }
