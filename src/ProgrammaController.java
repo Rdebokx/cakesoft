@@ -335,6 +335,7 @@ public class ProgrammaController implements ActionListener
 		{
 			//succesvolle login
 			this.ingelogdLid = ingelogdLid;
+			this.scherm.setTitle("CakeSoft - Ingelogd als "+this.ingelogdLid.getNaam());
 			this.openOverzicht();
 		}
 		
@@ -382,6 +383,7 @@ public class ProgrammaController implements ActionListener
 	public void actieLoguit()
 	{
 		this.ingelogdLid = null;
+		this.scherm.setTitle("CakeSoft");
 		this.openLogin();
 	}
 
