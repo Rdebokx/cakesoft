@@ -1,8 +1,15 @@
 import javax.swing.*;
 
 
+/**
+ * Klasse ProgrammaScherm, beschrijft het JFrame waarop de JPanels getekend worden door de ProgrammaController 
+ * @author Groep 11
+ */
 public class ProgrammaScherm extends JFrame
 {
+	/**
+	 * Constructor van ProgrammaScherm, stelt het programma in. 
+	 */
 	public ProgrammaScherm()
 	{
 		setTitle("CakeSoft");
