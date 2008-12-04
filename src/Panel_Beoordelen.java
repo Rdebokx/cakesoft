@@ -59,7 +59,7 @@ public class Panel_Beoordelen extends JPanel {
 		commentaar.setBounds(10,210,50,20);
 		commentaar_veld.setBounds(100,210,150,100);
 		
-		beoordeel_knop.setBounds(10,325,200,25);
+		beoordeel_knop.setBounds(10,325,200,35);
 		
 		terug_knop.setBounds(30,380,75,25);
 		
