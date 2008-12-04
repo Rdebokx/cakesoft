@@ -17,8 +17,8 @@ public class Panel_WedstrijdNieuw extends JPanel
 	private JLabel locatie = new JLabel("Locatie wedstrijd:");
 	private JTextField datum_veld = new JTextField();
 	private JTextField locatie_veld = new JTextField();
-	private JButton maak_knop = new JButton("Maak een nieuwe wedstrijd");
-	private JButton terug_knop = new JButton("Terug");
+	private JButton maak_knop = new IconButton("_Icons/ok.png", "Maak een nieuwe wedstrijd").show();
+	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
 	
 	private JLabel jurylid_1 = new JLabel ("Jurylid 1:");
 	private JLabel jurylid_2 = new JLabel ("Jurylid 2:");
@@ -60,7 +60,7 @@ public class Panel_WedstrijdNieuw extends JPanel
 		juryveld_2.setBounds(600,60,125,25);
 		juryveld_3.setBounds(600,90,125,25);
 		
-		terug_knop.setBounds(30,430,75,25);
+		terug_knop.setBounds(30,430,75,35);
 
 		//aan het frame toevoegen
 		add(paneel);
