@@ -43,7 +43,6 @@ public class ProgrammaController implements ActionListener
 		this.bWedstrijd = new beheerWedstrijd(this.db);
 		
 		this.openLogin();
-		
 	}
 	
 	public void actionPerformed(ActionEvent e)

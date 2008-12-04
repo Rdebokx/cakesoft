@@ -42,27 +42,27 @@ public class Panel_Beoordelen extends JPanel {
 		
 		//alles aan container positioneren
 		
-		naam.setBounds(10,10,200,20);
-		naam_waarde.setBounds(100,10,150,25);
+		naam.setBounds(30,30,200,20);
+		naam_waarde.setBounds(80,30,150,20);
 		
-		kwaliteit.setBounds(10,50,200,20);
-		kwaliteit_veld.setBounds(100,50,150,20);
+		kwaliteit.setBounds(30,80,200,20);
+		kwaliteit_veld.setBounds(150,80,150,25);
 		
-		prijs.setBounds(10,90,200,20);
-		prijs_veld.setBounds(100,90,150,25);
+		prijs.setBounds(30,110,200,20);
+		prijs_veld.setBounds(150,110,150,25);
 		
-		calorie.setBounds(10,130,200,20);
-		calorie_veld.setBounds(100,130,150,25);
+		calorie.setBounds(30,140,200,20);
+		calorie_veld.setBounds(150,140,150,25);
 		
-		smaak.setBounds(10,170,200,20);
-		smaak_veld.setBounds(100,170,150,25);
+		smaak.setBounds(30,170,200,20);
+		smaak_veld.setBounds(150,170,150,25);
 		
-		commentaar.setBounds(10,210,50,20);
-		commentaar_veld.setBounds(100,210,150,100);
+		commentaar.setBounds(400,80,200,20);
+		commentaar_veld.setBounds(400,105,200,100);
 		
-		beoordeel_knop.setBounds(10,325,200,25);
+		beoordeel_knop.setBounds(250,250,200,35);
 		
-		terug_knop.setBounds(30,380,75,35);
+		terug_knop.setBounds(30,430,75,35);
 		
 		
 		//Moet dit hier?? en zo ja hoe?
