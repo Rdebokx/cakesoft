@@ -28,7 +28,8 @@ public class ProgrammaController implements ActionListener
 	private Database db;
 	
 	/**
-	 * Constructor voor ProgrammaController, maakt een nieuw ProgrammaScherm aan en stelt de database in voor de benodigde beheerklassen.
+	 * Constructor voor ProgrammaController, maakt een nieuw ProgrammaScherm aan en stelt de database in voor de 
+	 * benodigde beheerklassen, opent vervolgens het loginPanel.
 	 */
 	public ProgrammaController()
 	{
@@ -199,7 +200,8 @@ public class ProgrammaController implements ActionListener
 				bestelling.setLid_besteller(this.ingelogdLid);
 				this.bBestelling.voegBestellingToe(bestelling);
 				
-				new Scherm_foutmelding("Uw bestelling voor "+bestelling.getAantal()+" stuk"+(bestelling.getAantal() == 1?"":"s")+" van dit baksel is geplaatst.","Nieuwe bestelling");
+				new Scherm_foutmelding("Uw bestelling voor "+bestelling.getAantal()+" stuk"+(bestelling.getAantal() == 1?"":"s")+
+						" van dit baksel is geplaatst.","Nieuwe bestelling");
 			}
 		}
 	}
@@ -228,7 +230,8 @@ public class ProgrammaController implements ActionListener
 	}
 	
 	/**
-	 *  De gebruiker is ingelogd en het hoofdscherm wordt geopend indien de ingevoerde waarden correct waren en het loginscherm zichtbaar was.
+	 *  De gebruiker is ingelogd en het hoofdscherm wordt geopend indien de ingevoerde waarden correct waren en het loginscherm 
+	 *  zichtbaar was.
 	 */
 	public void actieLogin()
 	{
@@ -309,7 +312,9 @@ public class ProgrammaController implements ActionListener
 				for(j = 0;j<Math.min(5,mogelijkheden.size());j++)//toon hooguit 5 opties
 					namen += "\n"+mogelijkheden.get(j).getNaam();
 				
-				new Scherm_foutmelding("U hebt geen geldige naam opgegeven voor jurylid "+i+".\n"+(mogelijkheden.size() == 1?"Een naam:":"Namen")+" die veel op '"+jury_naam+"' lijk"+(mogelijkheden.size() == 1?"t is:":"en zijn:")+namen);
+				new Scherm_foutmelding("U hebt geen geldige naam opgegeven voor jurylid "+i+".\n"+
+						(mogelijkheden.size() == 1?"Een naam:":"Namen")+" die veel op '"+jury_naam+
+						"' lijk"+(mogelijkheden.size() == 1?"t is:":"en zijn:")+namen);
 				return;
 			}
 			//hier is er maar 1 mogelijkheid, voeg dus toe als jurylid
@@ -507,7 +512,8 @@ public class ProgrammaController implements ActionListener
 	}
 	
 	/**
-	 * Het event heeft de juiste actie methode aangeroepen op basis van de source van het event, mits ActionEvent e is een event dat is uitgevoerd door de gebruiker
+	 * Het event heeft de juiste actie methode aangeroepen op basis van de source van het event, mits ActionEvent e is een 
+	 * event dat is uitgevoerd door de gebruiker
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
