@@ -19,7 +19,20 @@ public class ProgrammaScherm extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		
-		
+		try
+		{
+			
+			LookAndFeel l=(LookAndFeel) Class.forName(UIManager.getSystemLookAndFeelClassName()).newInstance();
+			//l.installBorder(getRootPane());
+			
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+
+		}
+		catch(Exception e)
+		{
+			//
+		}
 		setVisible(true);
 	}
 }
