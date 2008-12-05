@@ -40,8 +40,8 @@ public class Panel_Login extends JPanel
 		paneel.add(pass);
 		paneel.add(pass_veld);
 		paneel2.add(loginknop);
-		paneel.setBounds(150,100,300,90);
-		paneel2.setBounds(150,195,300,45);
+		paneel.setBounds(225,150,300,90);
+		paneel2.setBounds(225,245,300,45);
 		
 		//aan het frame toevoegen
 		add(paneel);

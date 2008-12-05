@@ -577,7 +577,7 @@ public class ProgrammaController implements ActionListener
 		this.sluitActiefPanel();
 		
 		Panel_Login panel = new Panel_Login();
-		panel.setBounds(75,50,600,600);
+		panel.setBounds(0,0,750,500);
 		panel.getLoginKnop().addActionListener(this);
 		panel.getLidnr_veld().addActionListener(this);
 		panel.getPass_veld().addActionListener(this);
