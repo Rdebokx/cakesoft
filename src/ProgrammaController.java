@@ -175,7 +175,7 @@ public class ProgrammaController implements ActionListener
 		else
 		{
 			if(bestelling.getAantal()<1)
-				new Scherm_foutmelding("U kunt niet minder dan 1 stuk van dit baksel bestellen.");
+				new Scherm_foutmelding("U kunt niet minder dan 1 baksel bestellen.");
 			else
 			{
 				bestelling.setLid_besteller(this.ingelogdLid);
