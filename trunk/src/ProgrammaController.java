@@ -27,6 +27,9 @@ public class ProgrammaController implements ActionListener
 	
 	private Database db;
 	
+	/**
+	 * Constructor voor ProgrammaController, maakt een nieuw ProgrammaScherm aan en stelt de database in voor de benodigde beheerklassen.
+	 */
 	public ProgrammaController()
 	{
 		this.scherm = new ProgrammaScherm();
@@ -45,6 +48,9 @@ public class ProgrammaController implements ActionListener
 		this.openLogin();
 	}
 	
+	/**
+	 * Het panel voor het bekijken van een deelnemer is geopend mits er een deelnemer was geselecteerd.
+	 */
 	public void actieBekijkDeelnemer()
 	{
 		if(this.actiefPanel instanceof Panel_Wedstrijd)
@@ -105,6 +111,9 @@ public class ProgrammaController implements ActionListener
 		}
 	}
 	
+	/**
+	 * Het panel voor het bekijken en plaatsen van reacties is geopend en het scherm ververst.
+	 */
 	public void actieBekijkReacties()
 	{
 		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
@@ -118,6 +127,9 @@ public class ProgrammaController implements ActionListener
 		}
 	}
 	
+	/**
+	 * Het wedstrijdpanel van de geselecteerde wedstrijd wordt geopend, bij geen selectie een foutmelding.
+	 */
 	public void actieBekijkWedstrijd()
 	{
 		if(!(this.actiefPanel instanceof Panel_Hoofdscherm))
@@ -136,6 +148,9 @@ public class ProgrammaController implements ActionListener
 		
 	}
 	
+	/**
+	 * Beoordelingspanel voor dit baksel van de geselecteerde deelnemer is geopend mits een deelnemer was geselecteerd.
+	 */
 	public void actieBeoordeel()
 	{
 		if(!(this.actiefPanel instanceof Panel_Beoordelen))
@@ -160,6 +175,9 @@ public class ProgrammaController implements ActionListener
 		
 	}
 	
+	/**
+	 * De bestelling is geplaatst indien de ingevulde waarden correct waren en er een correct aantal is ingevuld.
+	 */
 	public void actieBestel()
 	{
 		if(!(this.actiefPanel instanceof Panel_WedstrijdKlaar))
@@ -186,6 +204,9 @@ public class ProgrammaController implements ActionListener
 		}
 	}
 	
+	/**
+	 * De gebruiker is ingeschreven bij de actieve wedstrijd, indien de waarden correct waren, zo niet een foutmelding.
+	 */
 	public void actieInschrijvingVerzenden()
 	{
 		if(!(this.actiefPanel instanceof Panel_Inschrijven))
@@ -206,6 +227,9 @@ public class ProgrammaController implements ActionListener
 		}
 	}
 	
+	/**
+	 *  De gebruiker is ingelogd en het hoofdscherm wordt geopend indien de ingevoerde waarden correct waren en het loginscherm zichtbaar was.
+	 */
 	public void actieLogin()
 	{
 		if(!(this.actiefPanel instanceof Panel_Login))
@@ -229,6 +253,9 @@ public class ProgrammaController implements ActionListener
 		
 	}
 	
+	/**
+	 * Gebruiker wordt uitgelogged mits deze ingelogged was.
+	 */
 	public void actieLoguit()
 	{
 		this.ingelogdLid = null;
@@ -236,6 +263,10 @@ public class ProgrammaController implements ActionListener
 		this.openLogin();
 	}
 	
+	/**
+	 * Wanneer het wedstrijdpanel is geopend wordt er een nieuwe wedstrijd aangemaakt mits de juiste gegevens zijn 
+	 * ingevoerd, zo niet een foutmelding wordt gegeven.
+	 */
 	public void actieMaakWedstrijd()
 	{
 		if(!(this.actiefPanel instanceof Panel_WedstrijdNieuw))
@@ -402,7 +433,10 @@ public class ProgrammaController implements ActionListener
 		new Scherm_foutmelding("U hebt deze wedstrijd nu gesloten.","Wedstrijd sluiten");
 	}
 
-public void actieTerugNaarDeelnemer()
+	/**
+	 * Het deelnemer panel voor deze deelnemer is nu weer geopend mits het reactiepaneel van de betreffende deelnemer is geopend. 
+	 */
+	public void actieTerugNaarDeelnemer()
 	{
 		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
 		{
