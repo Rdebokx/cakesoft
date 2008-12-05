@@ -21,10 +21,10 @@ public class Lid {
 	
 	/**
 	 * Constructor voor Lid, gegeven alle eigenschappen van het lid.
-	 * @param naam				String
-	 * @param lid_id			int
-	 * @param wachtwoord		String
-	 * @param hoofdbeheer	boolean
+	 * @param naam				De naam van het Lid
+	 * @param lid_id			Het lid_id van het lid
+	 * @param wachtwoord		Het wachtwoord, behorende bij dit lid.
+	 * @param hoofdbeheer		boolean die aangeeft of dit lid hoofdbeheerder is of niet
 	 */
 	public Lid(String naam, int lid_id, String wachtwoord, boolean hoofdbeheer)
 	{
@@ -35,8 +35,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode setNaam, stelt naam in
-	 * @param naam		String
+	 * Methode setNaam stelt de naam in van het lid
+	 * @param naam		Bevat de naam van het lid
 	 */
 	public void setNaam(String naam)
 	{
@@ -44,8 +44,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode setLid_id, stelt lid_id in.
-	 * @param lid_id
+	 * Methode setLid_id stelt lid_id in.
+	 * @param lid_id	bevat het "nieuwe" lid_id
 	 */
 	public void setLid_id(int lid_id)
 	{
@@ -53,8 +53,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode setWachtwoord, stelt wachtwoord in.
-	 * @param wachtwoord	String
+	 * Methode setWachtwoord stelt het wachtwoord in.
+	 * @param wachtwoord	Bevat het nieuwe wachtwoord
 	 */
 	public void setWachtwoord(String wachtwoord)
 	{
@@ -62,8 +62,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode setHoofdbeheer, stelt hoofdbeheer in.
-	 * @param hoofdbeheer	boolean
+	 * Methode setHoofdbeheer, stelt in of iemand het hoofdbeheer heeft of niet.
+	 * @param hoofdbeheer	true als dit lid de hoofdbeheerder is, anders false
 	 */
 	public void setHoofdbeheer(boolean hoofdbeheer)
 	{
@@ -71,8 +71,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode getNaam, geeft naam terug
-	 * @return		String
+	 * Methode getNaam geeft de naam van het lid terug.
+	 * @return		Bevat de naam van het lid
 	 */
 	public String getNaam()
 	{
@@ -80,8 +80,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode getLid_id, geeft lid_id terug.
-	 * @return	int
+	 * Methode getLid_id geeft het lid_id terug.
+	 * @return	geeft het lid_id terug, als int
 	 */
 	public int getLid_id()
 	{
@@ -89,8 +89,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode getWachtwoord, geeft wachtwoord terug.
-	 * @return	String
+	 * Methode getWachtwoord, geeft het wachtwoord terug.
+	 * @return	Bevat het wachtwoord, als String
 	 */
 	public String getWachtwoord()
 	{
@@ -98,8 +98,8 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode isHoofdbeheer, geeft boolean waarde terug.
-	 * @return boolean
+	 * Methode isHoofdbeheer, geeft true terug als dit lid de hoofdbeheerder is, andes false.
+	 * @return	geeft true terug als dit lid de hoofdbeheerder is.
 	 */
 	public boolean isHoofdbeheer()
 	{
@@ -107,8 +107,9 @@ public class Lid {
 	}
 	
 	/**
-	 * Methode equals, geeft true desda object is van klasse Lid en heeft gelijk lid_id
-	 * @return	boolean
+	 * Methode equals, geeft true desda het opgegeven object ook van het type Lid is
+	 *  en het zelfde lid_id heeft.
+	 * @return	geeft true als het opgegeven object hetzelfde lid bevat.
 	 */
 	public boolean equals(Object other)
 	{
