@@ -238,7 +238,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		Reactie reactie=null;
 		if(this.reactie_veld.getText().equals(""))
 		{
-			new Scherm_foutmelding("U hebt geen bericht ingevuld in het reactieveld.");
+			new Scherm_foutmelding("U heeft geen bericht ingevuld in het reactieveld.");
 			return null;
 		}
 		
