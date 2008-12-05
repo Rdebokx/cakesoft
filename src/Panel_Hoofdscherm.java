@@ -1,14 +1,9 @@
 import javax.swing.*;
-
-import java.awt.Color;
-import java.awt.event.*;
 import java.util.*;
 
 public class Panel_Hoofdscherm extends JPanel
 {
-	//Eclipse-fix
 	private static final long serialVersionUID = 1L;
-	//
 	
 	//Inhoud van het Inlogscherm
 	private JLabel wedstrijd = new JLabel("Wedstrijden");
@@ -37,25 +32,17 @@ public class Panel_Hoofdscherm extends JPanel
 		
 	public Panel_Hoofdscherm(boolean hoofdbeheer)
 	{
-		//this.programmaC=programmaC;
 		this.hoofdbeheer=hoofdbeheer;
 		
   		//basis-instellingen scherm
-		/*setTitle("CakeSoft - Hoofdscherm");
-		setSize(750,450);
-		setResizable(false);
-		setLocationRelativeTo(null); //centrering
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 		setLayout(null);
 		
 		//alles aan container positioneren
 		wedstrijd.setBounds(30,30,300,20);
-		
-		
-		
 		wedstrijd_scroll.setBounds(30,50,300,220);
 		
 		bekijkWedstrijd_knop.setBounds(30,275,145,35);
+		
 		if(this.hoofdbeheer)
 			nieuwWedstrijd_knop.setBounds(185,275,145,35);
 		
@@ -86,13 +73,6 @@ public class Panel_Hoofdscherm extends JPanel
 		
 		//scherm-object luistert naar de events
 		
-		/*bekijkWedstrijd_knop.addActionListener(this);
-		if(this.hoofdbeheer)
-			nieuwWedstrijd_knop.addActionListener(this);
-		verwijderBestelling_knop.addActionListener(this);
-		loguit_knop.addActionListener(this);
-		*/
-		
 		setVisible(true);
 	}
 	
@@ -115,26 +95,6 @@ public class Panel_Hoofdscherm extends JPanel
 		else
 			return this.InBestellingLijst.get(geselecteerd);
 	}
-		
-	/*public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == this.bekijkWedstrijd_knop)
-		{
-			programmaC.actieBekijkWedstrijd();
-		}
-		else if(e.getSource() == this.nieuwWedstrijd_knop && this.hoofdbeheer)
-		{
-			programmaC.actieNieuwWedstrijd();
-		}
-		else if(e.getSource() == this.verwijderBestelling_knop)
-		{
-			programmaC.actieVerwijderBestelling();
-		}
-		else if(e.getSource() == this.loguit_knop)
-		{
-			programmaC.actieLoguit();
-		}		
-	}*/
 	
 	public void setWedstrijden(ArrayList<Wedstrijd> WedstrijdLijst)
 	{
