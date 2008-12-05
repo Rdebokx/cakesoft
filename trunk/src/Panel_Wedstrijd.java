@@ -78,22 +78,22 @@ public class Panel_Wedstrijd extends JPanel
 
 		deelnemers.setBounds(30,120,200,20);
 		deelnemers_scroll.setBounds(30,140,200,120);
-		bekijkDeelnemer_knop.setBounds(30,260,200,35);
+		bekijkDeelnemer_knop.setBounds(30,265,200,35);
 		if(toonSluitKnop)
 			sluitWedstrijd_knop.setBounds(30,300,200,35);
 
 		if(this.wedstrijd.isInschrijvingOpen() && !this.isJury && !this.isDeelnemer)
-			inschrijven_knop.setBounds(500,30,200,50);
+			inschrijven_knop.setBounds(30,325,200,35);
 		
-		baksel_paneel.setBounds(275,120,1000,700);
+		baksel_paneel.setBounds(275,30,1000,700);
 		baksel.setBounds(0,0,300,20);
 		naam.setBounds(0,30,300,20);
 		categorie.setBounds(0,50,300,20);
 		prijs.setBounds(0,70,300,20);
 		ingredienten.setBounds(0,140,200,20);
-		ingredienten_scroll.setBounds(0,160,200,100);
+		ingredienten_scroll.setBounds(0,160,200,150);
 		recept.setBounds(210,140,200,20);
-		recept_scroll.setBounds(210,160,200,100);
+		recept_scroll.setBounds(210,160,200,150);
 
 		beoordeel_knop.setBounds(210,30,150,35);
 		kan_niet_beoordelen.setBounds(210,30,300,35);
