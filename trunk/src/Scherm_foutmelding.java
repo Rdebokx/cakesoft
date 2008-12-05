@@ -25,7 +25,7 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		this.foutTekst.setText(tekst);
 		
 		Dimension tekstSize =this.foutTekst.getMinimumSize();
-		this.foutTekst.setBounds((400-tekstSize.width)/2,5,tekstSize.width,tekstSize.height);
+		this.foutTekst.setBounds((500-tekstSize.width)/2,5,tekstSize.width,tekstSize.height);
 		this.okKnop.setBounds(150,20+tekstSize.height,100,35);
 		
 		this.setSize(400,90+tekstSize.height);		
@@ -35,7 +35,7 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 	{
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(new Rectangle(100,100,400,100));
-		this.setSize(400,110);
+		this.setSize(500,110);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		//Point oude_locatie=this.getLocation();
