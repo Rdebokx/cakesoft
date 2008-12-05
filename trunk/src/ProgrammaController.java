@@ -296,8 +296,11 @@ public class ProgrammaController implements ActionListener
 		
 		this.openOverzicht();
 		new Scherm_foutmelding("Deze nieuwe wedstrijd is toegevoegd.","Nieuwe Wedstrijd");
-	}	
+	}
 	
+	/**
+	 * De reactie is geplaatst indien de ingevoerde waarden correct waren 
+	 */
 	public void actiePlaatsReactie()
 	{
 		if(!(this.actiefPanel instanceof Panel_WedstrijdKlaar))
@@ -316,6 +319,10 @@ public class ProgrammaController implements ActionListener
 		this.actieBekijkReacties();
 	}
 	
+	/**
+	 * De wedstrijd is nu gesloten en er is berekend wie de winnaar is en wie op welke plek staat. 
+	 * Dit is ook opgeslagen in de database. Mits de wedstrijd open is.
+	 */
 	public void actieSluitWedstrijd()
 	{
 		if(!(this.actiefPanel instanceof Panel_Wedstrijd))
@@ -395,7 +402,7 @@ public class ProgrammaController implements ActionListener
 		new Scherm_foutmelding("U hebt deze wedstrijd nu gesloten.","Wedstrijd sluiten");
 	}
 
-	public void actieTerugNaarDeelnemer()
+public void actieTerugNaarDeelnemer()
 	{
 		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
 		{
@@ -425,16 +432,25 @@ public class ProgrammaController implements ActionListener
 		}
 	}
 
+	/**
+	 * Het hoofdpanel is nu geopend 
+	 */
 	public void actieTerugNaarHoofdscherm()
 	{
 		this.openOverzicht();
 	}
 
+	/**
+	 * Het wedstrijd panel voor de actieve wedstrijd is nu geopend 
+	 */
 	public void actieTerugNaarWedstrijd()
 	{
 		this.openWedstrijd();
 	}
-	
+
+	/**
+	 * Geselecteerde bestelling is verwijderd, mits er een bestelling is geselecteerd.
+	 */
 	public void actieVerwijderBestelling()
 	{
 		if(!(this.actiefPanel instanceof Panel_Hoofdscherm))
@@ -455,7 +471,10 @@ public class ProgrammaController implements ActionListener
 			new Scherm_foutmelding("Deze ontvangen bestelling is nu verwijderd.","Bestelling verwijderen");
 		}
 	}
-
+	
+	/**
+	 * Het event heeft de juiste actie methode aangeroepen op basis van de source van het event, mits ActionEvent e is een event dat is uitgevoerd door de gebruiker
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(this.actiefPanel instanceof Panel_Login)
@@ -538,7 +557,10 @@ public class ProgrammaController implements ActionListener
 				this.openWedstrijd();
 		}
 	}
-	
+
+	/**
+	 * Huidige panel is gesloten, BeoordelenPanel is aangemaakt, ingesteld en het scherm wordt ververst. 
+	 */
 	public void openBeoordelen()
 	{
 		this.sluitActiefPanel();
@@ -555,6 +577,9 @@ public class ProgrammaController implements ActionListener
 		this.scherm.repaint();
 	}
 	
+	/**
+	 * Huidige panel is gesloten, InschrijfPanel is aangemaakt, ingesteld en het scherm wordt ververst. 
+	 */
 	public void openInschrijven()
 	{
 		this.sluitActiefPanel();
@@ -572,6 +597,9 @@ public class ProgrammaController implements ActionListener
 		
 	}
 	
+	/**
+	 * Huidige panel is gesloten, LoginPanel is aangemaakt, ingesteld en het scherm wordt ververst.
+	 */
 	public void openLogin()
 	{
 		this.sluitActiefPanel();
@@ -588,6 +616,9 @@ public class ProgrammaController implements ActionListener
 		this.scherm.repaint();
 	}
 	
+	/**
+	 * Sluit het huidige panel, opent een nieuw HoofdPanel, vraagt de gegevens op en update het scherm.
+	 */
 	public void openOverzicht()
 	{
 		this.sluitActiefPanel();
@@ -616,6 +647,10 @@ public class ProgrammaController implements ActionListener
 		this.scherm.repaint();
 	}
 	
+	/**
+	 * Sluit het huidige panel en opent een nieuw WedstrijdPanel met de bekende gegevens. Indien de einddatum van de wedstrijd is verlopen 
+	 * wordt de inschrijving gesloten. Het scherm wordt geupdate.
+	 */
 	public void openWedstrijd()
 	{
 		this.sluitActiefPanel();
@@ -701,7 +736,11 @@ public class ProgrammaController implements ActionListener
 			this.scherm.repaint();
 		}
 	}
-	
+
+	/**
+	 * Heeft het huidige WedstrijdPanel gesloten en heeft een nieuw WedstrijdPanelNieuw geopend stelt deze in en 
+	 * ververst het scherm.
+	 */
 	public void openWedstrijdNieuw()
 	{
 		this.sluitActiefPanel();
@@ -719,6 +758,9 @@ public class ProgrammaController implements ActionListener
 	}
 	
 	
+	/**
+	 * Verwijdert het actieve panel van het scherm. 
+	 */
 	public void sluitActiefPanel()
 	{
 		if(this.actiefPanel == null)
