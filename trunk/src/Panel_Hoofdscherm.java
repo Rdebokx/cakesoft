@@ -30,6 +30,11 @@ public class Panel_Hoofdscherm extends JPanel
 	private boolean hoofdbeheer;
 
 		
+	/**
+	 * Constructor van Panel_Hoofdscherm, neemt de waarde mbt hoofdbeheer over, stelt alle objecten vervolgens in
+	 *  en indien nodig worden beheeropties weergegeven.
+	 * @param hoofdbeheer	Boolean, wel of geen beheerder
+	 */
 	public Panel_Hoofdscherm(boolean hoofdbeheer)
 	{
 		this.hoofdbeheer=hoofdbeheer;
@@ -76,6 +81,10 @@ public class Panel_Hoofdscherm extends JPanel
 		setVisible(true);
 	}
 	
+	/**
+	 * Geeft de geselecteerde Wedstrijd terug.
+	 * @return	Geeft de geselecteerde wedstrijd terug.
+	 */
 	public Wedstrijd getGeselecteerdeWedstrijd()
 	{
 		int geselecteerd=this.wedstrijd_lijst.getSelectedIndex();
@@ -86,6 +95,10 @@ public class Panel_Hoofdscherm extends JPanel
 			return this.WedstrijdLijst.get(geselecteerd);
 	}
 	
+	/**
+	 * Geeft de geselecteerde bestelling terug.
+	 * @return	Geeft de geselecteerde bestelling terug.
+	 */
 	public Bestelling getGeselecteerdeInBestelling()
 	{
 		int geselecteerd=this.ontvangen_lijst.getSelectedIndex();
@@ -96,6 +109,10 @@ public class Panel_Hoofdscherm extends JPanel
 			return this.InBestellingLijst.get(geselecteerd);
 	}
 	
+	/**
+	 * Stelt de wedstrijden in aan de hand van de gegeven arrayList.
+	 * @param WedstrijdLijst	De in te stellen Wedstrijden in ArrayList.
+	 */
 	public void setWedstrijden(ArrayList<Wedstrijd> WedstrijdLijst)
 	{
 		this.WedstrijdLijst = WedstrijdLijst;
@@ -109,6 +126,10 @@ public class Panel_Hoofdscherm extends JPanel
 		this.wedstrijd_scroll.setViewportView(this.wedstrijd_lijst);		
 	}
 	
+	/**
+	 * Stelt de gegeven bestellingen in.
+	 * @param InBestellingLijst	De in te stellen bestellingen in een ArrayList.
+	 */
 	public void setBestellingInkomend(ArrayList<Bestelling> InBestellingLijst)
 	{
 		this.InBestellingLijst = InBestellingLijst;
@@ -122,6 +143,10 @@ public class Panel_Hoofdscherm extends JPanel
 		this.ontvangen_scroll.setViewportView(this.ontvangen_lijst);	
 	}
 	
+	/**
+	 * Stelt de gegeven uitgaande bestellingen in.
+	 * @param UitBestellingLijst	De in te stellen uitgaande bestellingen in ArrayList.
+	 */
 	public void setBestellingUitgaand(ArrayList<Bestelling> UitBestellingLijst)
 	{
 		this.UitBestellingLijst = UitBestellingLijst;
@@ -136,21 +161,33 @@ public class Panel_Hoofdscherm extends JPanel
 	}
 	
 	
+	/**
+	 * @return	BekijkWedstrijd_knop.
+	 */
 	public JButton getBekijkWedstrijd_knop()
 	{
 		return this.bekijkWedstrijd_knop;
 	}
 	
+	/**
+	 * @return	getNieuwWedstrijd_knop
+	 */
 	public JButton getNieuwWedstrijd_knop()
 	{
 		return this.nieuwWedstrijd_knop;
 	}
 	
+	/**
+	 * @return	verwijderBestelling_knop
+	 */
 	public JButton getVerwijderBestelling_knop()
 	{
 		return this.verwijderBestelling_knop;
 	}
 	
+	/**
+	 * @return	loguit_knop
+	 */
 	public JButton getLoguit_knop()
 	{
 		return this.loguit_knop;
