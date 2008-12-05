@@ -395,6 +395,36 @@ public class ProgrammaController implements ActionListener
 		new Scherm_foutmelding("U hebt deze wedstrijd nu gesloten.","Wedstrijd sluiten");
 	}
 
+	public void actieTerugNaarDeelnemer()
+	{
+		if(this.actiefPanel instanceof Panel_WedstrijdKlaar)
+		{
+			Panel_WedstrijdKlaar panel = (Panel_WedstrijdKlaar)this.actiefPanel;
+			
+			ArrayList<Beoordeling> beoordelingen = this.bBeoordeling.getBeoordelingenVanBaksel(this.actieveDeelnemer.getBaksel());
+			Beoordeling gemiddelde = new Beoordeling(0,"",0,0,0,0);
+			for(Beoordeling beoordeling:beoordelingen)
+			{
+				gemiddelde.setCalo(gemiddelde.getCalo()+beoordeling.getCalo());
+				gemiddelde.setPrijs(gemiddelde.getPrijs()+beoordeling.getPrijs());
+				gemiddelde.setKwaliteit(gemiddelde.getKwaliteit()+beoordeling.getKwaliteit());
+				gemiddelde.setSmaak(gemiddelde.getSmaak()+beoordeling.getSmaak());
+			}
+			if(beoordelingen.size()>0)
+			{
+				gemiddelde.setCalo((int)Math.round(((double)gemiddelde.getCalo())/((double)beoordelingen.size())));
+				gemiddelde.setPrijs((int)Math.round(((double)gemiddelde.getPrijs())/((double)beoordelingen.size())));
+				gemiddelde.setKwaliteit((int)Math.round(((double)gemiddelde.getKwaliteit())/((double)beoordelingen.size())));
+				gemiddelde.setSmaak((int)Math.round(((double)gemiddelde.getSmaak())/((double)beoordelingen.size())));
+			}
+			
+			panel.toonDeelnemer(this.actieveDeelnemer);
+			panel.setBeoordelingen(beoordelingen,gemiddelde);
+			this.scherm.repaint();
+			this.actiefPanel.revalidate();
+		}
+	}
+
 	public void actieTerugNaarHoofdscherm()
 	{
 		this.openOverzicht();
@@ -404,7 +434,7 @@ public class ProgrammaController implements ActionListener
 	{
 		this.openWedstrijd();
 	}
-
+	
 	public void actieVerwijderBestelling()
 	{
 		if(!(this.actiefPanel instanceof Panel_Hoofdscherm))
@@ -425,7 +455,7 @@ public class ProgrammaController implements ActionListener
 			new Scherm_foutmelding("Deze ontvangen bestelling is nu verwijderd.","Bestelling verwijderen");
 		}
 	}
-	
+
 	public void actionPerformed(ActionEvent e)
 	{
 		if(this.actiefPanel instanceof Panel_Login)
@@ -479,7 +509,7 @@ public class ProgrammaController implements ActionListener
 			if(e.getSource() ==  panel.getBekijkReactie_knop())
 				this.actieBekijkReacties();
 			if(e.getSource()  ==  panel.getBekijkReactieInvert_knop())
-				this.actieBekijkDeelnemer();
+				this.actieTerugNaarDeelnemer();
 			if(e.getSource()  ==  panel.getTerug_knop())
 				this.actieTerugNaarHoofdscherm();
 			if(e.getSource() ==  panel.getBestel_knop() || e.getSource() ==  panel.getBestellen_veld())
@@ -508,7 +538,7 @@ public class ProgrammaController implements ActionListener
 				this.openWedstrijd();
 		}
 	}
-
+	
 	public void openBeoordelen()
 	{
 		this.sluitActiefPanel();
@@ -671,7 +701,7 @@ public class ProgrammaController implements ActionListener
 			this.scherm.repaint();
 		}
 	}
-
+	
 	public void openWedstrijdNieuw()
 	{
 		this.sluitActiefPanel();
