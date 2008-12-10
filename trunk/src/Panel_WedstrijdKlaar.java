@@ -130,11 +130,11 @@ public class Panel_WedstrijdKlaar extends JPanel
 		smaak.setBounds(0,200,175,20);
 		smaak_punt.setBounds(100,200,60,20);
 		commentaar.setBounds(210,110,200,20);
-		commentaar_scroll.setBounds(210,130,200,100);
+		commentaar_scroll.setBounds(210,130,240,100);
 		
 		ingredienten.setBounds(0,245,200,20);
 		ingredienten_scroll.setBounds(0,265,200,100);
-		//recept.setBounds(210,245,200,20);
+		recept.setBounds(210,245,200,20);
 		recept_scroll.setBounds(210,265,240,100);
 
 		reactie_knop.setBounds(305,395,150,40);
