@@ -1,4 +1,4 @@
-import _Schermen.Scherm_WedstrijdKlaar;
+//import _Schermen.Scherm_WedstrijdKlaar;
 
 public class testScherm {
 	public static void main(String[] args)
