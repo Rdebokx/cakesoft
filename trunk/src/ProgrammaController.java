@@ -608,6 +608,8 @@ public class ProgrammaController implements ActionListener
 		Panel_Beoordelen panel = new Panel_Beoordelen();
 		panel.setBounds(0,0,1000,1000);
 		
+		panel.setNaam_waarde(this.actieveDeelnemer.getNaam());
+		
 		panel.getBeoordeel_knop().addActionListener(this);
 		panel.getTerug_knop().addActionListener(this);
 		

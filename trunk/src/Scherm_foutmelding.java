@@ -26,9 +26,9 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		
 		Dimension tekstSize =this.foutTekst.getMinimumSize();
 		this.foutTekst.setBounds((500-tekstSize.width)/2,5,tekstSize.width,tekstSize.height);
-		this.okKnop.setBounds(150,20+tekstSize.height,100,35);
+		this.okKnop.setBounds(200,20+tekstSize.height,100,35);
 		
-		this.setSize(400,90+tekstSize.height);		
+		this.setSize(500,90+tekstSize.height);		
 	}
 	
 	public void init()
