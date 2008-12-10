@@ -304,8 +304,11 @@ public class ProgrammaController implements ActionListener
 			
 			for(k=1;k<i;k++)
 			{
-				new Scherm_foutmelding("U kunt niet twee keer hetzelfe jurylid invoeren.");
-				return;
+				if(jury_naam.equals(panel.getJuryNaam(k)))
+				{
+					new Scherm_foutmelding("U kunt niet twee keer hetzelfe jurylid invoeren.");
+					return;
+				}
 			}
 			
 			//kijk wie allemaal bedoeld zou kunnen zijn
