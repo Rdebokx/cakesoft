@@ -17,6 +17,7 @@ public class Panel_Login extends JPanel
 	
 	public Panel_Login()
 	{
+//		this.setBackground(Color.PINK);
 		//System.out.println("Making panel...");
 		paneel=new JPanel(new GridLayout(2,2));
 		paneel2= new JPanel(new GridLayout(1,1));
