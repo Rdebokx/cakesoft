@@ -153,6 +153,11 @@ public class Panel_Beoordelen extends JPanel {
 		return beoordeling;
 	}
 	
+	public void setNaam_waarde(String naam)
+	{
+		this.naam_waarde.setText(naam);
+	}
+	
 	
 	public JButton getBeoordeel_knop()
 	{
