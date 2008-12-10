@@ -60,7 +60,7 @@ public class Panel_WedstrijdNieuw extends JPanel
 		juryveld_2.setBounds(600,60,125,25);
 		juryveld_3.setBounds(600,90,125,25);
 		
-		terug_knop.setBounds(30,430,75,35);
+		terug_knop.setBounds(30,430,95,35);
 
 		//aan het frame toevoegen
 		add(paneel);

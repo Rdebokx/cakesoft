@@ -62,7 +62,7 @@ public class Panel_Beoordelen extends JPanel {
 		
 		beoordeel_knop.setBounds(250,250,200,35);
 		
-		terug_knop.setBounds(30,430,75,35);
+		terug_knop.setBounds(30,430,95,35);
 		
 		
 		//Moet dit hier?? en zo ja hoe?

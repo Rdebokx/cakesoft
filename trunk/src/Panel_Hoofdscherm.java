@@ -58,7 +58,7 @@ public class Panel_Hoofdscherm extends JPanel
 		besteld.setBounds(400,260,300,20);
 		besteld_scroll.setBounds(400,280,300,150);
 		
-		loguit_knop.setBounds(30,430,75,35);
+		loguit_knop.setBounds(30,430,95,35);
 		
 		//aan het frame toevoegen
 		add(wedstrijd_scroll);
