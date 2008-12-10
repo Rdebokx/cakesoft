@@ -1,5 +1,6 @@
 import java.util.*;
 import javax.swing.*;
+
 import java.awt.event.*;
 
 /**
@@ -261,6 +262,9 @@ public class ProgrammaController implements ActionListener
 	 */
 	public void actieLoguit()
 	{
+		int response=JOptionPane.showConfirmDialog(null,"Wilt u echt uitloggen?","",JOptionPane.YES_NO_OPTION);
+		if(response!=0)
+			return;
 		this.ingelogdLid = null;
 		this.scherm.setTitle("CakeSoft");
 		this.openLogin();
@@ -284,7 +288,7 @@ public class ProgrammaController implements ActionListener
 		String jury_naam,namen;
 		ArrayList<Lid> mogelijkheden;
 		ArrayList<Jury> juryleden = new ArrayList<Jury>();
-		int i,j;
+		int i,j,k;
 		
 		//loop door juryleden heen
 		for(i = 1;i <= 3;i++)
@@ -295,6 +299,12 @@ public class ProgrammaController implements ActionListener
 			if(jury_naam.equals("") || jury_naam == null)
 			{
 				new Scherm_foutmelding("U hebt geen naam ingevuld voor jurylid "+i+".");
+				return;
+			}
+			
+			for(k=1;k<i;k++)
+			{
+				new Scherm_foutmelding("U kunt niet twee keer hetzelfe jurylid invoeren.");
 				return;
 			}
 			
@@ -352,6 +362,7 @@ public class ProgrammaController implements ActionListener
 		this.bReactie.voegReactie(reactie,this.actieveDeelnemer.getBaksel());
 		
 		new Scherm_foutmelding("Uw reactie is geplaatst.", "Reactie plaatsen.");
+		panel.resetReactie();
 		this.actieBekijkReacties();
 	}
 	
@@ -484,6 +495,9 @@ public class ProgrammaController implements ActionListener
 	 */
 	public void actieTerugNaarWedstrijd()
 	{
+		int response=JOptionPane.showConfirmDialog(null,"Wilt u echt terug naar de wedstrijd?","",JOptionPane.YES_NO_OPTION);
+		if(response!=0)
+			return;
 		this.openWedstrijd();
 	}
 
