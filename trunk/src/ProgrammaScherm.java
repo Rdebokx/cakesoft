@@ -1,4 +1,5 @@
 import java.awt.event.WindowEvent;
+import java.awt.*;
 import java.awt.event.WindowListener;
 import java.util.Locale;
 
@@ -31,7 +32,7 @@ public class ProgrammaScherm extends JFrame
 			//l.installBorder(getRootPane());
 			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 			
 		}
 		catch(Exception e)

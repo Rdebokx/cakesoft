@@ -13,7 +13,7 @@ public class Panel_WedstrijdNieuw extends JPanel
 	//Inhoud van het Inlogscherm
 	private JPanel paneel = new JPanel(new GridLayout(2,2));
 	private JPanel paneel2 = new JPanel(new GridLayout(1,1));
-	private JLabel datum = new JLabel("Datum wedstrijd:");
+	private JLabel datum = new JLabel("Datum wedstrijd: (j-m-d)");
 	private JLabel locatie = new JLabel("Locatie wedstrijd:");
 	private JTextField datum_veld = new JTextField();
 	private JTextField locatie_veld = new JTextField();
