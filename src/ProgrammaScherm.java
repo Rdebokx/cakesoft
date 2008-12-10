@@ -38,7 +38,7 @@ public class ProgrammaScherm extends JFrame
 		{
 			Color oudeBg=new Color(240,240,240);
 			Color oudeBg2=new Color(238,238,238);
-			Color nieuweBg=Color.orange;
+			Color nieuweBg=new Color(255,0,200);
 			javax.swing.plaf.FontUIResource f = new javax.swing.plaf.FontUIResource("Arial",0,14);
 			java.util.Enumeration keys = UIManager.getDefaults().keys();
 			while(keys.hasMoreElements())
