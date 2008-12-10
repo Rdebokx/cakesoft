@@ -93,7 +93,7 @@ public class Panel_Wedstrijd extends JPanel
 		ingredienten.setBounds(0,140,200,20);
 		ingredienten_scroll.setBounds(0,160,200,150);
 		recept.setBounds(210,140,200,20);
-		recept_scroll.setBounds(210,160,200,150);
+		recept_scroll.setBounds(210,160,240,150);
 
 		beoordeel_knop.setBounds(210,30,150,35);
 		kan_niet_beoordelen.setBounds(210,30,300,35);
