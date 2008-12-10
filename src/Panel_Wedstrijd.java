@@ -187,8 +187,9 @@ public class Panel_Wedstrijd extends JPanel
 		this.categorie.setText("Categorie: "+deelnemer.getBaksel().getCategorie());
 		this.prijs.setText("Prijs: "+NumberFormat.getCurrencyInstance().format(deelnemer.getBaksel().getPrijs()));
 		this.ingredienten_tekst.setText(deelnemer.getBaksel().getIngredienten());
+		this.ingredienten_tekst.setCaretPosition(0);
 		this.recept_tekst.setText(deelnemer.getBaksel().getRecept());
-		
+		this.recept_tekst.setCaretPosition(0);
 		this.beoordeel_knop.setVisible(this.isJury && !heeftBeoordeeld);
 		this.kan_niet_beoordelen.setVisible(this.isJury && heeftBeoordeeld);
 		
