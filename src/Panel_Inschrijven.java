@@ -78,7 +78,7 @@ public class Panel_Inschrijven extends JPanel
 		recept_scroll.setBounds(350,220,360,120);
 		
 		inschrijf_knop.setBounds(520,415,200,50);		
-		terug_knop.setBounds(30,430,75,35);
+		terug_knop.setBounds(30,430,95,35);
 		
 		//aan het frame toevoegen
 		add(datum);		

@@ -150,7 +150,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		
 		baksel_paneel.setVisible(false);
 		reactie_paneel.setVisible(false);
-		terug_knop.setBounds(30,430,75,35);
+		terug_knop.setBounds(30,430,95,35);
 		
 		
 		//aan het frame toevoegen

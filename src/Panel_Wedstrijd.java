@@ -105,7 +105,7 @@ public class Panel_Wedstrijd extends JPanel
 		//bestellen_veld.setBounds(485,150,100,25);
 		//bestel_knop.setBounds(485,175,100,25);
 						
-		terug_knop.setBounds(30,430,75,35);
+		terug_knop.setBounds(30,430,95,35);
 		
 		//aan het frame toevoegen
 		add(deelnemers_scroll);
