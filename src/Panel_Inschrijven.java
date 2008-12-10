@@ -4,8 +4,6 @@ import java.awt.event.*;
 
 public class Panel_Inschrijven extends JPanel
 {
-	
-	
 	//Eclipse-fix
 	private static final long serialVersionUID = 1L;
 	
@@ -34,8 +32,8 @@ public class Panel_Inschrijven extends JPanel
 		
 	private JButton terug_knop = new IconButton("_Icons/arrow_left.png","Terug").show();
 	private JButton inschrijf_knop = new IconButton("_Icons/ok.png","Inschrijven").show();
-		
-	
+	private JComboBox categorieNaam = new JComboBox();
+
 	public Panel_Inschrijven(Wedstrijd wedstrijd)
 	{
 		this.wedstrijd=wedstrijd;
@@ -46,6 +44,10 @@ public class Panel_Inschrijven extends JPanel
 		recept_tekst.setEditable(true);
 		recept_tekst.setText("");
 		recept_scroll.setViewportView(recept_tekst);
+		categorieNaam.addItem("Taart");
+		categorieNaam.addItem("Cake");
+		categorieNaam.addItem("Koek");
+		categorieNaam.addItem("Anders");
 		
 		ingredienten_tekst.setEditable(true);
 		ingredienten_tekst.setText("");
@@ -69,7 +71,8 @@ public class Panel_Inschrijven extends JPanel
 		bakselnaam.setBounds(30,120,300,20);
 		bakselnaam_veld.setBounds(120,120,120,20);
 		categorie.setBounds(30,140,300,20);
-		catogorie_veld.setBounds(120,145,120,20);
+		categorieNaam.setBounds(120,145,120,20);
+		//catogorie_veld.setBounds(120,145,120,20);
 		prijs.setBounds(30,165,300,20);
 		prijs_veld.setBounds(120,170,120,20);
 		ingredienten.setBounds(30,200,250,20);
@@ -87,7 +90,8 @@ public class Panel_Inschrijven extends JPanel
 		add(bakselnaam);
 		add(bakselnaam_veld);
 		add(categorie);
-		add(catogorie_veld);
+		//add(catogorie_veld);
+		add(categorieNaam);
 		add(prijs);
 		add(prijs_veld);
 		add(ingredienten);
@@ -118,12 +122,6 @@ public class Panel_Inschrijven extends JPanel
 			return null;
 		}
 		
-		if(this.catogorie_veld.getText().equals(""))
-		{
-			new Scherm_foutmelding("U hebt geen categorie ingevuld.");
-			return null;
-		}
-		
 		try
 		{
 			String prijsStr=this.prijs_veld.getText();
@@ -150,7 +148,7 @@ public class Panel_Inschrijven extends JPanel
 		
 		
 		baksel=new Baksel();
-		baksel.setCategorie(this.catogorie_veld.getText());
+		baksel.setCategorie((String)this.categorieNaam.getItemAt(this.categorieNaam.getSelectedIndex()));
 		baksel.setIngredienten(this.ingredienten_tekst.getText());
 		baksel.setNaam(this.bakselnaam_veld.getText());
 		baksel.setRecept(this.recept_tekst.getText());
