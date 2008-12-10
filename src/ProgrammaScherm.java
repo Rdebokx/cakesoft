@@ -39,6 +39,8 @@ public class ProgrammaScherm extends JFrame
 			Color oudeBg=new Color(240,240,240);
 			Color oudeBg2=new Color(238,238,238);
 			Color nieuweBg=new Color(255,0,200);
+			Color cvalue;
+			
 			javax.swing.plaf.FontUIResource f = new javax.swing.plaf.FontUIResource("Arial",0,14);
 			java.util.Enumeration keys = UIManager.getDefaults().keys();
 			while(keys.hasMoreElements())
@@ -53,7 +55,9 @@ public class ProgrammaScherm extends JFrame
 					//	oudeBg=(Color)value;
 					if(value instanceof Color)
 					{
-						if(value.equals(oudeBg) || value.equals(oudeBg2))
+						cvalue=(Color)value;
+						//als de kleur grijs-achtig is, maar niet wit, vervang hem dan.
+						if(cvalue.getBlue()>200 && cvalue.getRed()>200 && cvalue.getGreen()>200 && cvalue.getBlue()<255 && cvalue.getRed()<255 & cvalue.getGreen()<255)
 							UIManager.put(key,nieuweBg);
 					}
 				}
