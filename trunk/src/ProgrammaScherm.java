@@ -17,13 +17,6 @@ public class ProgrammaScherm extends JFrame
 	 */
 	public ProgrammaScherm()
 	{
-		setTitle("CakeSoft");
-		setSize(750,500);
-		setResizable(false);
-		setLocationRelativeTo(null); //centrering
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.addWindowListener(this);
-		setLayout(null);
 		
 		try
 		{
@@ -43,6 +36,9 @@ public class ProgrammaScherm extends JFrame
 		
 		try
 		{
+			Color oudeBg=new Color(240,240,240);
+			Color oudeBg2=new Color(238,238,238);
+			Color nieuweBg=Color.orange;
 			javax.swing.plaf.FontUIResource f = new javax.swing.plaf.FontUIResource("Arial",0,14);
 			java.util.Enumeration keys = UIManager.getDefaults().keys();
 			while(keys.hasMoreElements())
@@ -51,12 +47,33 @@ public class ProgrammaScherm extends JFrame
 				Object value = UIManager.get(key);
 				if(value instanceof javax.swing.plaf.FontUIResource)
 					UIManager.put(key,f);
+				if(value instanceof Color)
+				{
+					//if(key.toString().equals("Panel.background"))
+					//	oudeBg=(Color)value;
+					if(value instanceof Color)
+					{
+						if(value.equals(oudeBg) || value.equals(oudeBg2))
+							UIManager.put(key,nieuweBg);
+					}
+				}
+				
 			}
+			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+		
+		setTitle("CakeSoft");
+		setSize(750,500);
+		setResizable(false);
+		setLocationRelativeTo(null); //centrering
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.addWindowListener(this);
+		setLayout(null);
+		
 		setVisible(true);
 	}
 
