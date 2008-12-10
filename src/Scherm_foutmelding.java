@@ -58,20 +58,6 @@ public class Scherm_foutmelding extends JFrame implements ActionListener
 		this.okKnop.addActionListener(this);
 		
 		
-		try
-		{
-			
-			LookAndFeel l=(LookAndFeel) Class.forName(UIManager.getSystemLookAndFeelClassName()).newInstance();
-			//l.installBorder(getRootPane());
-			
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-
-		}
-		catch(Exception e)
-		{
-			//
-		}
 		
 		this.setVisible(true);
 	}
