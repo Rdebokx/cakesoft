@@ -36,13 +36,13 @@ public class Panel_Login extends JPanel
 		
 		try{
 			bg.setLocation(0,0);
-			Dimension dim=new Dimension(100,100);
+			Dimension dim=new Dimension(750,500);
 			bg.setPreferredSize(dim);
 			bg.setMinimumSize(dim);
 			bg.setMaximumSize(dim);
 			bg.setSize(dim);
 			bg.setLayout(null);
-			add(bg);
+			add(bg,new Integer(3),0);
 		}
 		catch(Exception e)
 		{
@@ -61,7 +61,7 @@ public class Panel_Login extends JPanel
 		setLayout(null);
 		
 		//alles aan panelen toevoegen
-		paneel.add(lidnr);
+		paneel.add(lidnr,new Integer(1),0);
 		paneel.add(lidnr_veld);
 		paneel.add(pass);
 		paneel.add(pass_veld);
@@ -70,8 +70,9 @@ public class Panel_Login extends JPanel
 		paneel2.setBounds(225,245,300,45);
 		
 		//aan het frame toevoegen
-		add(paneel);
-		add(paneel2);
+		add(paneel,new Integer(1),0);
+		add(paneel2,new Integer(1),0);
+		
 		
 		//scherm-object luistert naar de events
 		/*

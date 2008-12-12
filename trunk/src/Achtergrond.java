@@ -19,6 +19,7 @@ public class Achtergrond extends JComponent
 		{
 			e.printStackTrace();
 		}
+		this.setBackground(new Color(255,255,51));
 	}
 	
 	protected void paintComponent(Graphics g)
@@ -27,6 +28,9 @@ public class Achtergrond extends JComponent
 		{
 			g.drawImage(afbeelding,0,0,this);
 		}
+		g.setColor(new Color(255,255,51));
+		
+		g.fillRect(215,140,320,160);
 		
 	}
 	
