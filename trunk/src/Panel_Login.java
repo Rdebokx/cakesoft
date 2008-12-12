@@ -16,7 +16,7 @@ public class Panel_Login extends JPanel
 	private JLabel pass;
 	private JTextField lidnr_veld;
 	private JTextField pass_veld;
-	//private Achtergrond bg=new Achtergrond();
+	private Achtergrond bg=new Achtergrond();
 	
 	private JButton loginknop;
 	
@@ -34,9 +34,9 @@ public class Panel_Login extends JPanel
 		loginknop = new IconButton("_Icons/user.png", "Login").show();
 		
 		
-		/*try{
+		try{
 			bg.setLocation(0,0);
-			Dimension dim=new Dimension(800,600);
+			Dimension dim=new Dimension(100,100);
 			bg.setPreferredSize(dim);
 			bg.setMinimumSize(dim);
 			bg.setMaximumSize(dim);
@@ -47,7 +47,7 @@ public class Panel_Login extends JPanel
 		catch(Exception e)
 		{
 			e.printStackTrace();
-		}*/
+		}
 		//Image bg_img=new Image(getClass().getResource("taart.png"));
 		//bg_img.paintIcon(arg0, arg1, arg2, arg3)
 		
@@ -81,6 +81,7 @@ public class Panel_Login extends JPanel
 		*/
 		
 		repaint();
+		revalidate();
 		setVisible(true);
 	}
 	
