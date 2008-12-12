@@ -94,7 +94,6 @@ public class Panel_WedstrijdKlaar extends JPanel
 		this.reactie_veld_scroll.setViewportView(this.reactie_veld);
 		
 		commentaar_tekst.setEditable(false);
-		commentaar_tekst.setText("Smaakt goed. Ik ben alleen allergisch voor meuk. Jeuk, bulten, jeweetwel.");
 		commentaar_scroll.setViewportView(commentaar_tekst);
 		commentaar_tekst.setCaretPosition(0);
 		commentaar_tekst.setText(deelnemer.getBaksel().getRecept());
