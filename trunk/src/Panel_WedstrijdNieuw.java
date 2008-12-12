@@ -13,7 +13,9 @@ public class Panel_WedstrijdNieuw extends JPanel
 	//Inhoud van het Inlogscherm
 	private JPanel paneel = new JPanel(new GridLayout(2,2));
 	private JPanel paneel2 = new JPanel(new GridLayout(1,1));
-	private JLabel datum = new JLabel("Datum wedstrijd: (j-m-d)");
+	private JLabel datum = new JLabel("Datum wedstrijd:");
+	private JLabel datumBijschrift = new JLabel("(jaar-maand-dag)");
+	
 	private JLabel locatie = new JLabel("Locatie wedstrijd:");
 	private JTextField datum_veld = new JTextField();
 	private JTextField locatie_veld = new JTextField();
@@ -31,17 +33,14 @@ public class Panel_WedstrijdNieuw extends JPanel
 	
 	public Panel_WedstrijdNieuw()
 	{
-		
-  		//basis-instellingen scherm
-		/*setTitle("CakeSoft - Een nieuwe wedstrijd maken");
-		setSize(750,450);
-		setResizable(false);
-		setLocationRelativeTo(null); //centrering
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 		setLayout(null);
 		
-		
+		//Stel datum in op huidige.
 		datum_veld.setText((new SimpleDateFormat("yyyy-MM-dd")).format(new java.util.Date()));
+
+		add(datumBijschrift);
+
+		datumBijschrift.setBounds(225, 170, 120, 40);
 		
 		//alles aan panelen toevoegen
 		paneel.add(datum);
@@ -73,10 +72,6 @@ public class Panel_WedstrijdNieuw extends JPanel
 		add(juryveld_2);
 		add(juryveld_3);
 		add(terug_knop);
-		
-		//scherm-object luistert naar de events
-		//maak_knop.addActionListener(this);
-		//terug_knop.addActionListener(this);
 		
 		setVisible(true);
 	}
