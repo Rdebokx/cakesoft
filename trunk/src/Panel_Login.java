@@ -1,6 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
 
 public class Panel_Login extends JPanel
 {
@@ -12,11 +16,13 @@ public class Panel_Login extends JPanel
 	private JLabel pass;
 	private JTextField lidnr_veld;
 	private JTextField pass_veld;
+	//private Achtergrond bg=new Achtergrond();
 	
 	private JButton loginknop;
 	
 	public Panel_Login()
 	{
+		
 //		this.setBackground(Color.PINK);
 		//System.out.println("Making panel...");
 		paneel=new JPanel(new GridLayout(2,2));
@@ -26,7 +32,26 @@ public class Panel_Login extends JPanel
 		lidnr_veld = new JTextField();
 		pass_veld = new JTextField();
 		loginknop = new IconButton("_Icons/user.png", "Login").show();
-
+		
+		
+		/*try{
+			bg.setLocation(0,0);
+			Dimension dim=new Dimension(800,600);
+			bg.setPreferredSize(dim);
+			bg.setMinimumSize(dim);
+			bg.setMaximumSize(dim);
+			bg.setSize(dim);
+			bg.setLayout(null);
+			add(bg);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}*/
+		//Image bg_img=new Image(getClass().getResource("taart.png"));
+		//bg_img.paintIcon(arg0, arg1, arg2, arg3)
+		
+		
   		//basis-instellingen scherm
 		/*setTitle("CakeSoft");
 		setSize(600,400);
@@ -55,7 +80,7 @@ public class Panel_Login extends JPanel
 		loginknop.addActionListener(this);
 		*/
 		
-		
+		repaint();
 		setVisible(true);
 	}
 	

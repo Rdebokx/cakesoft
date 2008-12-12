@@ -11,6 +11,7 @@ public class IconButton
 	{
 		try
 		{
+			
 			icon = new ImageIcon(getClass().getResource(iconPath));
 			button.setMargin(new Insets(0,0,0,0));
 			button.setIcon(icon);
