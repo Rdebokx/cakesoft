@@ -96,7 +96,7 @@ public class Panel_WedstrijdKlaar extends JPanel
 		commentaar_tekst.setEditable(false);
 		commentaar_scroll.setViewportView(commentaar_tekst);
 		commentaar_tekst.setCaretPosition(0);
-		commentaar_tekst.setText(deelnemer.getBaksel().getRecept());
+		//commentaar_tekst.setText(deelnemer.getBaksel().getRecept());
 
 		
   		//basis-instelling
