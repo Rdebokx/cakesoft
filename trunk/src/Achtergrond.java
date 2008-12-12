@@ -13,7 +13,7 @@ public class Achtergrond extends JComponent
 		super();
 		try
 		{
-			this.afbeelding=ImageIO.read(new File(getClass().getResource("taart.png").getFile()));
+			this.afbeelding=ImageIO.read(new File(getClass().getResource("_Icons/taart.png").getFile()));
 		}
 		catch(Exception e)
 		{
