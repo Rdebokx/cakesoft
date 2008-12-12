@@ -1,7 +1,5 @@
 import javax.swing.*;
 
-import java.awt.event.*;
-
 public class Panel_Inschrijven extends JPanel
 {
 	//Eclipse-fix
