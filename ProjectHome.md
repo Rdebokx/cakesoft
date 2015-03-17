@@ -1,0 +1,1 @@
+Repository for a Delft University student project regarding software for a pie tournament. The language is partly Dutch, might nonetheless be useful for others studying Java. Made in Java with a Mysql backend.
